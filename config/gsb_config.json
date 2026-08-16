@@ -1,0 +1,95 @@
+{
+  "_versao": "GSB-EVT007-CONFIG-2026-08-13",
+  "_decisoes_vazquez": [
+    "Classificação por CÓDIGO de catálogo (classe), não por palavra.",
+    "Material nunca é CERTA automática — requalifica por valor; passa pelo humano.",
+    "Serviço contínuo de mão de obra (limpeza/vigilância div.85) e obra = CERTA.",
+    "Regra dos 85%: homologado < 85% do estimado -> garantia adicional (independe de objeto).",
+    "'Não haverá garantia' NUNCA descarta — checar sempre o gatilho 85% e o edital.",
+    "Coletar 1 dia e avaliar volume/regras no dado real antes de refinar."
+  ],
+  "funil": {
+    "piso_valor_coleta": 1000000,
+    "fronteira_rota": 10000000,
+    "max_itens_soma": 15,
+    "filtro_valor_antes_do_drill": true
+  },
+  "garantia": {
+    "caminho_1_objeto": {
+      "_regra": "classe de catálogo -> status (CERTA/INFERIR/MONITORAR/STANDBY/DESCARTAR)",
+      "fonte": "familias_catalogo_classe.json"
+    },
+    "caminho_2_gatilho_85": {
+      "_regra": "valorHomologado / valorEstimado < 0.85 -> GARANTIA_ADICIONAL_PROVAVEL",
+      "limiar": 0.85,
+      "independe_de_objeto": true,
+      "vale_mesmo_se_edital_diz_sem_garantia": true
+    },
+    "caminho_3_edital": {
+      "_regra": "Fase 2: motor de edital lê o TR/edital em /arquivos e confirma",
+      "endpoint_arquivos": "https://pncp.gov.br/api/pncp/v1/orgaos/{cnpj}/compras/{ano}/{seq}/arquivos",
+      "termos_positivos": [
+        "seguro-garantia",
+        "garantia de execução",
+        "garantia da contratação",
+        "garantia adicional"
+      ],
+      "termos_gatilho_85": [
+        "85%",
+        "oitenta e cinco por cento",
+        "inferior a 85"
+      ],
+      "nao_descartar_por": [
+        "não haverá",
+        "não será exigida",
+        "dispensada a garantia"
+      ]
+    }
+  },
+  "porte_natureza": {
+    "_decisao_vazquez": "Porte só Demais. Natureza só 3: SA Aberta(2046), SA Fechada(2054), Ltda(2062). Cortes por porte/natureza: fica para trás.",
+    "size_id_aceito": "3",
+    "size_nome_aceito": [
+      "demais"
+    ],
+    "nature_ids_aceitos": [
+      "2046",
+      "2054",
+      "2062"
+    ],
+    "nature_nomes_aceitos": [
+      "sociedade anonima aberta",
+      "sociedade anonima fechada",
+      "sociedade empresaria limitada"
+    ]
+  },
+  "modalidades_prioritarias": [
+    "4",
+    "5",
+    "6",
+    "7"
+  ],
+  "teses": {
+    "1_vf_emissao": {
+      "faixa": "> 10MM",
+      "enriquecimento": "completo"
+    },
+    "2_vm_hibrido": {
+      "faixa": "1-10MM",
+      "enriquecimento": "completo",
+      "_nota": "VM capta, VF emite; honorário+comissão"
+    },
+    "3_vm_consultoria": {
+      "faixa": "qualquer",
+      "gatilho": "tema/massa",
+      "enriquecimento": "por massa"
+    },
+    "4_assinatura": {
+      "planos": {
+        "GRATIS": "<=3MM +20dias",
+        "INTERMEDIARIO": "1-5MM sem enriquec.",
+        "PREMIUM": ">=5MM contato+dossie"
+      }
+    }
+  }
+}

@@ -1,0 +1,4103 @@
+{
+  "material_classe": {
+    "1005": {
+      "nome": "ARMAS DE FOGO DE CALIBRE ATÉ 120MM",
+      "status": "MONITORAR"
+    },
+    "1010": {
+      "nome": "ARMAS DE FOGO DE CALIBRE ACIMA DE 30MM ATÉ 75MM",
+      "status": "MONITORAR"
+    },
+    "1015": {
+      "nome": "ARMAS DE FOGO DE CALIBRE ACIMA DE 75MM ATÉ 125MM",
+      "status": "MONITORAR"
+    },
+    "1020": {
+      "nome": "ARMAS DE FOGO DE CALIBRE ACIMA DE 125MM ATÉ 150MM",
+      "status": "MONITORAR"
+    },
+    "1025": {
+      "nome": "ARMAS DE FOGO DE CALIBRE ACIMA DE 150MM ATÉ 200MM",
+      "status": "MONITORAR"
+    },
+    "1030": {
+      "nome": "ARMAS DE FOGO DE CALIBRE ACIMA DE 200MM ATÉ 300MM",
+      "status": "MONITORAR"
+    },
+    "1035": {
+      "nome": "ARMAS DE FOGO DE CALIBRE ACIMA DE 300MM",
+      "status": "MONITORAR"
+    },
+    "1040": {
+      "nome": "ARMAMENTO E EQUIPAMENTOS DE GUERRA QUÍMICA",
+      "status": "MONITORAR"
+    },
+    "1045": {
+      "nome": "LANÇADORES DE TORPEDOS E DE BOMBAS DE PROFUNDIDADE",
+      "status": "MONITORAR"
+    },
+    "1055": {
+      "nome": "LANÇADORES DE FOGUETES E PIROTÉCNICOS",
+      "status": "MONITORAR"
+    },
+    "1070": {
+      "nome": "REDES SUBMARINAS DE DEFESA DE PORTOS",
+      "status": "MONITORAR"
+    },
+    "1075": {
+      "nome": "EQUIPAMENTOS DE DESMAGNETIZAÇÃO E DE VARREDURA DE MINAS",
+      "status": "MONITORAR"
+    },
+    "1080": {
+      "nome": "EQUIPAMENTOS DE CAMUFLAGEM E DE DISSIMULAÇÃO",
+      "status": "MONITORAR"
+    },
+    "1090": {
+      "nome": "CONJUNTOS INTERCAMBIÁVEIS DE DUAS OU MAIS CLASSES",
+      "status": "MONITORAR"
+    },
+    "1095": {
+      "nome": "ARMAMENTOS DIVERSOS",
+      "status": "MONITORAR"
+    },
+    "1105": {
+      "nome": "BOMBAS NUCLEARES",
+      "status": "MONITORAR"
+    },
+    "1110": {
+      "nome": "PROJÉTEIS NUCLEARES",
+      "status": "MONITORAR"
+    },
+    "1115": {
+      "nome": "OGIVAS NUCLEARES E SEÇÕES DE OGIVAS NUCLEARES",
+      "status": "MONITORAR"
+    },
+    "1120": {
+      "nome": "BOMBAS NUCLEARES DE PROFUNDIDADE",
+      "status": "MONITORAR"
+    },
+    "1125": {
+      "nome": "CARGAS NUCLEARES DE DEMOLIÇÃO",
+      "status": "MONITORAR"
+    },
+    "1127": {
+      "nome": "FOGUETES NUCLEARES",
+      "status": "MONITORAR"
+    },
+    "1130": {
+      "nome": "CONJUNTOS DE CONVERSÃO PARA ARMAMENTO NUCLEAR",
+      "status": "MONITORAR"
+    },
+    "1135": {
+      "nome": "DISPOSITIVOS DE DETONAÇÃO E DISPARO DE ARMAMENTO",
+      "status": "MONITORAR"
+    },
+    "1140": {
+      "nome": "COMPONENTES NUCLEARES",
+      "status": "MONITORAR"
+    },
+    "1145": {
+      "nome": "COMPONENTES EXPLOSIVOS E PIROTÉCNICOS DE ARMAMENTO NUCLEAR",
+      "status": "MONITORAR"
+    },
+    "1190": {
+      "nome": "EQUIPAMENTO ESPECIALIZADO DE MANUSEIO E ENSAIO DE ARMAMENTONUCLEAR",
+      "status": "MONITORAR"
+    },
+    "1195": {
+      "nome": "MATERIAL BÉLICO NUCLEAR DIVERSOS",
+      "status": "MONITORAR"
+    },
+    "1210": {
+      "nome": "DIRETORAS DE CONTROLE DE TIRO",
+      "status": "MONITORAR"
+    },
+    "1220": {
+      "nome": "DISPOSITIVOS E CORRETORES DE CONTROLE DE TIRO",
+      "status": "MONITORAR"
+    },
+    "1230": {
+      "nome": "SISTEMAS COMPLETOS DE CONTROLE DE TIRO",
+      "status": "MONITORAR"
+    },
+    "1240": {
+      "nome": "EQUIPAMENTOS ÓTICOS DE VISADA E MEDIÇÃO DE DISTÂNCIA",
+      "status": "MONITORAR"
+    },
+    "1250": {
+      "nome": "MECANISMOS DE ESTABILIZAÇÃO E CONTROLE DE TIRO",
+      "status": "MONITORAR"
+    },
+    "1260": {
+      "nome": "EQUIPAMENTO DE DESIGNAÇÃO E INDICAÇÃO DE CONTROLE DE TIRO",
+      "status": "MONITORAR"
+    },
+    "1265": {
+      "nome": "EQUIPAMENTO DE RECEPÇÃO E TRANSMISSÃO DE CONTROLE DE TIRO(EXCETO DE AERONAVE)",
+      "status": "MONITORAR"
+    },
+    "1270": {
+      "nome": "COMPONENTES DE CONTROLE DE TIRO DE AERONAVES",
+      "status": "MONITORAR"
+    },
+    "1280": {
+      "nome": "COMPONENTES DE CONTROLE DE TIRO EM AERONAVES DE BOMBARDEIO",
+      "status": "MONITORAR"
+    },
+    "1285": {
+      "nome": "EQUIPAMENTO RADAR DE CONTROLE DE TIRO (EXCETO DE AERONAVES)",
+      "status": "MONITORAR"
+    },
+    "1287": {
+      "nome": "EQUIPAMENTO SONAR DE CONTROLE DE TIRO",
+      "status": "MONITORAR"
+    },
+    "1290": {
+      "nome": "EQUIPAMENTOS DIVERSOS DE CONTROLE DE TIRO",
+      "status": "MONITORAR"
+    },
+    "1295": {
+      "nome": "EQUIPAMENTO DE CONTROLE DE TIRO DIVERSOS",
+      "status": "MONITORAR"
+    },
+    "1305": {
+      "nome": "MUNIÇÃO DE CALIBRE ATÉ 30 MM",
+      "status": "MONITORAR"
+    },
+    "1310": {
+      "nome": "MUNIÇÃO DE CALIBRE ACIMA DE 30 MM ATÉ 75 MM",
+      "status": "MONITORAR"
+    },
+    "1315": {
+      "nome": "MUNIÇÃO DE CALIBRE ACIMA DE 75MM ATÉE 125MM",
+      "status": "MONITORAR"
+    },
+    "1320": {
+      "nome": "MUNIÇÃO DE CALIBRE ACIMA DE 125 MM",
+      "status": "MONITORAR"
+    },
+    "1325": {
+      "nome": "BOMBAS",
+      "status": "MONITORAR"
+    },
+    "1330": {
+      "nome": "GRANADAS",
+      "status": "MONITORAR"
+    },
+    "1336": {
+      "nome": "OGIVAS E COMPONENTES EXPLOSIVOS DE MISSEIS GUIADOS",
+      "status": "MONITORAR"
+    },
+    "1337": {
+      "nome": "UNIDADES DE PROPULSAO EXPLOSIVA A COMBUSTIVEL SOLIDO DE VEICULOS ESPACIAIS E MISSEIS GUIADOS E SEUS COMPONENTES",
+      "status": "MONITORAR"
+    },
+    "1338": {
+      "nome": "UNIDADES DE PROPULSAO INERTES A COMBUSTIVEL SOLIDO DE VEICULOS ESPACIAIS E MISSEIS GUIADOS E SEUS COMPONENTES",
+      "status": "MONITORAR"
+    },
+    "1340": {
+      "nome": "ROJÕES, FOGUETES, MUNIÇÃO E COMPONENTES",
+      "status": "MONITORAR"
+    },
+    "1345": {
+      "nome": "MINAS TERRESTRES",
+      "status": "MONITORAR"
+    },
+    "1346": {
+      "nome": "MUNIÇÕES DE CONTROLE À DISTÂNCIA",
+      "status": "MONITORAR"
+    },
+    "1350": {
+      "nome": "COMPONENTES INERTES DE MINA SUBMARINA",
+      "status": "MONITORAR"
+    },
+    "1351": {
+      "nome": "COMPONENTES EXPLOSIVOS DE MINAS SUBMARINAS",
+      "status": "MONITORAR"
+    },
+    "1352": {
+      "nome": "DISPOSITIVOS INERTES DE MINAS SUBAQUÁTICAS",
+      "status": "MONITORAR"
+    },
+    "1353": {
+      "nome": "DISPOSITIVOS EXPLOSIVOS DE MINAS SUBAQUÁTICAS",
+      "status": "MONITORAR"
+    },
+    "1355": {
+      "nome": "COMPONENTES INERTES DE TORPEDOS",
+      "status": "MONITORAR"
+    },
+    "1356": {
+      "nome": "COMPONENTES EXPLOSIVOS DE TORPEDOS",
+      "status": "MONITORAR"
+    },
+    "1360": {
+      "nome": "COMPONENTES INERTES DE CARGAS DE PROFUNDIDADE",
+      "status": "MONITORAR"
+    },
+    "1361": {
+      "nome": "COMPONENTES EXPLOSIVOS DE BOMBAS DE PROFUNDIDADE",
+      "status": "MONITORAR"
+    },
+    "1367": {
+      "nome": "CONJUNTOS E EQUIPAMENTOS TÁTICOS",
+      "status": "MONITORAR"
+    },
+    "1370": {
+      "nome": "PIROTECNICOS",
+      "status": "MONITORAR"
+    },
+    "1375": {
+      "nome": "MATERIAIS DE DEMOLIÇÃO",
+      "status": "MONITORAR"
+    },
+    "1376": {
+      "nome": "EXPLOSIVOS A GRANEL",
+      "status": "MONITORAR"
+    },
+    "1377": {
+      "nome": "DISPOSITIVOS ACIONADOS POR PROPELENTES E CARTUCHOS",
+      "status": "MONITORAR"
+    },
+    "1380": {
+      "nome": "AGENTES BIOLOGICOS DE USO MILITAR",
+      "status": "MONITORAR"
+    },
+    "1385": {
+      "nome": "EQUIPAMENTOS E FERRAMENTAS PARA MANUSEIO DE EXPLOSIVO NA SU-PERFÍCIE",
+      "status": "MONITORAR"
+    },
+    "1386": {
+      "nome": "EQUIPAMENTOS E FERRAMENTAS PARA MANUSEIO DE EXPLOSIVO SUB-MERSO",
+      "status": "MONITORAR"
+    },
+    "1390": {
+      "nome": "ESPOLETAS E ESTOPILHAS",
+      "status": "MONITORAR"
+    },
+    "1395": {
+      "nome": "COMPONENTES DIVERSOS DE MUNIÇÃO",
+      "status": "MONITORAR"
+    },
+    "1398": {
+      "nome": "EQUIPAMENTOS ESPECIALIZADOS PARA MANUSEIO E CONSERVACAO DE MUNICAO",
+      "status": "MONITORAR"
+    },
+    "1410": {
+      "nome": "MÍSSEIS GUIADOS",
+      "status": "MONITORAR"
+    },
+    "1420": {
+      "nome": "COMPONENTES DE MÍSSEIS GUIADOS",
+      "status": "MONITORAR"
+    },
+    "1425": {
+      "nome": "SISTEMAS COMPLETOS DE MÍSSEIS GUIADOS",
+      "status": "MONITORAR"
+    },
+    "1427": {
+      "nome": "SUBSISTEMAS DE MÍSSEIS GUIADOS",
+      "status": "MONITORAR"
+    },
+    "1430": {
+      "nome": "SISTEMA DE CONTROLE REMOTO DE MÍSSEIS GUIADOS",
+      "status": "MONITORAR"
+    },
+    "1440": {
+      "nome": "LANÇADORES DE MÍSSEIS GUIADOS",
+      "status": "MONITORAR"
+    },
+    "1450": {
+      "nome": "EQUIPAMENTO PARA MANUSEIO DE MANUTENÇÃO DE MÍSSEIS GUIADOS",
+      "status": "MONITORAR"
+    },
+    "1495": {
+      "nome": "MISSEIS GUIADOS DIVERSOS",
+      "status": "MONITORAR"
+    },
+    "1505": {
+      "nome": "AERONAVES",
+      "status": "MONITORAR"
+    },
+    "1510": {
+      "nome": "AERONAVES DE ASAS FIXAS",
+      "status": "MONITORAR"
+    },
+    "1515": {
+      "nome": "HELICES DE AERONAVES E COMPONENTES",
+      "status": "MONITORAR"
+    },
+    "1520": {
+      "nome": "AERONAVES DE ASA ROTATIVAS",
+      "status": "MONITORAR"
+    },
+    "1525": {
+      "nome": "COMPONENTES DE SISTEMA DE FREIOS E RODAS",
+      "status": "MONITORAR"
+    },
+    "1530": {
+      "nome": "COMPNENTES DE SISTEMA HIDRAULICO, DE VACUO E DEGELAMENTO",
+      "status": "MONITORAR"
+    },
+    "1535": {
+      "nome": "COMPONENTE DE SISTEMAS DE CONDICIONAMENTO DE AR,DO AQUECIMENTO E DE PRESSURIZACAO",
+      "status": "MONITORAR"
+    },
+    "1540": {
+      "nome": "PLANADORES",
+      "status": "MONITORAR"
+    },
+    "1550": {
+      "nome": "AERONAVES TELEGUIADAS",
+      "status": "MONITORAR"
+    },
+    "1560": {
+      "nome": "COMPONENTES ESTRUTURAIS DE AERONAVES",
+      "status": "MONITORAR"
+    },
+    "1595": {
+      "nome": "AERONAVES E COMPONENTES ESTRUTURAIS DIVERSOS",
+      "status": "MONITORAR"
+    },
+    "1610": {
+      "nome": "HELICES DE AERONAVES",
+      "status": "MONITORAR"
+    },
+    "1615": {
+      "nome": "PÁS DE ROTOR DE HELICOPTERO, MECANISMOS DE TRANSMISSÃO E COMPONENTES",
+      "status": "MONITORAR"
+    },
+    "1620": {
+      "nome": "COMPONENTES DE TREM DE POUSO DE AERONAVE",
+      "status": "MONITORAR"
+    },
+    "1630": {
+      "nome": "SISTEMAS DE RODAS E DE FREIO DE AERONAVES",
+      "status": "MONITORAR"
+    },
+    "1650": {
+      "nome": "COMPONENTES DOS SISTEMAS HIDRÁULICOS,DE VÁCUO E DEGELO DE AERONAVES",
+      "status": "MONITORAR"
+    },
+    "1660": {
+      "nome": "EQUIPAMENTOS DE AR CONCICIONADO, AQUECIMENTO E PRESSURIZAÇÃODE AERONAVES",
+      "status": "MONITORAR"
+    },
+    "1670": {
+      "nome": "PÁRA-QUEDAS,SISTEMAS DE COLETA, LANÇAMENTO E RESGATE AÉREO E EQUIPAMENTOS DE AMARRAÇÃO DE CARGAS",
+      "status": "MONITORAR"
+    },
+    "1680": {
+      "nome": "ACESSORIOS E COMPONENTES DIVERSOS DE AERONAVES",
+      "status": "MONITORAR"
+    },
+    "1695": {
+      "nome": "COMPONENTES E ACESSORIOS DE AERONAVES DIVERSOS",
+      "status": "MONITORAR"
+    },
+    "1705": {
+      "nome": "EQUIPAMENTOS PARA SERVICOS DE AERODROMOS",
+      "status": "MONITORAR"
+    },
+    "1710": {
+      "nome": "EQUIPAMENTOS PARA POUSO DE AERONAVES",
+      "status": "MONITORAR"
+    },
+    "1720": {
+      "nome": "EQUIPAMENTOS PARA LANÇAMENTO DE AERONAVES",
+      "status": "MONITORAR"
+    },
+    "1730": {
+      "nome": "EQUIPAMENTOS DE SERVICOS EM TERRA DE AERONAVES",
+      "status": "MONITORAR"
+    },
+    "1740": {
+      "nome": "TRATORES E REBOQUES ESPECIALIZADOS PARA AEROPORTOS",
+      "status": "MONITORAR"
+    },
+    "1795": {
+      "nome": "EQUIPAMENTOS PARA LANCAMENTO, POUSO E MANOBRA DE AERONAVESDIVERSOS",
+      "status": "MONITORAR"
+    },
+    "1805": {
+      "nome": "VEICULOS",
+      "status": "MONITORAR"
+    },
+    "1810": {
+      "nome": "VEÍCULOS ESPACIAIS",
+      "status": "MONITORAR"
+    },
+    "1820": {
+      "nome": "COMPONENTES DE VEICULOS ESPACIAIS",
+      "status": "MONITORAR"
+    },
+    "1830": {
+      "nome": "SISTEMAS DE CONTROLE REMOTO DE VEICULOS ESPACIAIS",
+      "status": "MONITORAR"
+    },
+    "1840": {
+      "nome": "LANCADORES DE VEICULOS ESPACIAIS",
+      "status": "MONITORAR"
+    },
+    "1850": {
+      "nome": "EQUIPAMENTOS DE SERVICOS E MANUSEIO DE VEICULOS ESPACIAIS",
+      "status": "MONITORAR"
+    },
+    "1860": {
+      "nome": "EQUIPAMENTOS DE SOBREVIVÊNCIA ESPACIAL",
+      "status": "MONITORAR"
+    },
+    "1895": {
+      "nome": "VEICULOS ESPACIAIS DIVERSOS",
+      "status": "MONITORAR"
+    },
+    "1905": {
+      "nome": "NAVIOS DE GUERRA E EMBARCACOES DE DESEMBARQUE",
+      "status": "MONITORAR"
+    },
+    "1910": {
+      "nome": "NAVIOS PARA TRANSPORTE DE PASSAGEIRO E DE TROPA",
+      "status": "MONITORAR"
+    },
+    "1915": {
+      "nome": "NAVIOS TANQUES E CARGUEIROS",
+      "status": "MONITORAR"
+    },
+    "1920": {
+      "nome": "NAVIOS PESQUEIROS",
+      "status": "MONITORAR"
+    },
+    "1925": {
+      "nome": "NAVIOS DE SERVICOS ESPECIAIS",
+      "status": "MONITORAR"
+    },
+    "1930": {
+      "nome": "BATELOES E CHATAS PARA CARGAS",
+      "status": "MONITORAR"
+    },
+    "1935": {
+      "nome": "BATELOES E CHATAS PARA FINS ESPECIAIS",
+      "status": "MONITORAR"
+    },
+    "1940": {
+      "nome": "EMBARCAÇÕES PEQUENAS",
+      "status": "MONITORAR"
+    },
+    "1945": {
+      "nome": "PONTÕES E DOCAS FLUTUANTES",
+      "status": "MONITORAR"
+    },
+    "1950": {
+      "nome": "DIQUES FLUTUANTES",
+      "status": "MONITORAR"
+    },
+    "1955": {
+      "nome": "DRAGAS",
+      "status": "MONITORAR"
+    },
+    "1990": {
+      "nome": "EMBARCACOES DIVERSAS",
+      "status": "MONITORAR"
+    },
+    "2010": {
+      "nome": "EQUIPAMENTOS DE PROPULSÃO DE NAVIOS E EMBARCAÇÕES",
+      "status": "MONITORAR"
+    },
+    "2020": {
+      "nome": "CORDAMES E EQUIPAMENTOS CORRELATOS",
+      "status": "MONITORAR"
+    },
+    "2030": {
+      "nome": "MAQUINARIA DE CONVES",
+      "status": "MONITORAR"
+    },
+    "2040": {
+      "nome": "FERRAGENS DE MARINHARIA E ITENS DE CASCO",
+      "status": "MONITORAR"
+    },
+    "2050": {
+      "nome": "BOIAS",
+      "status": "MONITORAR"
+    },
+    "2060": {
+      "nome": "EQUIPAMENTO COMERCIAL DE PESCA",
+      "status": "MONITORAR"
+    },
+    "2090": {
+      "nome": "EQUIPAMENTOS DIVERSOS PARA NAVIOS E MARINHARIA",
+      "status": "MONITORAR"
+    },
+    "2210": {
+      "nome": "LOCOMOTIVAS",
+      "status": "MONITORAR"
+    },
+    "2220": {
+      "nome": "VAGÕES FERROVIÁRIOS",
+      "status": "MONITORAR"
+    },
+    "2230": {
+      "nome": "EQUIPAMENTO DE CONSTRUÇAO E MANUTENÇAO DE LEITO DE FERROVIA",
+      "status": "MONITORAR"
+    },
+    "2240": {
+      "nome": "ACESSÓRIOS E COMPONENTES DE LOCOMOTIVAS E DE VAGÕES FERROVI-ÁRIOS",
+      "status": "MONITORAR"
+    },
+    "2250": {
+      "nome": "MATERIAIS DE FERROVIA",
+      "status": "MONITORAR"
+    },
+    "2305": {
+      "nome": "VEÍCULOS DE EFEITO-SOLO",
+      "status": "MONITORAR"
+    },
+    "2310": {
+      "nome": "VEÍCULOS MOTORIZADOS DE PASSAGEIROS",
+      "status": "MONITORAR"
+    },
+    "2320": {
+      "nome": "VEÍCULOS SOBRE RODAS",
+      "status": "MONITORAR"
+    },
+    "2330": {
+      "nome": "REBOQUES",
+      "status": "MONITORAR"
+    },
+    "2340": {
+      "nome": "MOTOCICLETAS, MOTONETAS E BICICLETAS",
+      "status": "MONITORAR"
+    },
+    "2350": {
+      "nome": "VEÍCULOS TÁTICOS SOBRE LAGARTAS",
+      "status": "MONITORAR"
+    },
+    "2410": {
+      "nome": "TRATORES DE BAIXA VELOCIDADE SOBRE LAGARTA",
+      "status": "MONITORAR"
+    },
+    "2420": {
+      "nome": "TRATORES SOBRE RODAS",
+      "status": "MONITORAR"
+    },
+    "2430": {
+      "nome": "TRATORES DE ALTA VELOCIDADE SOBRE LAGARTAS",
+      "status": "MONITORAR"
+    },
+    "2510": {
+      "nome": "COMPONENTES DE CABINE, CARROCERIA E CHASSIS DE VEÍCULOS",
+      "status": "MONITORAR"
+    },
+    "2520": {
+      "nome": "COMPONENTES DE TRANSMISSÃO DE VEÍCULOS",
+      "status": "MONITORAR"
+    },
+    "2530": {
+      "nome": "COMPONENTES DE FREIO, DIREÇÃO, EIXO, RODA E LAGARTA DE VEÍCULOS",
+      "status": "MONITORAR"
+    },
+    "2540": {
+      "nome": "EQUIPAMENTO E ACESSÓRIOS PARA VEÍCULOS",
+      "status": "MONITORAR"
+    },
+    "2541": {
+      "nome": "ACESSÓRIOS VEICULARES ESPECÍFICOS PARA SISTEMAS DE ARMAS",
+      "status": "MONITORAR"
+    },
+    "2590": {
+      "nome": "COMPONENTES DIVERSOS PARA VEÍCULOS",
+      "status": "MONITORAR"
+    },
+    "2610": {
+      "nome": "PNEUS E CÂMARAS DE AR, EXCETO OS DE AERONAVES",
+      "status": "MONITORAR"
+    },
+    "2620": {
+      "nome": "PNEUS E CÂMARAS DE AR DE AERONAVES",
+      "status": "MONITORAR"
+    },
+    "2630": {
+      "nome": "PNEUS MACIÇO E DE BAIXA PRESSÃO",
+      "status": "MONITORAR"
+    },
+    "2640": {
+      "nome": "MATERIAL PARA REFORMA E REPARO DE PNEUS E CÂMARAS DE AR",
+      "status": "MONITORAR"
+    },
+    "2805": {
+      "nome": "MOTORES A GASOLINA E COMPONENTES, EXCETO OS DE AERONAVES",
+      "status": "MONITORAR"
+    },
+    "2810": {
+      "nome": "MOTORES A GASOLINA PARA AERONAVES E COMPONENTES",
+      "status": "MONITORAR"
+    },
+    "2815": {
+      "nome": "MOTORES DIESEL E COMPONENTES",
+      "status": "MONITORAR"
+    },
+    "2820": {
+      "nome": "MÁQUINAS ALTERNATIVAS A VAPOR E COMPONENTES",
+      "status": "MONITORAR"
+    },
+    "2825": {
+      "nome": "TURBINAS A VAPOR E COMPONENTES",
+      "status": "MONITORAR"
+    },
+    "2830": {
+      "nome": "TURBINAS E RODAS D'ÁGUA E COMPONENTES",
+      "status": "MONITORAR"
+    },
+    "2835": {
+      "nome": "TURBINAS A GÁS E MOTORES A JATO E COMPONENTES, EXCETO OS DEAERONAVE",
+      "status": "MONITORAR"
+    },
+    "2840": {
+      "nome": "TURBINAS A GÁS E MOTORES A JATO DE AERONAVES E COMPONENTES",
+      "status": "MONITORAR"
+    },
+    "2845": {
+      "nome": "MOTORES DE FOGUETES E COMPONENTES",
+      "status": "MONITORAR"
+    },
+    "2850": {
+      "nome": "MOTORES ROTATIVOS A GASOLINA E COMPONENTES",
+      "status": "MONITORAR"
+    },
+    "2895": {
+      "nome": "MOTORES DIVERSOS E COMPONENTES",
+      "status": "MONITORAR"
+    },
+    "2910": {
+      "nome": "COMPONENTES DO SISTEMA DE COMBUSTÍVEL DE MOTORES, EXCETO OSDE AERONAVES",
+      "status": "MONITORAR"
+    },
+    "2915": {
+      "nome": "COMPONENTES DO SISTEMA DE COMBUSTÍVEL DE MOTORES DE AERONAVES",
+      "status": "MONITORAR"
+    },
+    "2920": {
+      "nome": "COMPONENTES DO SISTEMA ELÉTRICO DE MOTORES, EXCETO OS DE AE-RONAVES",
+      "status": "MONITORAR"
+    },
+    "2925": {
+      "nome": "COMPONENTES DO SISTEMA ELÉTRICO DE MOTORES DE AERONAVES",
+      "status": "MONITORAR"
+    },
+    "2930": {
+      "nome": "COMPONENTES DO SISTEMA DE RESFRIAMENTO (ARREFECIMENTO) DEMOTORES, EXCETO DE AERONAVES",
+      "status": "MONITORAR"
+    },
+    "2935": {
+      "nome": "COMPONENTES DO SISTEMA DE RESFRIAMENTO (ARREFECIMENTO) DEMOTORES DE AERONAVES",
+      "status": "MONITORAR"
+    },
+    "2940": {
+      "nome": "FILTROS DE AR E DE ÓLEO, ELEMENTOS FILTRANTES E PURIFICADO- RES DE MOTORES, EXCETO DE AERONAVES",
+      "status": "MONITORAR"
+    },
+    "2945": {
+      "nome": "FILTROS DE AR E DE ÓLEO; ELEMENTOS FILTRANTES PURIFICADORES DE MOTORES DE AERONAVES.",
+      "status": "MONITORAR"
+    },
+    "2950": {
+      "nome": "TURBO- SUPERCOMPRESSORES",
+      "status": "MONITORAR"
+    },
+    "2990": {
+      "nome": "ACESSÓRIOS DIVERSOS DE MOTORES, EXCETO OS DE AERONAVES",
+      "status": "MONITORAR"
+    },
+    "2995": {
+      "nome": "ACESSÓRIOS DIVERSOS DE MOTORES DE AERONAVES",
+      "status": "MONITORAR"
+    },
+    "3010": {
+      "nome": "CONVERSORES DE TORQUE E CÂMBIOS DE VELOCIDADE",
+      "status": "MONITORAR"
+    },
+    "3020": {
+      "nome": "ENGRENAGENS, POLIAS, COROAS DENTADAS E CORRENTES DE TRANSMISSÃO",
+      "status": "MONITORAR"
+    },
+    "3030": {
+      "nome": "CORREAME, CORREIAS DE TRANSMISSÃO, CORREIAS DOS VENTILADORESE ACESSÓRIOS",
+      "status": "MONITORAR"
+    },
+    "3040": {
+      "nome": "EQUIPAMENTOS DIVERSOS DE TRANSMISSÃO DE FORÇA",
+      "status": "MONITORAR"
+    },
+    "3110": {
+      "nome": "ROLAMENTOS ANTIFRICÇÃO NÃO MONTADOS",
+      "status": "MONITORAR"
+    },
+    "3120": {
+      "nome": "MANCAIS NÃO MONTADOS",
+      "status": "MONITORAR"
+    },
+    "3130": {
+      "nome": "ROLAMENTOS E MANCAIS MONTADOS",
+      "status": "MONITORAR"
+    },
+    "3210": {
+      "nome": "MÁQUINAS PARA SERRARIA E PREPARO DE MADEIRA",
+      "status": "MONITORAR"
+    },
+    "3220": {
+      "nome": "MÁQUINAS PARA TRABALHOS EM MADEIRA",
+      "status": "MONITORAR"
+    },
+    "3230": {
+      "nome": "FERRAMENTAS E ACESSÓRIOS DE MÁQUINAS PARA TRABALHO EM MADEIRA",
+      "status": "MONITORAR"
+    },
+    "3405": {
+      "nome": "MÁQUINAS DE SERRAR E LIMAR",
+      "status": "MONITORAR"
+    },
+    "3408": {
+      "nome": "MÁQUINAS DE FUNÇÕES MÚLTIPLAS",
+      "status": "MONITORAR"
+    },
+    "3410": {
+      "nome": "MÁQUINAS DE DESBASTAR, ELÉTRICAS E ULTRA-SÔNICAS",
+      "status": "MONITORAR"
+    },
+    "3411": {
+      "nome": "MÁQUINAS DE BROCAR",
+      "status": "MONITORAR"
+    },
+    "3412": {
+      "nome": "MÁQUINAS DE MANDRILAR",
+      "status": "MONITORAR"
+    },
+    "3413": {
+      "nome": "MÁQUINAS DE FURAR E ABRIR ROSCAS",
+      "status": "MONITORAR"
+    },
+    "3414": {
+      "nome": "MÁQUINAS PARA CORTE E ACABAMENTO DE ENGRENAGENS",
+      "status": "MONITORAR"
+    },
+    "3415": {
+      "nome": "MÁQUINAS RETIFICADORAS",
+      "status": "MONITORAR"
+    },
+    "3416": {
+      "nome": "TORNOS",
+      "status": "MONITORAR"
+    },
+    "3417": {
+      "nome": "MÁQUINAS DE FRESAR",
+      "status": "MONITORAR"
+    },
+    "3418": {
+      "nome": "MÁQUINAS DE APLAINAR E TALHAR",
+      "status": "MONITORAR"
+    },
+    "3419": {
+      "nome": "MÁQUINAS-FERRAMENTA DIVERSAS",
+      "status": "MONITORAR"
+    },
+    "3422": {
+      "nome": "MÁQUINAS DE LAMINAR E TREFILAR",
+      "status": "MONITORAR"
+    },
+    "3424": {
+      "nome": "EQUIPAMENTO DE TRATAMENTO TÉRMICO E NÃO TÉRMICO DE METAIS",
+      "status": "MONITORAR"
+    },
+    "3426": {
+      "nome": "EQUIPAMENTOS PARA ACABAMENTO EM METAL",
+      "status": "MONITORAR"
+    },
+    "3427": {
+      "nome": "DEBASTADORAS E PLAINAS-LIMADORAS",
+      "status": "MONITORAR"
+    },
+    "3431": {
+      "nome": "EQUIPAMENTO PARA SOLDA A ARCO VOLTAICO",
+      "status": "MONITORAR"
+    },
+    "3432": {
+      "nome": "EQUIPAMENTO PARA SOLDA A RESISTÊNCIA ELÉTRICA",
+      "status": "MONITORAR"
+    },
+    "3433": {
+      "nome": "EQUIPAMENTO PARA SOLDA A GÁS, CORTE POR AQUECIMENTO E DE METALIZAÇÃO",
+      "status": "MONITORAR"
+    },
+    "3436": {
+      "nome": "POSICIONADORES E MANIPULADORES DE SOLDA",
+      "status": "MONITORAR"
+    },
+    "3438": {
+      "nome": "EQUIPAMENTOS DIVERSOS DE SOLDA",
+      "status": "MONITORAR"
+    },
+    "3439": {
+      "nome": "SUPRIMENTOS E ACESSÓRIOS PARA SOLDAS DIVERSAS, FRACAS E FORTES",
+      "status": "MONITORAR"
+    },
+    "3441": {
+      "nome": "MÁQUINAS DE DOBRAR E DE MODELAR",
+      "status": "MONITORAR"
+    },
+    "3442": {
+      "nome": "PRENSAS HIDRÁULICAS E PNEUMÁTICAS ACIONADAS POR ENERGIA",
+      "status": "MONITORAR"
+    },
+    "3443": {
+      "nome": "PRENSAS MECÂNICAS ACIONADAS POR ENERGIA",
+      "status": "MONITORAR"
+    },
+    "3444": {
+      "nome": "PRENSAS MANUAIS",
+      "status": "MONITORAR"
+    },
+    "3445": {
+      "nome": "MÁQUINAS DE PUNCIONAR E CORTAR",
+      "status": "MONITORAR"
+    },
+    "3446": {
+      "nome": "FORJAS MECÂNICAS E MARTELOS PARA FORJAS",
+      "status": "MONITORAR"
+    },
+    "3447": {
+      "nome": "MÁQUINAS DE MODELAR FIOS E FITAS DE METAL",
+      "status": "MONITORAR"
+    },
+    "3448": {
+      "nome": "MÁQUINAS DE REBITAR",
+      "status": "MONITORAR"
+    },
+    "3449": {
+      "nome": "MÁQUINAS AUXILIARES PARA MODELAGEM E CORTE DE METAL",
+      "status": "MONITORAR"
+    },
+    "3450": {
+      "nome": "MÁQUINAS-FERRAMENTA PORTÁTEIS",
+      "status": "MONITORAR"
+    },
+    "3455": {
+      "nome": "FERRAMENTAS DE CORTAR PARA MÁQUINAS FERRAMENTA",
+      "status": "MONITORAR"
+    },
+    "3456": {
+      "nome": "FERRAMENTAS DE CORTE E MODELAGEM DE PEÇAS DE MÁQUINAS.",
+      "status": "MONITORAR"
+    },
+    "3460": {
+      "nome": "ACESSÓRIOS PARA MÁQUINAS-FERRAMENTAS",
+      "status": "MONITORAR"
+    },
+    "3461": {
+      "nome": "ACESSÓRIOS PARA MÁQUINAS AUXILIARES PARA TRABALHO EM METAIS",
+      "status": "MONITORAR"
+    },
+    "3465": {
+      "nome": "GABARITOS E MOLDES DE PRODUÇÃO",
+      "status": "MONITORAR"
+    },
+    "3470": {
+      "nome": "CONJUNTOS, JOGOS E ACESSÓRIOS PARA OFICINA MECÂNICA",
+      "status": "MONITORAR"
+    },
+    "3510": {
+      "nome": "EQUIPAMENTOS DE LAVANDERIA E LAVAGEM A SECO",
+      "status": "MONITORAR"
+    },
+    "3520": {
+      "nome": "EQUIPAMENTOS PARA CONSERTO DE CALÇADOS",
+      "status": "MONITORAR"
+    },
+    "3530": {
+      "nome": "MÁQUINAS DE COSTURA INDUSTRIAL E OFICINAS MÓVEIS DE CONSERTOS EM TECIDOS",
+      "status": "MONITORAR"
+    },
+    "3540": {
+      "nome": "MÁQUINAS DE EMBALAR E EMPACOTAR",
+      "status": "MONITORAR"
+    },
+    "3541": {
+      "nome": "MAQUINAS INDUSTRIAIS DE VIDRO E CRISTAIS",
+      "status": "MONITORAR"
+    },
+    "3550": {
+      "nome": "MÁQUINAS REGISTRADORAS AUTOMÁTICAS E MÁQUINAS ACIONADAS COMFICHAS",
+      "status": "MONITORAR"
+    },
+    "3590": {
+      "nome": "EQUIPAMENTOS DIVERSOS PARA SERVIÇOS PROFISSIONAIS E COMERCIAIS",
+      "status": "MONITORAR"
+    },
+    "3605": {
+      "nome": "MÁQUINAS E EQUIPAMENTOS PARA PRODUTOS ALIMENTÍCIOS",
+      "status": "MONITORAR"
+    },
+    "3610": {
+      "nome": "EQUIPAMENTO PARA IMPRESSÃO, DUPLICAÇÃO E ENCADERNAÇÃO",
+      "status": "MONITORAR"
+    },
+    "3611": {
+      "nome": "MÁQUINAS INDUSTRIAIS PARA MARCAÇÃO",
+      "status": "MONITORAR"
+    },
+    "3615": {
+      "nome": "MÁQUINAS PARA INDÚSTRIA DE POLPA E DE PAPEL",
+      "status": "MONITORAR"
+    },
+    "3620": {
+      "nome": "MÁQUINAS PARA TRABALHOS EM BORRACHA E PLÁSTICO",
+      "status": "MONITORAR"
+    },
+    "3625": {
+      "nome": "MÁQUINAS PARA INDÚSTRIAS TÊXTEIS",
+      "status": "MONITORAR"
+    },
+    "3630": {
+      "nome": "MÁQUINAS PARA INDÚSTRIAS DE PRODUTOS DE ARGILA E CONCRETO",
+      "status": "MONITORAR"
+    },
+    "3635": {
+      "nome": "MÁQUINAS PARA INDÚSTRIAS DE CRISTAL E VIDRO",
+      "status": "MONITORAR"
+    },
+    "3640": {
+      "nome": "MÁQUINAS PARA INDÚSTRIAS DE TABACO",
+      "status": "MONITORAR"
+    },
+    "3645": {
+      "nome": "MÁQUINAS PARA INDÚSTRIAS DE COURO E DE CURTUMES",
+      "status": "MONITORAR"
+    },
+    "3650": {
+      "nome": "MÁQUINAS PARA INDÚSTRIAS DE PRODUTOS QUÍMICOS E FARMACÊUTICOS",
+      "status": "MONITORAR"
+    },
+    "3655": {
+      "nome": "SISTEMAS DE GERAÇÃO E DISTRIBUIÇÃO DE GÁS, FIXOS OU MÓVEIS",
+      "status": "MONITORAR"
+    },
+    "3660": {
+      "nome": "MAQUINARIA PARA REDUÇÃO INDUSTRIAL DE TAMANHO",
+      "status": "MONITORAR"
+    },
+    "3670": {
+      "nome": "MÁQUINAS ESPECIALIZADAS PARA FABRICAÇÃO DE SEMICONDUTORES,CIRCUITOS MICROELETRÔNICOS E PLACAS DE CIRCUITOS IMPRESSOS",
+      "status": "MONITORAR"
+    },
+    "3680": {
+      "nome": "MÁQUINAS PARA FUNDIÇÃO, EQUIPAMENTOS E SUPRIMENTOS CORRELATOS",
+      "status": "MONITORAR"
+    },
+    "3685": {
+      "nome": "MÁQUINAS ESPECIALIZADAS PARA FABRICAÇÃO DE RECIPIENTES METÁLICOS E EQUIPAMENTOS CORRELATOS",
+      "status": "MONITORAR"
+    },
+    "3690": {
+      "nome": "MÁQUINARIA ESPECIALIZADA PARA ARMAMENTO E MUNIÇÃO E EQUIPAMENTOS CORRELATOS",
+      "status": "MONITORAR"
+    },
+    "3693": {
+      "nome": "MAQUINARIA INDUSTRIL PARA MONTAGEM",
+      "status": "MONITORAR"
+    },
+    "3694": {
+      "nome": "EQUIPAMENTOS E INSTALAÇÕES PARA SANEAMENTO AMBIENTAL",
+      "status": "MONITORAR"
+    },
+    "3695": {
+      "nome": "MÁQUINAS DIVERSAS PARA INDÚSTRIAS ESPECIALIZADAS",
+      "status": "MONITORAR"
+    },
+    "3710": {
+      "nome": "EQUIPAMENTO PARA PREPARAÇÃO DO SOLO",
+      "status": "MONITORAR"
+    },
+    "3720": {
+      "nome": "EQUIPAMENTO DE COLHEITA",
+      "status": "MONITORAR"
+    },
+    "3730": {
+      "nome": "EQUIPAMENTO DE LATICÍNIOS, AVICULTURA E PECUÁRIA",
+      "status": "MONITORAR"
+    },
+    "3740": {
+      "nome": "EQUIPAMENTO PARA CONTROLE DE PRAGAS, DOENÇAS E GEADAS",
+      "status": "MONITORAR"
+    },
+    "3750": {
+      "nome": "IMPLEMENTOS E FERRAMENTAS DE JARDINAGEM",
+      "status": "MONITORAR"
+    },
+    "3770": {
+      "nome": "SELARIA, ARREAMENTO, CHICOTE E ACESSÓRIOS CORRELATOS PARA ANIMAIS",
+      "status": "MONITORAR"
+    },
+    "3805": {
+      "nome": "EQUIPAMENTOS PARA MOVIMENTAÇÃO E ESCAVAÇÃO DE TERRA",
+      "status": "MONITORAR"
+    },
+    "3810": {
+      "nome": "GUINDASTES E ESCAVADEIRAS",
+      "status": "MONITORAR"
+    },
+    "3815": {
+      "nome": "ACESSÓRIOS PARA GUINDASTES E ESCAVADEIRAS",
+      "status": "MONITORAR"
+    },
+    "3820": {
+      "nome": "EQUIPAMENTOS PARA MINERAÇÃO, PERFURAÇÃO DE ROCHAS, TERRA E CORRELATOS",
+      "status": "MONITORAR"
+    },
+    "3825": {
+      "nome": "EQUIPAMENTO DE DESOBSTRUÇÃO E LIMPEZA DE ESTRADAS",
+      "status": "MONITORAR"
+    },
+    "3830": {
+      "nome": "ACESSÓRIOS PARA CAMINHÕES E TRATORES",
+      "status": "MONITORAR"
+    },
+    "3835": {
+      "nome": "EQUIPAMENTO PARA PRODUÇÃO E DISTRIBUIÇÃO DE PETRÓLEO",
+      "status": "MONITORAR"
+    },
+    "3895": {
+      "nome": "EQUIPAMENTOS DIVERSOS PARA CONSTRUÇÃO",
+      "status": "MONITORAR"
+    },
+    "3910": {
+      "nome": "TRANSPORTADORES",
+      "status": "MONITORAR"
+    },
+    "3915": {
+      "nome": "EQUIPAMENTOS ALIMENTADORES DE MATERIAIS-PRIMAS",
+      "status": "MONITORAR"
+    },
+    "3920": {
+      "nome": "EQUIPAMENTOS NÃO AUTOPROPULSIONADO PARA MOVIMENTAÇÃO DE MATERIAIS",
+      "status": "MONITORAR"
+    },
+    "3930": {
+      "nome": "VEÍCULOS AUTOPROPULSIONADOS PARA ARMAZÉM",
+      "status": "MONITORAR"
+    },
+    "3940": {
+      "nome": "POLEAMES, TALHAS, MOITÕES, MASSAMES E LINGAS",
+      "status": "MONITORAR"
+    },
+    "3950": {
+      "nome": "GUINCHOS, IÇADORES, GUINDASTES E CÁBREAS",
+      "status": "MONITORAR"
+    },
+    "3960": {
+      "nome": "ELEVADORES E ESCADAS ROLANTES",
+      "status": "MONITORAR"
+    },
+    "3990": {
+      "nome": "EQUIPAMENTOS DIVERSOS PARA MOVIMENTAÇÃO DE MATERIAIS",
+      "status": "MONITORAR"
+    },
+    "4010": {
+      "nome": "CORRENTES E CABOS DE AÇO",
+      "status": "MONITORAR"
+    },
+    "4020": {
+      "nome": "CABOS DE FIBRA, CORDOALHAS E BARBANTES",
+      "status": "MONITORAR"
+    },
+    "4030": {
+      "nome": "ACESSÓRIOS PARA CORDAS, CABOS E CORRENTES",
+      "status": "MONITORAR"
+    },
+    "4110": {
+      "nome": "EQUIPAMENTO PARA REFRIGERAÇÃO",
+      "status": "MONITORAR"
+    },
+    "4120": {
+      "nome": "EQUIPAMENTO DE AR CONDICIONADO",
+      "status": "MONITORAR"
+    },
+    "4130": {
+      "nome": "COMPONENTES DE EQUIPAMENTOS PARA REFRIGERAÇÃO E AR CONDICIONADO",
+      "status": "MONITORAR"
+    },
+    "4140": {
+      "nome": "VENTILADORES, CIRCULADORES DE AR E VENTOINHAS",
+      "status": "MONITORAR"
+    },
+    "4150": {
+      "nome": "TUBOS DE TURBILHONAMENTO E OUTROS TUBOS RELACIONADOS À REFRIGERAÇÃO",
+      "status": "MONITORAR"
+    },
+    "4210": {
+      "nome": "EQUIPAMENTOS PARA COMBATE A INCÊNDIO",
+      "status": "MONITORAR"
+    },
+    "4220": {
+      "nome": "EQUIPAMENTO PARA MERGULHO E SALVAMENTO MARÍTIMO",
+      "status": "MONITORAR"
+    },
+    "4230": {
+      "nome": "EQUIPAMENTO PARA DESCONTAMINAÇÃO E IMPREGNAÇÃO",
+      "status": "MONITORAR"
+    },
+    "4235": {
+      "nome": "RECIPIENTES PARA COLETA DE MATERIAIS PERIGOSOS, MATERIAIS E EQUIPAMENTOS DE LIMPEZA",
+      "status": "MONITORAR"
+    },
+    "4240": {
+      "nome": "EQUIPAMENTO PARA SEGURANÇA E SALVAMENTO",
+      "status": "MONITORAR"
+    },
+    "4250": {
+      "nome": "EQUIPAMENTO PARA RECICLAGEM E RECUPERAÇÃO",
+      "status": "MONITORAR"
+    },
+    "4310": {
+      "nome": "BOMBAS E COMPRESSORES A VÁCUO",
+      "status": "MONITORAR"
+    },
+    "4320": {
+      "nome": "BOMBAS MANUAIS E MECÂNICAS",
+      "status": "MONITORAR"
+    },
+    "4330": {
+      "nome": "CENTRIFUGADORES, SEPARADORES E FILTROS DE PRESSÃO E A VÁCUO",
+      "status": "MONITORAR"
+    },
+    "4410": {
+      "nome": "CALDEIRAS INDUSTRIAIS",
+      "status": "MONITORAR"
+    },
+    "4420": {
+      "nome": "TROCADORES DE CALOR E CONDENSADORES DE VAPOR",
+      "status": "MONITORAR"
+    },
+    "4425": {
+      "nome": "EQUIPAMENTOS INDUSTRIAIS DE VENTILACAO E CIRCULACAO",
+      "status": "MONITORAR"
+    },
+    "4430": {
+      "nome": "FORNALHAS, FORNOS E ESTUFAS INDUSTRIAIS",
+      "status": "MONITORAR"
+    },
+    "4440": {
+      "nome": "SECADORES, DESIDRATADORES E ANTI-HIDRATADORES",
+      "status": "MONITORAR"
+    },
+    "4460": {
+      "nome": "EQUIPAMENTOS PARA PURIFICAÇÃO DE AR",
+      "status": "MONITORAR"
+    },
+    "4470": {
+      "nome": "REATORES NUCLEARES",
+      "status": "MONITORAR"
+    },
+    "4510": {
+      "nome": "DISPOSITIVOS E ACESSÓRIOS PARA INSTALAÇÕES HIDRÁULICAS",
+      "status": "MONITORAR"
+    },
+    "4520": {
+      "nome": "EQUIPAMENTOS PARA CALEFAÇÃO E AQUECEDORES DOMÉSTICOS DE ÁGUA",
+      "status": "MONITORAR"
+    },
+    "4530": {
+      "nome": "EQUIPAMENTOS PARA QUEIMA DE COMBUSTIVEL",
+      "status": "MONITORAR"
+    },
+    "4540": {
+      "nome": "EQUIPAMENTOS DIVERSOS DE INSTALAÇÕES HIDRÁULICAS, SANITÁRIASE DE CALEFAÇÃO",
+      "status": "MONITORAR"
+    },
+    "4610": {
+      "nome": "EQUIPAMENTOS PARA PURIFICAÇÃO DE ÁGUA",
+      "status": "MONITORAR"
+    },
+    "4620": {
+      "nome": "EQUIPAMENTOS PARA DESTILAÇÃO DE ÁGUA, PARA USO MARÍTIMO E INDUSTRIAL",
+      "status": "MONITORAR"
+    },
+    "4630": {
+      "nome": "EQUIPAMENTOS PARA TRATAMENTO DE ESGOTOS",
+      "status": "MONITORAR"
+    },
+    "4710": {
+      "nome": "CANOS E TUBOS",
+      "status": "MONITORAR"
+    },
+    "4720": {
+      "nome": "MANGUEIRAS E TUBULAÇÕES FLEXÍVEIS",
+      "status": "MONITORAR"
+    },
+    "4730": {
+      "nome": "ACESSÓRIOS E FERRAGENS ESPECIAIS PARA MANGUEIRAS, CANOS E TUBOS",
+      "status": "MONITORAR"
+    },
+    "4810": {
+      "nome": "VÁLVULAS ACIONADAS POR FORÇA MOTRIZ",
+      "status": "MONITORAR"
+    },
+    "4820": {
+      "nome": "VÁLVULAS NÃO ACIONADAS POR FORÇA MOTRIZ",
+      "status": "MONITORAR"
+    },
+    "4850": {
+      "nome": "ATUADORES PARA MOVIMENTACAO DE VALVULAS",
+      "status": "MONITORAR"
+    },
+    "4910": {
+      "nome": "EQUIPAMENTO ESPECIALIZADO PARA OFICINA DE MANUTENÇÃO E REPARO DE VEÍCULOS MOTORIZADOS",
+      "status": "MONITORAR"
+    },
+    "4920": {
+      "nome": "EQUIPAMENTO ESPECIALIZADO PARA OFICINA DE MANUTENÇÃO E REPA-RO DE AERONAVES",
+      "status": "MONITORAR"
+    },
+    "4921": {
+      "nome": "EQUIPAMENTO ESPECIALIZADO PARA MANUTENÇÃO, REPARO E INSPEÇÃODE TORPEDOS",
+      "status": "MONITORAR"
+    },
+    "4923": {
+      "nome": "EQUIPAMENTO ESPECIALIZADO PARA MANUTENÇÃO,REPARO E INSPEÇÃO DE MINAS SUBMARINAS E BOMBAS DE PROFUNDIDADE",
+      "status": "MONITORAR"
+    },
+    "4925": {
+      "nome": "EQUIPAMENTO ESPECIALIZADO PARA MANUTENÇÃO,REPARO E INSPEÇÃO DE MUNIÇÃO",
+      "status": "MONITORAR"
+    },
+    "4927": {
+      "nome": "EQUIPAMENTO ESPECIALIZADO PARA MANUTENÇÃO,REPARO E INSPEÇÃO DE FOGUETES",
+      "status": "MONITORAR"
+    },
+    "4930": {
+      "nome": "EQUIPAMENTO PARA ABASTECIMENTO DE COMBUSTÍVEL E LUBRIFICAÇÃO",
+      "status": "MONITORAR"
+    },
+    "4931": {
+      "nome": "EQUIPAMENTO ESPECIALIZADO PARA OFICINA DE MANUTENÇÃO E REPARO DE MATERIAL DE CONTROLE DE TIRO",
+      "status": "MONITORAR"
+    },
+    "4933": {
+      "nome": "EQUIPAMENTO ESPECIALIZADO PARA OFICINA DE MANUTENÇÃO E REPARO DE ARMAMENTO",
+      "status": "MONITORAR"
+    },
+    "4935": {
+      "nome": "EQUIPAMENTO ESPECIALIZADO PARA MANUTENÇÃO,REPARO E INSPEÇÃO DE MÍSSEIS GUIADOS",
+      "status": "MONITORAR"
+    },
+    "4940": {
+      "nome": "EQUIPAMENTO ESPECIALIZADO DIVERSOS PARA OFICINA DE MANUTENÇÃO E REPARO",
+      "status": "MONITORAR"
+    },
+    "4960": {
+      "nome": "EQUIPAMENTO ESPECIALIZADO PARA MANUTENÇÃO, REPARO E INSPEÇÃODE VEÍCULOS ESPACIAIS",
+      "status": "MONITORAR"
+    },
+    "4970": {
+      "nome": "EQUIPAMENTO ESPECIALIZADO PARA MANUTENÇÃO E REPARO DE ARMAS MÚLTIPLAS GUIADAS",
+      "status": "MONITORAR"
+    },
+    "5110": {
+      "nome": "FERRAMENTAS MANUAIS DE CORTE, NÃO ACIONADAS POR FORÇA MOTRIZ",
+      "status": "MONITORAR"
+    },
+    "5120": {
+      "nome": "FERRAMENTAS MANUAIS SEM CORTE, NÃO ACIONADAS POR FORÇA MOTRIZ",
+      "status": "MONITORAR"
+    },
+    "5130": {
+      "nome": "FERRAMENTAS MANUAIS ACIONADAS POR FORÇA MOTRIZ",
+      "status": "MONITORAR"
+    },
+    "5133": {
+      "nome": "BROCAS, ALARGADORES, ESCARIADORES, MANUAIS E PARA USO EM MÁQUINAS",
+      "status": "MONITORAR"
+    },
+    "5135": {
+      "nome": "CABOS DE FERRAMENTAS",
+      "status": "MONITORAR"
+    },
+    "5136": {
+      "nome": "MACHOS, MATRIZES E MANDRIS, MANUAIS E MECÂNICOS",
+      "status": "MONITORAR"
+    },
+    "5140": {
+      "nome": "CAIXAS PARA FERRAMENTAS E FERRAGENS",
+      "status": "MONITORAR"
+    },
+    "5180": {
+      "nome": "JOGOS E CONJUNTOS DE FERRAMENTAS MANUAIS",
+      "status": "MONITORAR"
+    },
+    "5210": {
+      "nome": "INSTRUMENTOS DE MEDIÇÃO PARA ARTÍFICES",
+      "status": "MONITORAR"
+    },
+    "5220": {
+      "nome": "CALIBRES DE INSPEÇÃO E FERRAMENTAS DE PRECISÃO",
+      "status": "MONITORAR"
+    },
+    "5280": {
+      "nome": "JOGOS E CONJUNTOS DE INSTRUMENTOS DE MEDIÇÃO",
+      "status": "MONITORAR"
+    },
+    "5305": {
+      "nome": "PARAFUSOS SEM PORCA",
+      "status": "MONITORAR"
+    },
+    "5306": {
+      "nome": "PARAFUSOS COM PORCA",
+      "status": "MONITORAR"
+    },
+    "5307": {
+      "nome": "PRISIONEIROS",
+      "status": "MONITORAR"
+    },
+    "5310": {
+      "nome": "PORCAS E ARRUELAS",
+      "status": "MONITORAR"
+    },
+    "5315": {
+      "nome": "PREGOS, CHAVETAS E PINOS",
+      "status": "MONITORAR"
+    },
+    "5320": {
+      "nome": "REBITES",
+      "status": "MONITORAR"
+    },
+    "5325": {
+      "nome": "DISPOSITIVOS PARA FIXAÇÃO",
+      "status": "MONITORAR"
+    },
+    "5330": {
+      "nome": "GAXETAS E OUTROS MATERIAIS PARA VEDAÇÃO",
+      "status": "MONITORAR"
+    },
+    "5331": {
+      "nome": "ANÉIS",
+      "status": "MONITORAR"
+    },
+    "5335": {
+      "nome": "TELAS METÁLICAS",
+      "status": "MONITORAR"
+    },
+    "5340": {
+      "nome": "FERRAGENS DIVERSAS",
+      "status": "MONITORAR"
+    },
+    "5341": {
+      "nome": "CANTONEIRAS",
+      "status": "MONITORAR"
+    },
+    "5342": {
+      "nome": "FERRAGENS DE PEÇA DE SISTEMAS DE ARMAS",
+      "status": "MONITORAR"
+    },
+    "5345": {
+      "nome": "DISCOS E PEDRAS ABRASIVOS",
+      "status": "MONITORAR"
+    },
+    "5350": {
+      "nome": "MATERIAIS ABRASIVOS",
+      "status": "MONITORAR"
+    },
+    "5355": {
+      "nome": "BOTÕES E PONTEIROS",
+      "status": "MONITORAR"
+    },
+    "5360": {
+      "nome": "MOLAS DE ARAME, PLANAS E HELICOIDAIS",
+      "status": "MONITORAR"
+    },
+    "5365": {
+      "nome": "ANÉIS, BUCHAS E ESPAÇADORES",
+      "status": "MONITORAR"
+    },
+    "5410": {
+      "nome": "EDIFICAÇÕES PRÉ-FABRICADAS E PORTÁTEIS",
+      "status": "MONITORAR"
+    },
+    "5411": {
+      "nome": "ABRIGOS DE PAREDE RÍGIDA",
+      "status": "MONITORAR"
+    },
+    "5419": {
+      "nome": "CONSTRUÇÕES COLETIVAS MODULARES DE APOIO",
+      "status": "MONITORAR"
+    },
+    "5420": {
+      "nome": "PONTES FIXAS E FLUTUANTES",
+      "status": "MONITORAR"
+    },
+    "5430": {
+      "nome": "TANQUES DE ARMAZENAGEM",
+      "status": "MONITORAR"
+    },
+    "5440": {
+      "nome": "EQUIPAMENTOS PARA MONTAGEM DE ANDAIME E FORMAS DE CONCRETO",
+      "status": "MONITORAR"
+    },
+    "5445": {
+      "nome": "ESTRUTURAS DE TORRES PRÉ-FABRICADAS",
+      "status": "MONITORAR"
+    },
+    "5450": {
+      "nome": "ESTRUTURAS PRÉ-FABRICADAS DIVERSAS",
+      "status": "MONITORAR"
+    },
+    "5510": {
+      "nome": "TÁBUAS E ARTIGOS CORRELATOS À BASE DE MADEIRA",
+      "status": "MONITORAR"
+    },
+    "5520": {
+      "nome": "ESQUADRIAS",
+      "status": "MONITORAR"
+    },
+    "5530": {
+      "nome": "COMPENSADOS E FOLHEADOS",
+      "status": "MONITORAR"
+    },
+    "5610": {
+      "nome": "MATERIAIS DE ORIGEM MINERAL PARA CONSTRUÇÃO, A GRANEL",
+      "status": "MONITORAR"
+    },
+    "5620": {
+      "nome": "VIDROS, TELHAS, TIJOLOS E BLOCOS PARA CONSTRUÇÃO",
+      "status": "MONITORAR"
+    },
+    "5630": {
+      "nome": "TUBOS E CONDUTOS, NÃO METÁLICOS, PARA CONSTRUÇÃO",
+      "status": "MONITORAR"
+    },
+    "5640": {
+      "nome": "PAINEL DE PAPELÃO,PAPEL EMPREGADO EM CONSTRUÇÃO E MATERIAIS DE ISOLAMENTO TÉRMICO",
+      "status": "MONITORAR"
+    },
+    "5650": {
+      "nome": "MATERIAIS PARA TELHADOS E REVESTIMENTO DE PAREDES",
+      "status": "MONITORAR"
+    },
+    "5660": {
+      "nome": "CERCAS, GRADES E PORTÕES",
+      "status": "MONITORAR"
+    },
+    "5670": {
+      "nome": "COMPONENTES PRÉ-FABRICADOS PARA CONSTRUÇÃO",
+      "status": "MONITORAR"
+    },
+    "5675": {
+      "nome": "MATERIAL DE CONSTRUÇÃO SINTÉTICO E ARTIGOS CORRELATOS",
+      "status": "MONITORAR"
+    },
+    "5680": {
+      "nome": "MATERIAIS DIVERSOS PARA CONSTRUÇÃO",
+      "status": "MONITORAR"
+    },
+    "5805": {
+      "nome": "EQUIPAMENTO TELEFÔNICO E TELEGRÁFICO",
+      "status": "MONITORAR"
+    },
+    "5810": {
+      "nome": "EQUIPAMENTOS E COMPONENTES PARA SEGURANÇA DE COMUNICAÇÕES",
+      "status": "MONITORAR"
+    },
+    "5811": {
+      "nome": "OUTROS EQUIPAMENTOS CRIPTOLÓGICOS E COMPONENTES",
+      "status": "MONITORAR"
+    },
+    "5815": {
+      "nome": "EQUIPAMENTOS DE TELETIPO E FAC-SÍMILE",
+      "status": "MONITORAR"
+    },
+    "5820": {
+      "nome": "EQUIPAMENTOS PARA COMUNICAÇÃO POR RÁDIO E TELEVISÃO, EXCETO OS DE AERONAVES",
+      "status": "MONITORAR"
+    },
+    "5821": {
+      "nome": "EQUIPAMENTOS PARA COMUNICACÃO POR RÁDIO E TELEVISÃO, PARA A-ERONAVES",
+      "status": "MONITORAR"
+    },
+    "5825": {
+      "nome": "EQUIPAMENTOS DE RADIONAVEGAÇÃO, EXCETO OS DE AERONAVES",
+      "status": "MONITORAR"
+    },
+    "5826": {
+      "nome": "EQUIPAMENTOS PARA RADIONAVEGAÇÃO DE AERONAVES",
+      "status": "MONITORAR"
+    },
+    "5830": {
+      "nome": "SISTEMAS DE INTERCOMUNICAÇÃO E AMPLIFICAÇÃO DE VOZ, EXCETOOS DE AERONAVES",
+      "status": "MONITORAR"
+    },
+    "5831": {
+      "nome": "SISTEMAS PARA INTERCOMUNICAÇÃO E AMPLIFICAÇÃO DE VOZ, DE AERONAVES",
+      "status": "MONITORAR"
+    },
+    "5835": {
+      "nome": "EQUIPAMENTOS PARA GRAVAÇÃO E REPRODUÇÃO DE SOM",
+      "status": "MONITORAR"
+    },
+    "5836": {
+      "nome": "EQUIPAMENTOS PARA GRAVAÇÃO E REPRODUÇÃO DE VÍDEO",
+      "status": "MONITORAR"
+    },
+    "5840": {
+      "nome": "EQUIPAMENTOS DE RADAR, EXCETO OS DE AERONAVES",
+      "status": "MONITORAR"
+    },
+    "5841": {
+      "nome": "EQUIPAMENTOS DE RADAR PARA AERONAVES",
+      "status": "MONITORAR"
+    },
+    "5845": {
+      "nome": "EQUIPAMENTOS SUBMARINO DE SOM",
+      "status": "MONITORAR"
+    },
+    "5850": {
+      "nome": "EQUIPAMENTOS PARA COMUNICAÇÃO COM LUZ VISÍVEL E INVISÍVEL",
+      "status": "MONITORAR"
+    },
+    "5855": {
+      "nome": "EQUIPAMENTOS PARA VISÃO NOTURNA, POR RADIAÇÃO EMITIDA E REFLETIDA",
+      "status": "MONITORAR"
+    },
+    "5860": {
+      "nome": "DISPOSITIVOS DE RADIAÇÃO COERENTE ESTIMULADA, SEUS COMPONENTES E ACESSÓRIOS",
+      "status": "MONITORAR"
+    },
+    "5865": {
+      "nome": "EQUIPAMENTOS PARA CONTRAMEDIDAS ELETRÔNICAS, CONTRA-CONTRAMEDIDAS E DE CAPACIDADE DE REAÇÃO RÁPIDA",
+      "status": "MONITORAR"
+    },
+    "5895": {
+      "nome": "EQUIPAMENTOS DIVERSOS PARA COMUNICAÇÕES",
+      "status": "MONITORAR"
+    },
+    "5905": {
+      "nome": "RESISTORES",
+      "status": "MONITORAR"
+    },
+    "5910": {
+      "nome": "CAPACITORES",
+      "status": "MONITORAR"
+    },
+    "5915": {
+      "nome": "FILTROS E REDES",
+      "status": "MONITORAR"
+    },
+    "5920": {
+      "nome": "FUSÍVEIS INTERRUPTORES, ISOLANTES E PROTETORES",
+      "status": "MONITORAR"
+    },
+    "5925": {
+      "nome": "DISJUNTORES",
+      "status": "MONITORAR"
+    },
+    "5930": {
+      "nome": "CHAVES ELÉTRICAS",
+      "status": "MONITORAR"
+    },
+    "5935": {
+      "nome": "CONECTORES ELÉTRICOS",
+      "status": "MONITORAR"
+    },
+    "5940": {
+      "nome": "BORNES, TERMINAIS E LÂMINAS TERMINAIS",
+      "status": "MONITORAR"
+    },
+    "5945": {
+      "nome": "RELÉS E SOLENÓIDES",
+      "status": "MONITORAR"
+    },
+    "5950": {
+      "nome": "BOBINAS E TRANSFORMADORES",
+      "status": "MONITORAR"
+    },
+    "5955": {
+      "nome": "CRISTAIS OSCILADORES E PIEZOELÉTRICOS",
+      "status": "MONITORAR"
+    },
+    "5960": {
+      "nome": "VÁLVULAS ELETRÔNICAS E FERRAGENS CORRELATAS",
+      "status": "MONITORAR"
+    },
+    "5961": {
+      "nome": "DISPOSITIVOS A SEMICONDUTOR E PLACAS ASSOCIADAS (CIRCUITOS)",
+      "status": "MONITORAR"
+    },
+    "5962": {
+      "nome": "MICROCIRCUITOS ELETRÔNICOS",
+      "status": "MONITORAR"
+    },
+    "5963": {
+      "nome": "MÓDULOS ELETRÔNICOS",
+      "status": "MONITORAR"
+    },
+    "5965": {
+      "nome": "FONES, MICROFONES E ALTO-FALANTES",
+      "status": "MONITORAR"
+    },
+    "5970": {
+      "nome": "ISOLADORES ELÉTRICOS E MATERIAIS ISOLANTES",
+      "status": "MONITORAR"
+    },
+    "5975": {
+      "nome": "FERRAGENS E SUPRIMENTOS DE ELETRICIDADE",
+      "status": "MONITORAR"
+    },
+    "5977": {
+      "nome": "ESCOVAS DE CONTATO ELÉTRICO E ELETRODOS",
+      "status": "MONITORAR"
+    },
+    "5980": {
+      "nome": "DISPOSITIVOS OPTOELETRÔNICOS E ITENS CORRELATOS",
+      "status": "MONITORAR"
+    },
+    "5985": {
+      "nome": "ANTENAS, GUIAS DE ONDA E ITENS CORRELATOS",
+      "status": "MONITORAR"
+    },
+    "5990": {
+      "nome": "SINCRONIZADORES E ANALISADORES",
+      "status": "MONITORAR"
+    },
+    "5995": {
+      "nome": "CONJUNTOS DE CABOS, CORDÕES E FIOS ELÉTRICOS PARA EQUIPAMENTOS DE COMUNICAÇÕES",
+      "status": "MONITORAR"
+    },
+    "5996": {
+      "nome": "AMPLIFICADORES",
+      "status": "MONITORAR"
+    },
+    "5998": {
+      "nome": "CONJUNTOS ELÉTRICOS E ELETRÔNICOS, PLACAS, CARTÕES E ITENSCORRELATOS",
+      "status": "MONITORAR"
+    },
+    "5999": {
+      "nome": "COMPONENTES ELÉTRICOS E ELETRÔNICOS DIVERSOS",
+      "status": "MONITORAR"
+    },
+    "6004": {
+      "nome": "JUNTAS ROTATIVAS",
+      "status": "MONITORAR"
+    },
+    "6005": {
+      "nome": "ACOPLADORES , ISOLADORES E MISTURADORES",
+      "status": "MONITORAR"
+    },
+    "6006": {
+      "nome": "ATENUADORES",
+      "status": "MONITORAR"
+    },
+    "6007": {
+      "nome": "FILTROS",
+      "status": "MONITORAR"
+    },
+    "6008": {
+      "nome": "MULTIPLEXADORES E DEMULTIPLEXADORES",
+      "status": "MONITORAR"
+    },
+    "6010": {
+      "nome": "CONDUTORES DE FIBRA ÓTICA",
+      "status": "MONITORAR"
+    },
+    "6015": {
+      "nome": "CABOS DE FIBRA ÓTICA",
+      "status": "MONITORAR"
+    },
+    "6020": {
+      "nome": "CONJUNTOS MONTADOS DE CABOS DE FOBRA ÓTICA",
+      "status": "MONITORAR"
+    },
+    "6021": {
+      "nome": "INTERRUPTORES DE FIBRA ÓTICA",
+      "status": "MONITORAR"
+    },
+    "6025": {
+      "nome": "TRANSMISSORES DE FIBRA OTICA",
+      "status": "MONITORAR"
+    },
+    "6026": {
+      "nome": "RECEPTORES DE FIBRA OTICA",
+      "status": "MONITORAR"
+    },
+    "6029": {
+      "nome": "REPETIDORES OTICOS",
+      "status": "MONITORAR"
+    },
+    "6030": {
+      "nome": "DISPOSITIVOS DE FIBRA ÓTICA",
+      "status": "MONITORAR"
+    },
+    "6031": {
+      "nome": "CIRCUITOS OTICOS INTEGRADOS",
+      "status": "MONITORAR"
+    },
+    "6032": {
+      "nome": "FONTES DE LUZ DE FIBRA ÓTICA E FOTODETETORES",
+      "status": "MONITORAR"
+    },
+    "6033": {
+      "nome": "FOTO DETETORES DE FIBRA OTICA",
+      "status": "MONITORAR"
+    },
+    "6035": {
+      "nome": "DISPOSITIVOS DE TRANSFERÊNCIA DE LUZ E DE IMAGEM DE FIBRA ÓTICA",
+      "status": "MONITORAR"
+    },
+    "6050": {
+      "nome": "DISPOSITIVOS PASSIVOS DE FIBRA OTICA",
+      "status": "MONITORAR"
+    },
+    "6060": {
+      "nome": "INTERCONECTORES E SUPRIMENTOS DE FIBRA ÓTICA",
+      "status": "MONITORAR"
+    },
+    "6070": {
+      "nome": "ACESSÓRIOS E MATERIAIS DE FIBRAS ÓTICAS",
+      "status": "MONITORAR"
+    },
+    "6080": {
+      "nome": "JOGOS E CONJUNTOS DE FIBRAS ÓTICAS",
+      "status": "MONITORAR"
+    },
+    "6099": {
+      "nome": "COMPONENTES DIVERSOS DE FIBRA ÓTICA",
+      "status": "MONITORAR"
+    },
+    "6105": {
+      "nome": "MOTORES ELÉTRICOS",
+      "status": "MONITORAR"
+    },
+    "6110": {
+      "nome": "EQUIPAMENTOS DE CONTROLE ELÉTRICO",
+      "status": "MONITORAR"
+    },
+    "6115": {
+      "nome": "GERADORES E CONJUNTOS GERADORES ELÉTRICOS",
+      "status": "MONITORAR"
+    },
+    "6116": {
+      "nome": "UNIDADES DE FORÇA DE CÉLULA DE COMBUSTÍVEL, COMPONENTES E ACESSÓRIOS",
+      "status": "MONITORAR"
+    },
+    "6117": {
+      "nome": "SISTEMA DE ENERGIA ELÉTRICA SOLAR",
+      "status": "MONITORAR"
+    },
+    "6120": {
+      "nome": "TRANSFORMADORES PARA ESTAÇÃO DE FORÇA E DE DISTRIBUIÇÃO",
+      "status": "MONITORAR"
+    },
+    "6125": {
+      "nome": "CONVERSORES ELÉTRICOS ROTATIVOS",
+      "status": "MONITORAR"
+    },
+    "6130": {
+      "nome": "CONVERSORES ELÉTRICOS ESTÁTICOS",
+      "status": "MONITORAR"
+    },
+    "6135": {
+      "nome": "BATERIAS NAO RECARREGÁVEIS",
+      "status": "MONITORAR"
+    },
+    "6140": {
+      "nome": "BATERIAS RECARREGÁVEIS",
+      "status": "MONITORAR"
+    },
+    "6145": {
+      "nome": "FIOS E CABOS ELÉTRICOS",
+      "status": "MONITORAR"
+    },
+    "6150": {
+      "nome": "EQUIPAMENTOS DIVERSOS PARA GERAÇÃO E DISTRIBUIÇÃO DE ENERGIA",
+      "status": "MONITORAR"
+    },
+    "6160": {
+      "nome": "ACESSÓRIOS E REVESTIMENTOS DIVERSOS PARA BATERIAS",
+      "status": "MONITORAR"
+    },
+    "6210": {
+      "nome": "APARELHOS DE ILUMINAÇÃO ELÉTRICA DE USO INTERNO E EXTERNO",
+      "status": "MONITORAR"
+    },
+    "6220": {
+      "nome": "LUZES E EQUIPAMENTOS DE ILUMINAÇÃO ELÉTRICA PARA VEÍCULOS",
+      "status": "MONITORAR"
+    },
+    "6230": {
+      "nome": "EQUIPAMENTOS DE ILUMINAÇÃO ELÉTRICA MANUAL E PORTÁTIL",
+      "status": "MONITORAR"
+    },
+    "6240": {
+      "nome": "LÂMPADAS ELÉTRICAS",
+      "status": "MONITORAR"
+    },
+    "6250": {
+      "nome": "LUSTRES, SUPORTES PARA LÂMPADAS E ELEMENTOS DE PARTIDA",
+      "status": "MONITORAR"
+    },
+    "6260": {
+      "nome": "EQUIPAMENTOS DE ILUMINAÇÃO NÃO ELÉTRICOS",
+      "status": "MONITORAR"
+    },
+    "6310": {
+      "nome": "SISTEMA DE SINALIZAÇÃO DE TRÁFEGO E TRÂNSITO",
+      "status": "MONITORAR"
+    },
+    "6320": {
+      "nome": "SISTEMAS DE SINALIZAÇÃO E ALARME DE EMBARCAÇÕES",
+      "status": "MONITORAR"
+    },
+    "6330": {
+      "nome": "SISTEMAS DE SINALIZAÇÃO E ALARME PARA FERROVIAS",
+      "status": "MONITORAR"
+    },
+    "6340": {
+      "nome": "SISTEMAS DE SINALIZAÇÃO E ALARME PARA AERONAVES",
+      "status": "MONITORAR"
+    },
+    "6350": {
+      "nome": "SISTEMAS DIVERSOS DE SINALIZAÇÃO, ALARME E DETECÇÃO PARA SEGURANÇA",
+      "status": "MONITORAR"
+    },
+    "6405": {
+      "nome": "MEDICAMENTOS PARA APARELHOS DIGESTIVO METABOLISMO E NUTRICAO",
+      "status": "MONITORAR"
+    },
+    "6410": {
+      "nome": "MEDICAMENTOS PARA SANGUE E ORGAOS HEMATOPOETICOS",
+      "status": "MONITORAR"
+    },
+    "6415": {
+      "nome": "MEDICAMENTOS PARA APARELHO CARDIVASCULAR",
+      "status": "MONITORAR"
+    },
+    "6420": {
+      "nome": "MEDICAMENTOS PARA DERMATOLOGICOS, OTOLOGICOS EOFTAMOLOGICOS",
+      "status": "MONITORAR"
+    },
+    "6425": {
+      "nome": "MEDICAMENTOS PARA APARELHOS GENITOURINARIO E HARMONIOS SEXUAIS",
+      "status": "MONITORAR"
+    },
+    "6430": {
+      "nome": "MEDICAMENTOS PARA HORMONIOS, EXCETO SEXUAIS E METABOLISMO",
+      "status": "MONITORAR"
+    },
+    "6435": {
+      "nome": "MEDICAMENTOS PARA QUIMIOTERAPIA",
+      "status": "MONITORAR"
+    },
+    "6445": {
+      "nome": "MEDICAMENTOS PARA SISTEMA NERVOSO",
+      "status": "MONITORAR"
+    },
+    "6450": {
+      "nome": "MEDICAMENTOS PARA APARELHO RESPIRATORIO",
+      "status": "MONITORAR"
+    },
+    "6455": {
+      "nome": "MEDICAMENTOS PARA SISTEMA MUSCULO ESQUELETICO",
+      "status": "MONITORAR"
+    },
+    "6465": {
+      "nome": "OUTROS MEDICAMENTOS",
+      "status": "MONITORAR"
+    },
+    "6470": {
+      "nome": "DROGAS E PRODUTOS QUIMICOS PARA ANALISE LABORATORIAIS",
+      "status": "MONITORAR"
+    },
+    "6495": {
+      "nome": "MEDICAMENTOS, DROGAS E PRODUTOS BIOLOGICOS, DIVER SOS",
+      "status": "MONITORAR"
+    },
+    "6505": {
+      "nome": "DROGAS E MEDICAMENTOS",
+      "status": "MONITORAR"
+    },
+    "6508": {
+      "nome": "COSMÉTICOS E ARTIGOS DE TOUCADOR DE NATUREZA MEDICINAL",
+      "status": "MONITORAR"
+    },
+    "6509": {
+      "nome": "DROGAS E PRODUTOS BIOLÓGICOS DE USO VETERINÁRIO",
+      "status": "MONITORAR"
+    },
+    "6510": {
+      "nome": "MATERIAIS CIRÚRGICOS PARA CURATIVOS",
+      "status": "MONITORAR"
+    },
+    "6515": {
+      "nome": "INSTRUMENTOS, EQUIPAMENTOS E SUPRIMENTOS MÉDICOS E CIRÚRGICOS",
+      "status": "MONITORAR"
+    },
+    "6520": {
+      "nome": "INSTRUMENTOS, EQUIPAMENTOS E SUPRIMENTOS DENTÁRIOS",
+      "status": "MONITORAR"
+    },
+    "6525": {
+      "nome": "EQUIPAMENTOS E SUPRIMENTOS DE RAIOS-X DE USO MÉDICO, DENTÁRIO E VETERINÁRIO",
+      "status": "MONITORAR"
+    },
+    "6530": {
+      "nome": "MOBILIÁRIO, EQUIPAMENTOS, UTENSÍLIOS E SUPRIMENTOS HOSPITALARES",
+      "status": "MONITORAR"
+    },
+    "6532": {
+      "nome": "VESTUÁRIO HOSPITALAR E CIRÚRGICO E ITENS CORRELATOS DE FINALIDADES ESPECIAIS",
+      "status": "MONITORAR"
+    },
+    "6540": {
+      "nome": "EQUIPAMENTOS, INSTRUMENTOS E SUPRIMENTOS OFTALMOLÓGICOS",
+      "status": "MONITORAR"
+    },
+    "6545": {
+      "nome": "JOGOS E CONJUNTOS MÉDICOS",
+      "status": "MONITORAR"
+    },
+    "6550": {
+      "nome": "SUBSTÂNCIAS PARA DIAGNÓSTICO \"IN VITRO\", REAGENTES, CONJUNTOS E JOGOS PARA TESTE",
+      "status": "MONITORAR"
+    },
+    "6605": {
+      "nome": "INSTRUMENTOS DE NAVEGAÇÃO",
+      "status": "MONITORAR"
+    },
+    "6610": {
+      "nome": "INSTRUMENTOS DE VÔO",
+      "status": "MONITORAR"
+    },
+    "6615": {
+      "nome": "MECANISMOS DE PILOTO AUTOMÁTICO E COMPONENTES GIROSCÓPICOS DE AERONAVES",
+      "status": "MONITORAR"
+    },
+    "6620": {
+      "nome": "INSTRUMENTOS DE MOTOR",
+      "status": "MONITORAR"
+    },
+    "6625": {
+      "nome": "INSTRUMENTO DE TESTE E DE MEDIÇÃO DE PROPRIEDADES ELÉTRICAS E ELETRÔNICAS",
+      "status": "MONITORAR"
+    },
+    "6630": {
+      "nome": "INSTRUMENTOS PARA ANÁLISES QUÍMICAS",
+      "status": "MONITORAR"
+    },
+    "6635": {
+      "nome": "EQUIPAMENTOS PARA TESTES DE PROPRIEDADES FÍSICAS",
+      "status": "MONITORAR"
+    },
+    "6636": {
+      "nome": "CÂMARAS DE CONTROLE AMBIENTAL E EQUIPAMENTOS CORRELATOS",
+      "status": "MONITORAR"
+    },
+    "6640": {
+      "nome": "EQUIPAMENTOS E ARTIGOS DE LABORATÓRIO",
+      "status": "MONITORAR"
+    },
+    "6645": {
+      "nome": "INSTRUMENTOS PARA MEDIÇÃO DE TEMPO",
+      "status": "MONITORAR"
+    },
+    "6650": {
+      "nome": "INSTRUMENTOS ÓTICOS, EQUIPAMENTOS DE TESTE, COMPONENTES E ACESSÓRIOS",
+      "status": "MONITORAR"
+    },
+    "6655": {
+      "nome": "INSTRUMENTOS GEOFÍSICOS",
+      "status": "MONITORAR"
+    },
+    "6660": {
+      "nome": "INSTRUMENTOS E APARELHOS METEOROLÓGICOS",
+      "status": "MONITORAR"
+    },
+    "6665": {
+      "nome": "INSTRUMENTOS E APARELHOS DE DETECÇÃO DE PERIGO",
+      "status": "MONITORAR"
+    },
+    "6670": {
+      "nome": "ESCALAS E BALANÇAS",
+      "status": "MONITORAR"
+    },
+    "6675": {
+      "nome": "INSTRUMENTOS DE DESENHO, TOPOGRAFIA E CARTOGRAFIA",
+      "status": "MONITORAR"
+    },
+    "6680": {
+      "nome": "INSTRUMENTOS PARA MEDIÇÃO DE FLUXO DE LÍQUIDO E GÁS, NÍVEL DE LÍQUIDOS E DE MOVIMENTOS MECÂNICOS",
+      "status": "MONITORAR"
+    },
+    "6685": {
+      "nome": "INSTRUMENTOS PARA MEDIÇÃO E CONTROLE DE PRESSÃO,TEMPERATURA E UMIDADE",
+      "status": "MONITORAR"
+    },
+    "6695": {
+      "nome": "INSTRUMENTOS COMBINADOS DIVERSOS",
+      "status": "MONITORAR"
+    },
+    "6710": {
+      "nome": "CÂMARAS CINEMATOGRÁFICAS",
+      "status": "MONITORAR"
+    },
+    "6720": {
+      "nome": "CÂMARAS FOTOGRÁFICAS",
+      "status": "MONITORAR"
+    },
+    "6730": {
+      "nome": "EQUIPAMENTO PARA PROJEÇÃO FOTOGRÁFICA",
+      "status": "MONITORAR"
+    },
+    "6740": {
+      "nome": "EQUIPAMENTO PARA REVELAÇÃO E ACABAMENTO FOTOGRÁFICO",
+      "status": "MONITORAR"
+    },
+    "6750": {
+      "nome": "SUPRIMENTOS FOTOGRÁFICOS",
+      "status": "MONITORAR"
+    },
+    "6760": {
+      "nome": "EQUIPAMENTO FOTOGRÁFICO E ACESSÓRIOS",
+      "status": "MONITORAR"
+    },
+    "6770": {
+      "nome": "FILMES REVELADOS",
+      "status": "MONITORAR"
+    },
+    "6780": {
+      "nome": "JOGOS E CONJUNTOS FOTOGRÁFICOS",
+      "status": "MONITORAR"
+    },
+    "6810": {
+      "nome": "PRODUTOS QUÍMICOS",
+      "status": "MONITORAR"
+    },
+    "6820": {
+      "nome": "CORANTES",
+      "status": "MONITORAR"
+    },
+    "6830": {
+      "nome": "GASES COMPRIMIDOS E LIQUEFEITOS",
+      "status": "MONITORAR"
+    },
+    "6840": {
+      "nome": "PESTICIDAS E DESINFETANTES",
+      "status": "MONITORAR"
+    },
+    "6850": {
+      "nome": "ESPECIALIDADES QUÍMICAS DIVERSAS",
+      "status": "MONITORAR"
+    },
+    "6910": {
+      "nome": "ACESSÓRIOS PARA TREINAMENTO",
+      "status": "MONITORAR"
+    },
+    "6920": {
+      "nome": "ACESSÓRIOS PARA TREINAMENTO DE ARMAMENTO",
+      "status": "MONITORAR"
+    },
+    "6930": {
+      "nome": "ACESSÓRIOS PARA TREINAMENTO OPERACIONAL",
+      "status": "MONITORAR"
+    },
+    "6940": {
+      "nome": "ACESSÓRIOS PARA TREINAMENTO DE COMUNICAÇÕES",
+      "status": "MONITORAR"
+    },
+    "7010": {
+      "nome": "COMPUTADORES",
+      "status": "MONITORAR"
+    },
+    "7020": {
+      "nome": "IMPRESSORAS",
+      "status": "MONITORAR"
+    },
+    "7021": {
+      "nome": "UNIDADES CENTRAIS DE PROCESSAMENTO DIGITAIS",
+      "status": "MONITORAR"
+    },
+    "7022": {
+      "nome": "UNIDADES CENTRAIS DE PROCESSAMENTO HÍBRIDAS",
+      "status": "MONITORAR"
+    },
+    "7025": {
+      "nome": "UNIDADES DE ARMAZENAMENTO DE ENTRADA E SAÍDA DE DADOS",
+      "status": "MONITORAR"
+    },
+    "7030": {
+      "nome": "EQUIPAMENTOS DE ARMAZENAMENTO DE DADOS",
+      "status": "MONITORAR"
+    },
+    "7035": {
+      "nome": "EQUIPAMENTOS SUPORTES DE PROCESSAMENTO AUTOMÁTICO DE DADOS",
+      "status": "MONITORAR"
+    },
+    "7040": {
+      "nome": "EQUIPAMENTOS DE ENTRADA DE DADOS",
+      "status": "MONITORAR"
+    },
+    "7042": {
+      "nome": "DISPOSITIVOS PARA CONTROLE DE MINI E MICROCOMPUTADORES",
+      "status": "MONITORAR"
+    },
+    "7045": {
+      "nome": "ARTIGOS DIVERSOS PARA PROCESSAMENTO AUTOMÁTICO DE DADOS",
+      "status": "MONITORAR"
+    },
+    "7050": {
+      "nome": "EQUIPAMENTOS DE REDE DE TIC - LOCAL E REMOTA",
+      "status": "MONITORAR"
+    },
+    "7060": {
+      "nome": "PEÇAS E ACESSÓRIOS PARA COMPUTADORES",
+      "status": "MONITORAR"
+    },
+    "7070": {
+      "nome": "PEÇAS E ACESSÓRIOS PARA IMPRESSORAS",
+      "status": "MONITORAR"
+    },
+    "7080": {
+      "nome": "PEÇAS, ACESSÓRIOS E FERRAMENTAS PARA REDES DE TIC",
+      "status": "MONITORAR"
+    },
+    "7090": {
+      "nome": "SUPRIMENTOS DE INFORMÁTICA - TIC",
+      "status": "MONITORAR"
+    },
+    "7095": {
+      "nome": "UNIDADES PARA MANUSEIO DE CARTÕES",
+      "status": "MONITORAR"
+    },
+    "7099": {
+      "nome": "OUTROS",
+      "status": "MONITORAR"
+    },
+    "7105": {
+      "nome": "MOBILIÁRIO DOMÉSTICO",
+      "status": "MONITORAR"
+    },
+    "7110": {
+      "nome": "MOBILIÁRIO PARA ESCRITÓRIO",
+      "status": "MONITORAR"
+    },
+    "7115": {
+      "nome": "MOBILIARIOS ESCOLAR",
+      "status": "MONITORAR"
+    },
+    "7125": {
+      "nome": "ARMÁRIOS E ESTANTES",
+      "status": "MONITORAR"
+    },
+    "7195": {
+      "nome": "MOBILIÁRIOS DIVERSOS E ACESSÓRIOS",
+      "status": "MONITORAR"
+    },
+    "7210": {
+      "nome": "UTENSÍLIOS DOMÉSTICOS",
+      "status": "MONITORAR"
+    },
+    "7220": {
+      "nome": "REVESTIMENTOS PARA PISOS",
+      "status": "MONITORAR"
+    },
+    "7230": {
+      "nome": "TAPEÇARIAS, CORTINAS E PERSIANAS",
+      "status": "MONITORAR"
+    },
+    "7240": {
+      "nome": "RECEPIENTES PARA USO DOMÉSTICO E COMERCIAL",
+      "status": "MONITORAR"
+    },
+    "7290": {
+      "nome": "UTENSÍLIOS COMERCIAIS E DOMÉSTICOS DIVERSOS",
+      "status": "MONITORAR"
+    },
+    "7310": {
+      "nome": "EQUIPAMENTOS PARA COZINHAR, ASSAR E SERVIR ALIMENTOS",
+      "status": "MONITORAR"
+    },
+    "7320": {
+      "nome": "EQUIPAMENTOS E APARELHOS DE COZINHA",
+      "status": "MONITORAR"
+    },
+    "7330": {
+      "nome": "UTENSÍLIOS E FERRAMENTAS MANUAIS DE COZINHA",
+      "status": "MONITORAR"
+    },
+    "7340": {
+      "nome": "CUTELARIA E TALHERES",
+      "status": "MONITORAR"
+    },
+    "7350": {
+      "nome": "LOUÇA E ARTIGOS DE MESA",
+      "status": "MONITORAR"
+    },
+    "7360": {
+      "nome": "JOGOS, CONJUNTOS E EQUIPAMENTOS PARA PREPARAR E SERVIR ALIMENTOS",
+      "status": "MONITORAR"
+    },
+    "7420": {
+      "nome": "MÁQUINAS DE CONTABILIDADE E DE CALCULAR",
+      "status": "MONITORAR"
+    },
+    "7430": {
+      "nome": "MÁQUINAS DE ESCREVER E DE COMPOSIÇÃO PARA ESCRITÓRIO",
+      "status": "MONITORAR"
+    },
+    "7431": {
+      "nome": "MAQUINAS DE REPROGRAFIA",
+      "status": "MONITORAR"
+    },
+    "7435": {
+      "nome": "EQUIPAMENTOS DE SISTEMAS DE INFORMAÇÕES PARA ESCRITÓRIO",
+      "status": "MONITORAR"
+    },
+    "7450": {
+      "nome": "MÁQUINAS DE GRAVAÇÃO E REPRODUÇÃO DE SOM PARA USO EM ESCRITÓRIO",
+      "status": "MONITORAR"
+    },
+    "7460": {
+      "nome": "ARQUIVOS VISUAIS",
+      "status": "MONITORAR"
+    },
+    "7490": {
+      "nome": "MÁQUINAS DIVERSAS PARA ESCRITÓRIO",
+      "status": "MONITORAR"
+    },
+    "7510": {
+      "nome": "ARTIGOS PARA ESCRITÓRIO",
+      "status": "MONITORAR"
+    },
+    "7520": {
+      "nome": "ACESSÓRIOS E DISPOSITIVOS PARA ESCRITÓRIO",
+      "status": "MONITORAR"
+    },
+    "7530": {
+      "nome": "FORMULÁRIOS OFICIAIS",
+      "status": "MONITORAR"
+    },
+    "7540": {
+      "nome": "FORMULÁRIOS PADRONIZADOS",
+      "status": "MONITORAR"
+    },
+    "7610": {
+      "nome": "LIVROS E FOLHETOS",
+      "status": "MONITORAR"
+    },
+    "7630": {
+      "nome": "JORNAIS E PERIÓDICOS",
+      "status": "MONITORAR"
+    },
+    "7640": {
+      "nome": "MAPAS, CARTAS E GLOBOS GEOGRÁFICOS",
+      "status": "MONITORAR"
+    },
+    "7641": {
+      "nome": "MAPAS AERONÁUTICOS, CARTAS E PRODUTOS GEODÉSICOS",
+      "status": "MONITORAR"
+    },
+    "7642": {
+      "nome": "MAPAS HIDROGRÁFICOS, CARTAS E PRODUTOS GEODÉSICOS",
+      "status": "MONITORAR"
+    },
+    "7643": {
+      "nome": "MAPAS TOPOGRÁFICOS, CARTAS E PRODUTOS GEODÉSICOS",
+      "status": "MONITORAR"
+    },
+    "7644": {
+      "nome": "MAPAS DIGITAIS, CARTAS E PRODUTOS GEODÉSICOS",
+      "status": "MONITORAR"
+    },
+    "7650": {
+      "nome": "DESENHOS E ESPECIFICAÇÕES",
+      "status": "MONITORAR"
+    },
+    "7660": {
+      "nome": "FOLHAS E LIVROS DE MÚSICA",
+      "status": "MONITORAR"
+    },
+    "7670": {
+      "nome": "MICROFILMES REVELADOS",
+      "status": "MONITORAR"
+    },
+    "7690": {
+      "nome": "IMPRESSOS DIVERSOS",
+      "status": "MONITORAR"
+    },
+    "7710": {
+      "nome": "INSTRUMENTOS MUSICAIS",
+      "status": "MONITORAR"
+    },
+    "7720": {
+      "nome": "PEÇAS E ACESSÓRIOS DE INSTRUMENTOS MUSICAIS",
+      "status": "MONITORAR"
+    },
+    "7730": {
+      "nome": "FONÓGRAFOS, RÁDIOS E TELEVISORES DE TIPO DOMÉSTICO",
+      "status": "MONITORAR"
+    },
+    "7740": {
+      "nome": "DISCOS PARA FONÓGRAFO",
+      "status": "MONITORAR"
+    },
+    "7810": {
+      "nome": "EQUIPAMENTO PARA ATLETISMO E DESPORTO",
+      "status": "MONITORAR"
+    },
+    "7820": {
+      "nome": "JOGOS, BRINQUEDOS E ARTIGOS CORRELATOS COM RODAS",
+      "status": "MONITORAR"
+    },
+    "7830": {
+      "nome": "EQUIPAMENTO PARA GINÁSTICA E RECREAÇÃO",
+      "status": "MONITORAR"
+    },
+    "7910": {
+      "nome": "ENCERADEIRAS E ASPIRADORES DE PÓ",
+      "status": "MONITORAR"
+    },
+    "7920": {
+      "nome": "VASSOURAS, ESCOVAS, RODOS, ESPONJAS E ESFREGÕES",
+      "status": "MONITORAR"
+    },
+    "7930": {
+      "nome": "COMPOSTOS E PREPARADOS PARA LIMPEZA E POLIMENTO",
+      "status": "MONITORAR"
+    },
+    "8010": {
+      "nome": "TINTAS, VERNIZES E PRODUTOS CORRELATOS",
+      "status": "MONITORAR"
+    },
+    "8020": {
+      "nome": "PINCEL PARA ARTISTAS E PINTORES",
+      "status": "MONITORAR"
+    },
+    "8030": {
+      "nome": "COMPOSTOS PRESERVATIVOS E VEDANTES",
+      "status": "MONITORAR"
+    },
+    "8040": {
+      "nome": "ADESIVOS",
+      "status": "MONITORAR"
+    },
+    "8105": {
+      "nome": "SACOS E BOLSAS",
+      "status": "MONITORAR"
+    },
+    "8110": {
+      "nome": "TAMBORES E LATAS",
+      "status": "MONITORAR"
+    },
+    "8115": {
+      "nome": "CAIXAS, CAIXOTES E ENGRADADOS",
+      "status": "MONITORAR"
+    },
+    "8120": {
+      "nome": "CILINDROS COMERCIAIS E INDUSTRIAIS PARA GASES",
+      "status": "MONITORAR"
+    },
+    "8125": {
+      "nome": "GARRAFAS E JARROS",
+      "status": "MONITORAR"
+    },
+    "8130": {
+      "nome": "CARRETÉIS E BOBINAS",
+      "status": "MONITORAR"
+    },
+    "8135": {
+      "nome": "MATERIAIS A GRANEL PARA ACONDICIONAMENTO E EMBALAGEM",
+      "status": "MONITORAR"
+    },
+    "8140": {
+      "nome": "CAIXAS, RECIPIENTES E EMBALAGENS ESPECIAIS PARA ARMAMENTO NUCLEAR E MUNIÇÃO",
+      "status": "MONITORAR"
+    },
+    "8145": {
+      "nome": "RECIPIENTES ESPECIALIZADOS PARA TRANSPORTE E ARMAZENAGEM",
+      "status": "MONITORAR"
+    },
+    "8305": {
+      "nome": "TECIDOS",
+      "status": "MONITORAR"
+    },
+    "8310": {
+      "nome": "FIOS E LINHAS",
+      "status": "MONITORAR"
+    },
+    "8315": {
+      "nome": "MIUDEZAS E AVIAMENTOS PARA COSTURA",
+      "status": "MONITORAR"
+    },
+    "8320": {
+      "nome": "MATERIAIS PARA ESTOFAMENTO E ACOLCHOAMENTO",
+      "status": "MONITORAR"
+    },
+    "8325": {
+      "nome": "PELES",
+      "status": "MONITORAR"
+    },
+    "8330": {
+      "nome": "COUROS",
+      "status": "MONITORAR"
+    },
+    "8335": {
+      "nome": "MATERIAIS PARA CALÇADOS",
+      "status": "MONITORAR"
+    },
+    "8340": {
+      "nome": "BARRACAS E ENCERADOS",
+      "status": "MONITORAR"
+    },
+    "8345": {
+      "nome": "BANDEIRAS, FLAMULAS E PAVILHOES",
+      "status": "MONITORAR"
+    },
+    "8405": {
+      "nome": "VESTUÁRIO EXTERNO MASCULINO",
+      "status": "MONITORAR"
+    },
+    "8410": {
+      "nome": "VESTUÁRIO EXTERNO FEMININO",
+      "status": "MONITORAR"
+    },
+    "8415": {
+      "nome": "VESTUÁRIO PARA FINS ESPECIAIS",
+      "status": "MONITORAR"
+    },
+    "8420": {
+      "nome": "ROUPAS ÍNTIMAS E PARA DORMIR, MASCULINAS",
+      "status": "MONITORAR"
+    },
+    "8425": {
+      "nome": "ROUPAS ÍNTIMAS E PARA DORMIR, FEMININAS",
+      "status": "MONITORAR"
+    },
+    "8430": {
+      "nome": "CALÇADOS MASCULINOS",
+      "status": "MONITORAR"
+    },
+    "8435": {
+      "nome": "CALÇADOS FEMININOS",
+      "status": "MONITORAR"
+    },
+    "8440": {
+      "nome": "MEIAS, LUVAS E OUTROS COMPLEMENTOS DO VESTUARIO MASCULINO",
+      "status": "MONITORAR"
+    },
+    "8445": {
+      "nome": "MEIAS, LUVAS E OUTROS COMPLEMENTOS DO VESTUÁRIO FEMININO",
+      "status": "MONITORAR"
+    },
+    "8450": {
+      "nome": "VESTUÁRIO INFANTO-JUVENIL E COMPLEMENTOS",
+      "status": "MONITORAR"
+    },
+    "8455": {
+      "nome": "DISTINTIVOS E INSÍGNIAS",
+      "status": "MONITORAR"
+    },
+    "8460": {
+      "nome": "BAGAGENS",
+      "status": "MONITORAR"
+    },
+    "8465": {
+      "nome": "EQUIPAMENTOS INDIVIDUAIS",
+      "status": "MONITORAR"
+    },
+    "8470": {
+      "nome": "ROUPAS DE PROTEÇÃO CONTRA PROJÉTEIS",
+      "status": "MONITORAR"
+    },
+    "8475": {
+      "nome": "VESTUÁRIO ESPECIALIZADO PARA VÔO E ACESSÓRIOS",
+      "status": "MONITORAR"
+    },
+    "8510": {
+      "nome": "PERFUMES, ARTIGOS PARA TOALETE E TOUCADOR",
+      "status": "MONITORAR"
+    },
+    "8520": {
+      "nome": "SABONETES, ARTIGOS PARA BARBEAR E DENTIFRÍCIOS",
+      "status": "MONITORAR"
+    },
+    "8530": {
+      "nome": "ARTIGOS PARA HIGIENE PESSOAL",
+      "status": "MONITORAR"
+    },
+    "8540": {
+      "nome": "ARTIGOS DE PAPEL PARA HIGIENE",
+      "status": "MONITORAR"
+    },
+    "8710": {
+      "nome": "FORRAGENS E ALIMENTOS",
+      "status": "MONITORAR"
+    },
+    "8720": {
+      "nome": "FERTILIZANTES",
+      "status": "MONITORAR"
+    },
+    "8730": {
+      "nome": "SEMENTES E MUDAS DE PLANTAS",
+      "status": "MONITORAR"
+    },
+    "8810": {
+      "nome": "ANIMAIS VIVOS, CRIADOS PARA ALIMENTAÇÃO",
+      "status": "MONITORAR"
+    },
+    "8820": {
+      "nome": "ANIMAIS VIVOS, NÃO CRIADOS PARA ALIMENTAÇÃO",
+      "status": "MONITORAR"
+    },
+    "8905": {
+      "nome": "CARNES, AVES E PEIXES",
+      "status": "MONITORAR"
+    },
+    "8910": {
+      "nome": "OVOS E LATICÍNIOS",
+      "status": "MONITORAR"
+    },
+    "8915": {
+      "nome": "FRUTAS, VERDURAS E LEGUMES",
+      "status": "MONITORAR"
+    },
+    "8920": {
+      "nome": "PRODUTOS DE PANIFICAÇÃO E CEREAIS",
+      "status": "MONITORAR"
+    },
+    "8925": {
+      "nome": "AÇÚCAR, CONFEITOS, CASTANHAS, NOZES E SIMILARES",
+      "status": "MONITORAR"
+    },
+    "8930": {
+      "nome": "GELEIAS, CONSERVAS E GELATINAS",
+      "status": "MONITORAR"
+    },
+    "8935": {
+      "nome": "SOPAS E CALDOS",
+      "status": "MONITORAR"
+    },
+    "8940": {
+      "nome": "ALIMENTOS ESPECIAIS DIETÉTICOS E PREPARADOS ALIMENTÍCIOS",
+      "status": "MONITORAR"
+    },
+    "8945": {
+      "nome": "ÓLEOS E GORDURAS COMESTÍVEIS",
+      "status": "MONITORAR"
+    },
+    "8950": {
+      "nome": "CONDIMENTOS E PRODUTOS CORRELATOS",
+      "status": "MONITORAR"
+    },
+    "8955": {
+      "nome": "CAFÉ, CHÁ E CHOCOLATE",
+      "status": "MONITORAR"
+    },
+    "8960": {
+      "nome": "BEBIDAS NÃO ALCOÓLICAS",
+      "status": "MONITORAR"
+    },
+    "8965": {
+      "nome": "BEBIDAS ALCOÓLICAS",
+      "status": "MONITORAR"
+    },
+    "8970": {
+      "nome": "RAÇÕES EMBALADAS",
+      "status": "MONITORAR"
+    },
+    "8975": {
+      "nome": "PRODUTOS DE TABACO",
+      "status": "MONITORAR"
+    },
+    "9110": {
+      "nome": "COMBUSTÍVEIS SÓLIDOS",
+      "status": "MONITORAR"
+    },
+    "9130": {
+      "nome": "COMBUSTÍVEIS E PROPELENTES LÍQUIDOS À BASE DE PETRÓLEO",
+      "status": "MONITORAR"
+    },
+    "9135": {
+      "nome": "COMBUSTÍVEIS PROPELENTES LÍQUIDOS E OXIDANTES Á BASE QUÍMICA",
+      "status": "MONITORAR"
+    },
+    "9140": {
+      "nome": "ÓLEOS COMBUSTÍVEIS",
+      "status": "MONITORAR"
+    },
+    "9150": {
+      "nome": "ÓLEOS E GRAXAS PARA CORTE, LUBRIFICAÇÃO E SISTEMAS HIDRÁULICOS",
+      "status": "MONITORAR"
+    },
+    "9160": {
+      "nome": "CERAS, ÓLEOS E GORDURAS DIVERSOS",
+      "status": "MONITORAR"
+    },
+    "9310": {
+      "nome": "PAPÉIS E PAPELÕES",
+      "status": "MONITORAR"
+    },
+    "9320": {
+      "nome": "ARTIGOS DE BORRACHA",
+      "status": "MONITORAR"
+    },
+    "9330": {
+      "nome": "ARTIGOS DE PLÁSTICO",
+      "status": "MONITORAR"
+    },
+    "9340": {
+      "nome": "ARTIGOS DE VIDRO",
+      "status": "MONITORAR"
+    },
+    "9350": {
+      "nome": "MATERIAIS REFRATÁRIOS E DE ACABAMENTO SUPERFICIAL CONTRA FOGO",
+      "status": "MONITORAR"
+    },
+    "9390": {
+      "nome": "PRODUTOS DIVERSOS NÃO METÁLICOS",
+      "status": "MONITORAR"
+    },
+    "9410": {
+      "nome": "MATÉRIAS-PRIMAS DE ORIGEM VEGETAL",
+      "status": "MONITORAR"
+    },
+    "9420": {
+      "nome": "FIBRAS VEGETAIS, ANIMAIS E SINTÉTICAS",
+      "status": "MONITORAR"
+    },
+    "9430": {
+      "nome": "MATÉRIAS-PRIMAS DIVERSAS DE ORIGEM ANIMAL, NÃO COMESTÍVEIS",
+      "status": "MONITORAR"
+    },
+    "9440": {
+      "nome": "MATÉRIAS-PRIMAS DIVERSAS, FLORESTAIS E AGRÍCOLAS",
+      "status": "MONITORAR"
+    },
+    "9450": {
+      "nome": "RESÍDUOS NAO METÁLICOS, EXCETO OS TÊXTEIS",
+      "status": "MONITORAR"
+    },
+    "9505": {
+      "nome": "ARAMES DE FERRO E DE AÇO, NÃO UTILIZÁVEIS EM ELETRICIDADE",
+      "status": "MONITORAR"
+    },
+    "9510": {
+      "nome": "BARRAS E VERGALHÕES DE FERRO E DE AÇO",
+      "status": "MONITORAR"
+    },
+    "9515": {
+      "nome": "PLACAS, CHAPAS, FITAS E LAMINADOS FINOS DE FERRO E DE AÇO",
+      "status": "MONITORAR"
+    },
+    "9520": {
+      "nome": "PERFIS ESTRUTURAIS DE FERRO E AÇO",
+      "status": "MONITORAR"
+    },
+    "9525": {
+      "nome": "ARAMES DE METAL NÃO FERROSO, NÃO UTILIZÁVEIS EM ELETRICIDADE",
+      "status": "MONITORAR"
+    },
+    "9530": {
+      "nome": "BARRAS E VERGALHÕES DE METAIS NÃO FERROSOS",
+      "status": "MONITORAR"
+    },
+    "9535": {
+      "nome": "PLACAS, CHAPAS, FITAS E LAMINADOS FINOS DE METAIS NÃO FERROSOS",
+      "status": "MONITORAR"
+    },
+    "9540": {
+      "nome": "PERFIS ESTRUTURAIS DE METAIS NÃO FERROSOS",
+      "status": "MONITORAR"
+    },
+    "9545": {
+      "nome": "PLACAS, CHAPAS, FITAS E LAMINADOS FINOS DE METAIS PRECIOSOS",
+      "status": "MONITORAR"
+    },
+    "9610": {
+      "nome": "MINÉRIOS",
+      "status": "MONITORAR"
+    },
+    "9620": {
+      "nome": "MINERAIS NATURAIS E SINTÉTICOS",
+      "status": "MONITORAR"
+    },
+    "9630": {
+      "nome": "ADITIVOS METÁLICOS E LIGAS BÁSICAS",
+      "status": "MONITORAR"
+    },
+    "9640": {
+      "nome": "PRODUTOS SEMI-ACABADOS E PRODUTOS PRIMÁRIOS DE FERRO E DE AÇO",
+      "status": "MONITORAR"
+    },
+    "9650": {
+      "nome": "REFINADOS E PRODUTOS SEMI-ACABADOS DE METAIS BÁSICOS NÃO FERROSOS",
+      "status": "MONITORAR"
+    },
+    "9660": {
+      "nome": "METAIS PRECIOSOS EM SUAS FORMAS PRIMÁRIAS",
+      "status": "MONITORAR"
+    },
+    "9670": {
+      "nome": "SUCATA DE FERRO E DE AÇO",
+      "status": "MONITORAR"
+    },
+    "9680": {
+      "nome": "SUCATA DE METAIS NÃO FERROSOS",
+      "status": "MONITORAR"
+    },
+    "9905": {
+      "nome": "CARTAZES, MOSTRUÁRIOS E PLACAS DE IDENTIFICAÇÃO",
+      "status": "MONITORAR"
+    },
+    "9910": {
+      "nome": "ARTIGOS DE JOALHERIA",
+      "status": "MONITORAR"
+    },
+    "9915": {
+      "nome": "ARTIGOS PARA COLECIONADORES E/OU HISTÓRICOS",
+      "status": "MONITORAR"
+    },
+    "9920": {
+      "nome": "ARTIGOS PARA FUMANTES",
+      "status": "MONITORAR"
+    },
+    "9925": {
+      "nome": "EQUIPAMENTOS E ARTIGOS RELIGIOSOS",
+      "status": "MONITORAR"
+    },
+    "9930": {
+      "nome": "EQUIPAMENTOS E ARTIGOS MORTUÁRIOS E DE CEMITÉRIO",
+      "status": "MONITORAR"
+    },
+    "9998": {
+      "nome": "SERVICO",
+      "status": "MONITORAR"
+    },
+    "9999": {
+      "nome": "ITENS DIVERSOS",
+      "status": "MONITORAR"
+    },
+    "9997": {
+      "nome": "PEDIDOS DE CATALOGAÇÃO DO ESTADO DE SÃO PAULO - PARA USO EXCLUSIVO DO ESTADO DE SÃO PAULO",
+      "status": "MONITORAR"
+    },
+    "1365": {
+      "nome": "PRODUTOS QUIMICOS DE USO MILITAR",
+      "status": "MONITORAR"
+    },
+    "3440": {
+      "nome": "MATERIAIS E EQUIPAMENTOS PARA FUNDICAO",
+      "status": "MONITORAR"
+    },
+    "3760": {
+      "nome": "VEICULOS DE TRACAO ANIMAL E REBOQUES PARA USO AGRICOLA",
+      "status": "MONITORAR"
+    },
+    "6034": {
+      "nome": "MODULADORES E DEMODULADORES DE FIBRA OTICA",
+      "status": "MONITORAR"
+    },
+    "6440": {
+      "nome": "MEDICAMENTOS PARA IMUNOTERAPIA E ALERGIA",
+      "status": "MONITORAR"
+    },
+    "6475": {
+      "nome": "PRODUTOS QUIMICOS",
+      "status": "MONITORAR"
+    },
+    "6555": {
+      "nome": "JOGOS E CONJUNTOS MEDICOS",
+      "status": "MONITORAR"
+    },
+    "7005": {
+      "nome": "EQUIPAMENTOS DE ENTRADA E SAIDA DE DADOS",
+      "status": "MONITORAR"
+    },
+    "7015": {
+      "nome": "EQUIPAMENTOS DE APOIO",
+      "status": "MONITORAR"
+    },
+    "7425": {
+      "nome": "MAQUINAS DE FOTOCOPIAS",
+      "status": "MONITORAR"
+    },
+    "7120": {
+      "nome": "ESTANTES E ARMACOES PARA ALMOXARIFADOS",
+      "status": "MONITORAR"
+    },
+    "7432": {
+      "nome": "MAQUINAS DE REPROGRAFIA",
+      "status": "MONITORAR"
+    },
+    "2315": {
+      "nome": "VEICULOS DE SERVICOS ESPECIAIS",
+      "status": "MONITORAR"
+    },
+    "6040": {
+      "nome": "SENSORES DE FIBRA OTICA",
+      "status": "MONITORAR"
+    },
+    "6460": {
+      "nome": "MEDICAMENTOS PARA AGENTES DIAGNOSTICOS",
+      "status": "MONITORAR"
+    }
+  },
+  "servico_classe": {
+    "1111": {
+      "nome": "SERVIÇOS DE DESENVOLVIMENTO DE SOFTWARE E OU MANUTENÇÃO EVOLUTIVA DE SOFTWARE",
+      "status": "CERTA"
+    },
+    "1112": {
+      "nome": "SERVIÇOS DE MANUTENÇÃO EVOLUTIVA DE SOFTWARE",
+      "status": "CERTA"
+    },
+    "1121": {
+      "nome": "SERVIÇOS DE MANUTENÇÃO E SUSTENTAÇÃO DE SOFTWARE",
+      "status": "CERTA"
+    },
+    "1131": {
+      "nome": "SERVICOS DE DOCUMENTACAO DE SOFTWARE",
+      "status": "INFERIR"
+    },
+    "1141": {
+      "nome": "SERVIÇOS DE ENGENHARIA DE REQUISITOS DE SOFTWARE",
+      "status": "CERTA"
+    },
+    "1151": {
+      "nome": "SERVIÇOS DE MENSURAÇÃO DE SOFTWARE",
+      "status": "INFERIR"
+    },
+    "1161": {
+      "nome": "SERVIÇOS DE QUALIDADE DE SOFTWARE",
+      "status": "INFERIR"
+    },
+    "1171": {
+      "nome": "SERVIÇO DE IMPLEMENTAÇÃO ÁGIL DE SOFTWARE",
+      "status": "INFERIR"
+    },
+    "1311": {
+      "nome": "INFRAESTRUTURA COMO SERVIÇO - IAAS",
+      "status": "INFERIR"
+    },
+    "1312": {
+      "nome": "PLATAFORMA COMO SERVIÇO - PAAS",
+      "status": "INFERIR"
+    },
+    "1313": {
+      "nome": "SOFTWARE COMO SERVIÇO - SAAS",
+      "status": "INFERIR"
+    },
+    "1411": {
+      "nome": "SERVIÇOS DE TELEFONIA FIXA COMUTADA (STFC)",
+      "status": "INFERIR"
+    },
+    "1412": {
+      "nome": "SMP - SERVIÇO MÓVEL PESSOAL",
+      "status": "INFERIR"
+    },
+    "1413": {
+      "nome": "SERVIÇOS DE TELEFONIA INTERNACIONAL - LDI (STFC E SMP)",
+      "status": "INFERIR"
+    },
+    "1414": {
+      "nome": "SERVIÇOS DE TELECOMUNICAÇÕES SATELITAIS",
+      "status": "INFERIR"
+    },
+    "1421": {
+      "nome": "SERVIÇOS DE LINKS VIA CABO",
+      "status": "MONITORAR"
+    },
+    "1422": {
+      "nome": "SERVIÇOS DE LINKS VIA RÁDIO",
+      "status": "MONITORAR"
+    },
+    "1423": {
+      "nome": "SERVIÇOS DE LINKS VIA SATÉLITE",
+      "status": "MONITORAR"
+    },
+    "1511": {
+      "nome": "OUTSOURCING DE IMPRESSÃO - PÁGINAS DENTRO DA FRANQUIA",
+      "status": "MONITORAR"
+    },
+    "1512": {
+      "nome": "OUTSOURCING DE IMPRESSÃO - PÁGINAS EXCEDENTES A FRANQUIA",
+      "status": "MONITORAR"
+    },
+    "1521": {
+      "nome": "OUTSOURCING DE IMPRESSÃO - LOCAÇÃO DE EQUIPAMENTO DE IMPRES-SÃO",
+      "status": "INFERIR"
+    },
+    "1522": {
+      "nome": "OUTSOURCING DE IMPRESSÃO - LOCAÇÃO - PÁGINAS IMPRESSAS",
+      "status": "INFERIR"
+    },
+    "1531": {
+      "nome": "OUTSOURCING DE IMPRESSÃO - MODALIDADE SEM FRANQUIA (APENASPÁGINAS IMPRESSAS) - \"CLICK\"",
+      "status": "MONITORAR"
+    },
+    "1611": {
+      "nome": "SERVIÇOS ESPECIALIZADOS DE INSTALAÇÃO, TRANSIÇÃO, CONFIGU-RAÇÃO / CUSTOMIZAÇÃO DE SOFTWARE",
+      "status": "INFERIR"
+    },
+    "1621": {
+      "nome": "SERVIÇOS DE GERENCIAMENTO EM TECNOLOGIA DA INFORMAÇÃO E COMUNICAÇÃO (TIC)",
+      "status": "INFERIR"
+    },
+    "1631": {
+      "nome": "SERVIÇOS DE HOSPEDAGEM EM TECNOLOGIA DA INFORMAÇÃO E COMUNI-CACÃO (TIC)",
+      "status": "INFERIR"
+    },
+    "1641": {
+      "nome": "SERVIÇOS DE INTEGRAÇÃO DE SISTEMAS EM TECNOLOGIA DA INFORMA-ÇÃO E COMUNICAÇÃO (TIC)",
+      "status": "INFERIR"
+    },
+    "1651": {
+      "nome": "SERVICOS PARA A INFRAESTRUTURA DE TECNOLOGIA DA INFORMAÇÃOE COMUNICAÇÃO (TIC), NAO CLASSIFICADOS EM OUTROS TÓPICOS",
+      "status": "INFERIR"
+    },
+    "1661": {
+      "nome": "SERVIÇOS DE MANUTENÇÃO E INSTALAÇÃO DE EQUIPAMENTOS DE TIC",
+      "status": "CERTA"
+    },
+    "1671": {
+      "nome": "SERVIÇOS DE EMISSÃO DE CERTIFICADO A1",
+      "status": "MONITORAR"
+    },
+    "1672": {
+      "nome": "SERVIÇOS DE EMISSÃO DE CERTIFICADO A3, COM TOKEN",
+      "status": "MONITORAR"
+    },
+    "1673": {
+      "nome": "SERVIÇOS DE EMISSÃO DE CERTIFICADO A3, SEM TOKEN",
+      "status": "MONITORAR"
+    },
+    "1674": {
+      "nome": "SERVIÇOS DE EMISSÃO DE OUTROS TIPOS DE CERTIFICADOS DIGITAIS",
+      "status": "MONITORAR"
+    },
+    "1681": {
+      "nome": "SERVIÇOS AUXILIARES DE TECNOLOGIA DA INFORMAÇÃO E COMUNICA-ÇÃO (TIC)",
+      "status": "INFERIR"
+    },
+    "1682": {
+      "nome": "SERVIÇOS DE DIGITALIZAÇÃO/ INDEXAÇÃO DE DOCUMENTOS E CONVER-SÃO DE ARQUIVOS DIGITAIS - OCR",
+      "status": "INFERIR"
+    },
+    "1711": {
+      "nome": "SERVIÇOS DE ANÁLISE DA DADOS E INDICADORES DE TIC",
+      "status": "MONITORAR"
+    },
+    "1721": {
+      "nome": "SERVIÇOS DE PESQUISA,ANÁLISE E DESENVOLVIMENTO EM TECNOLOGIADA INFORMAÇÃO E COMUNICAÇÃO (TIC)",
+      "status": "INFERIR"
+    },
+    "1731": {
+      "nome": "SERVIÇOS DE CONSULTORIA EM TECNOLOGIA DA INFORMAÇÃO ECOMUNICAÇÃO (TIC)",
+      "status": "INFERIR"
+    },
+    "1741": {
+      "nome": "SERVIÇOS DE PROJETOS EM TECNOLOGIA DA INFORMAÇÃO E COMUNICA-ÇÃO (TIC)",
+      "status": "INFERIR"
+    },
+    "1811": {
+      "nome": "SERVIÇOS DE ARRENDAMENTO MERCANTIL FINANCEIRO",
+      "status": "MONITORAR"
+    },
+    "1812": {
+      "nome": "SERVIÇOS DE ARRENDAMENTO MERCANTIL OPERACIONAL, OU LOCAÇÃODE MÁQUINAS E EQUIPAMENTOS, SEM OPERADOR",
+      "status": "INFERIR"
+    },
+    "1821": {
+      "nome": "LICENCIAMENTO DE DIREITOS PERMANENTES SOBRE PROGRAMAS DECOMPUTADOR E LOCAÇÃO DE SOFTWARE",
+      "status": "INFERIR"
+    },
+    "1822": {
+      "nome": "CONTRATOS DE TRANSFERÊNCIA DE TECNOLOGIA",
+      "status": "INFERIR"
+    },
+    "1831": {
+      "nome": "SEÇÃO DE DIREITOS DE PROPRIEDADE INTELECTUAL",
+      "status": "MONITORAR"
+    },
+    "5411": {
+      "nome": "SERVIÇOS GERAIS DE CONSTRUÇÃO DOS EDIFÍCIOS RESIDÊNCIAIS",
+      "status": "CERTA"
+    },
+    "5412": {
+      "nome": "SERVIÇOS GERAIS DE CONSTRUÇÃO DOS EDIFÍCIOS NÃO RESIDÊNCIAIS",
+      "status": "CERTA"
+    },
+    "5421": {
+      "nome": "SERVIÇOS GERAIS DE CONSTRUÇÃO DE ESTRADAS(EXCETO ELEVADOS), RUAS,VIAS,ESTRADAS DE FERRO E PISTAS DE ATERRIZAGEM",
+      "status": "CERTA"
+    },
+    "5422": {
+      "nome": "SERVIÇOS GERAIS DE CONSTRUÇÃO DE PONTES,ELEVADOS,TÚNEIS E SUBTERRÂNEOS",
+      "status": "CERTA"
+    },
+    "5423": {
+      "nome": "SERVIÇOS GERAIS DE CONSTRUÇÃO DE PORTOS,CANAIS,REPRESAS E OUTRAS OBRAS HIDRÁULICAS E DE IRRIGAÇÃO",
+      "status": "CERTA"
+    },
+    "5424": {
+      "nome": "SERVIÇOS GERAIS DE CONSTRUÇÃO DE TUBULAÇÕES, LINHAS DE COMU-NICAÇÃO E DE ENERGIA DE LONGA DISTÂNCIA",
+      "status": "CERTA"
+    },
+    "5425": {
+      "nome": "SERVIÇOS GERAIS DE CONSTRUÇÃO DE TUBULAÇÕES,CABOS E OBRAS A-FINS URBANAS",
+      "status": "CERTA"
+    },
+    "5426": {
+      "nome": "SERVIÇOS GERAIS DE CONSTRUÇÃO DE MINAS E PLANTAS INDUSTRIAIS",
+      "status": "CERTA"
+    },
+    "5427": {
+      "nome": "SERVIÇOS GERAIS DE CONSTRUÇÃO DE INSTALAÇÕES AO AR LIVRE PARA DESPORTOS E LAZER",
+      "status": "CERTA"
+    },
+    "5429": {
+      "nome": "SERVIÇOS GERAIS DE CONSTRUÇÃO DE OUTRAS OBRAS DE ENGENHARIA N.C.P",
+      "status": "CERTA"
+    },
+    "5431": {
+      "nome": "SERVIÇOS DE DEMOLIÇÃO",
+      "status": "CERTA"
+    },
+    "5432": {
+      "nome": "SERVIÇOS DE PREPARO/ACERTO E DESMATAMENTO DE TERRENO",
+      "status": "CERTA"
+    },
+    "5433": {
+      "nome": "SERVIÇOS DE ESCAVAÇÃO E DE MOVIMENTO DE TERRAS(TERRAPLANA- GEM)",
+      "status": "CERTA"
+    },
+    "5434": {
+      "nome": "SERVIÇO DE PERFURAÇÃO DE POÇOS DE ÁGUA E INSTALAÇÕES DE SIS-TEMAS SÉPTICOS",
+      "status": "CERTA"
+    },
+    "5440": {
+      "nome": "MONTAGEM E INSTALAÇÃO DE CONSTRUÇÕES PRÉ-FABRICADAS",
+      "status": "CERTA"
+    },
+    "5451": {
+      "nome": "SERVIÇOS DE INSTALAÇÃO DE PILOTIS E CIMENTAÇÃO DE FUNDAÇÃO/ALICERCE",
+      "status": "CERTA"
+    },
+    "5452": {
+      "nome": "SERVIÇOS DE ESTRUTURAÇÃO DAS CONSTRUÇÕES, DE EDIFÍCIOS E TE-LHADOS",
+      "status": "CERTA"
+    },
+    "5453": {
+      "nome": "SERVIÇOS DE TELHADO E IMPERMEABILIZAÇÃO",
+      "status": "CERTA"
+    },
+    "5454": {
+      "nome": "SERVIÇOS DE TRABALHO COM CONCRETO",
+      "status": "CERTA"
+    },
+    "5455": {
+      "nome": "SERVIÇOS DE INSTALAÇÃO DE ESTRUTURAS DE AÇO",
+      "status": "CERTA"
+    },
+    "5456": {
+      "nome": "SERVIÇOS DE ALVENARIA",
+      "status": "CERTA"
+    },
+    "5457": {
+      "nome": "SERVIÇOS DE INSTALAÇÃO DE ANDAIMES",
+      "status": "CERTA"
+    },
+    "5459": {
+      "nome": "OUTROS TIPOS ESPECIAIS DE SERVIÇOS DE CONSTRUÇÃO",
+      "status": "CERTA"
+    },
+    "5461": {
+      "nome": "SERVIÇOS DE INSTALAÇÃO ELÉTRICA, DE CABOS, ALARMES, ANTENAS E OUTROS DISPOSITIVOS ELÉTRICOS",
+      "status": "MONITORAR"
+    },
+    "5462": {
+      "nome": "SERVIÇOS DE ENCANAMENTO E CONSTRUÇÃO DE CANAIS/DRENOS",
+      "status": "CERTA"
+    },
+    "5463": {
+      "nome": "SERVIÇOS DE INSTALAÇÃO DE CALEFAÇÃO/AQUECEDOR, VENTILAÇÃO E AR CONDICIONADO",
+      "status": "MONITORAR"
+    },
+    "5464": {
+      "nome": "SERVIÇOS DE INSTALAÇÃO/MONTAGEM DE SISTEMAS DE GÁS",
+      "status": "MONITORAR"
+    },
+    "5465": {
+      "nome": "SERVIÇOS DE ISOLAMENTO",
+      "status": "MONITORAR"
+    },
+    "5469": {
+      "nome": "OUTROS SERVIÇOS DE INSTALAÇÃO",
+      "status": "MONITORAR"
+    },
+    "5471": {
+      "nome": "SERVIÇOS DE INSTALAÇÃO DE VIDROS",
+      "status": "MONITORAR"
+    },
+    "5472": {
+      "nome": "SERVIÇOS DE GESSO",
+      "status": "MONITORAR"
+    },
+    "5473": {
+      "nome": "SERVIÇOS DE PINTURA",
+      "status": "MONITORAR"
+    },
+    "5474": {
+      "nome": "SERVIÇOS DE COLOCAÇÃO DE AZULEIJOS E CERÂMICAS DE PISO",
+      "status": "INFERIR"
+    },
+    "5475": {
+      "nome": "OUTROS SERVIÇOS DE COLOCAÇÃO DE ASSOALHOS,REVESTIMENTO DE PAREDE E PAPEL DE PAREDE",
+      "status": "INFERIR"
+    },
+    "5476": {
+      "nome": "SERVIÇOS DE CARPINTARIA E SERRALHERIA",
+      "status": "MONITORAR"
+    },
+    "5477": {
+      "nome": "SERVIÇOS DE CERCAS E GRADES",
+      "status": "MONITORAR"
+    },
+    "5479": {
+      "nome": "OUTROS SERVIÇOS DE ACABAMENTO E FINALIZAÇÃO DE EDIFÍCIOS",
+      "status": "MONITORAR"
+    },
+    "5480": {
+      "nome": "SERVIÇOS DE ALUGUEL DE EQUIPAMENTO PARA CONSTRUÇÃO OU DEMOLIÇÃO DE EDIFÍCIOS OU PARA OBRAS DE ENG.CIVIL COM OPERADOR",
+      "status": "CERTA"
+    },
+    "6111": {
+      "nome": "SERVIÇO DO COMÉRCIO POR ATACADO,EXCETO POR COMISSÃO OU POR CONTRATO,DE MATÉRIAS PRIMAS AGRÍCOLAS E ANIMAIS VIVOS",
+      "status": "MONITORAR"
+    },
+    "6112": {
+      "nome": "SERVIÇO DO COMÉRCIO POR ATACADO,EXCETO POR COMISSÃO OU PO CONTRATO,DE COMIDAS,BEBIDAS E TABACO",
+      "status": "MONITORAR"
+    },
+    "6113": {
+      "nome": "SERVIÇO DO COMÉRCIO POR ATACADO,EXCETO POR COMISSÃO OU PO CONTRATO,DE ARTIGOS TÊXTEIS,ROUPAS DE VESTIR E CALÇADOS",
+      "status": "MONITORAR"
+    },
+    "6114": {
+      "nome": "SERVIÇO DO COMÉRCIO POR ATACADO,EXCETO POR COMISSÃO OU PO CONTRATO,DE DISPOSITIVOS,ARTIGOS E EQUIPAMENTOS DOMÉSTICOS",
+      "status": "MONITORAR"
+    },
+    "6115": {
+      "nome": "SERVIÇO DO COMÉRCIO POR ATACADO,EXCETO POR COMISSÃO OU PO CONTRATO,DE BENS DE CONSUMO DIVERSOS",
+      "status": "MONITORAR"
+    },
+    "6116": {
+      "nome": "SERVIÇO DO COMÉRCIO POR ATACADO,EXCETO POR COMISSÃO OU PO CONTRATO,DE MATERIAIS E FERRAGENS DE CONSTRUÇÃO",
+      "status": "CERTA"
+    },
+    "6117": {
+      "nome": "SERVIÇO DO COMÉRCIO POR ATACADO,EXCETO POR COMISSÃO OU PO CONTRATO,DE PRODUTOS QUÍMICOS E FARMACÊUTICOS",
+      "status": "MONITORAR"
+    },
+    "6118": {
+      "nome": "SERVIÇO DO COMÉRCIO POR ATACADO,EXCETO POR COMISSÃO OU PO CONTRATO,DE MAQUINARIA,EQUIPAMENTOS E SUPRIMENTOS",
+      "status": "MONITORAR"
+    },
+    "6119": {
+      "nome": "SERVIÇO DO COMÉRCIO POR ATACADO,EXCETO POR COMISSÃO OU PO CONTRATO,DE OUTROS PRODUTOS",
+      "status": "MONITORAR"
+    },
+    "6121": {
+      "nome": "SERVIÇOS DO COMÉRCIO POR ATACADO PRESTADO POR COMISSÃO OU POR CONTRATO,DE MATÉRIAS PRIMAS AGRÍCOLAS E ANIMAIS VIVOS",
+      "status": "MONITORAR"
+    },
+    "6122": {
+      "nome": "SERVIÇOS DO COMÉRCIO ATACADISTA, POR COMISSÃO/CONTRATO DE COMIDAS, CARNES, AVES, PESCA, LATICÍNIOS, TABACO E OUTROS",
+      "status": "MONITORAR"
+    },
+    "6123": {
+      "nome": "SERVIÇOS DO COMÉRCIO POR ATACADO PRESTADO POR COMISSÃO OU POR CONTRATO,DE ARTIGOS TÊXTEIS,ROUPAS DE VESTIR E CALÇADOS",
+      "status": "MONITORAR"
+    },
+    "6124": {
+      "nome": "SERVIÇOS DO COMÉRCIO POR ATACADO PRESTADO POR COMISSÃO OU CONTRATO,DE DISPOSITIVOS,ARTIGOS E EQUIPAMENTOS DOMÉSTICOS",
+      "status": "MONITORAR"
+    },
+    "6125": {
+      "nome": "SERVIÇOS DO COMÉRCIO POR ATACADO PRESTADO POR COMISSÃO OU POR CONTRATO,DE BENS DE CONSUMO DIVERSOS",
+      "status": "MONITORAR"
+    },
+    "6126": {
+      "nome": "SERVIÇOS DO COMÉRCIO POR ATACADO PRESTADO POR COMISSÃO OU POR CONTRATO,DE MATERIAIS E FERRAGENS DE CONSTRUÇÃO",
+      "status": "CERTA"
+    },
+    "6127": {
+      "nome": "SERVIÇOS DO COMÉRCIO POR ATACADO PRESTADO POR COMISSÃO OU POR CONTRATO,DE PRODUTOS QUÍMICOS E FARMACÊUTICOS",
+      "status": "MONITORAR"
+    },
+    "6128": {
+      "nome": "SERVIÇOS DO COMÉRCIO POR ATACADO PRESTADO POR COMISSÃO OU POR CONTRATO,DE MAQUINARIA,EQUIPAMENTOS E SUPRIMENTOS",
+      "status": "MONITORAR"
+    },
+    "6129": {
+      "nome": "SERVIÇOS DO COMÉRCIO POR ATACADO PRESTADO POR COMISSÃO OU POR CONTRATO,DE OUTROS PRODUTOS",
+      "status": "MONITORAR"
+    },
+    "6229": {
+      "nome": "SERVIÇOS DO COMÉRCIO DE VAREJO EM LOJAS ESPECIALIZADAS",
+      "status": "MONITORAR"
+    },
+    "6242": {
+      "nome": "OUTROS SERVIÇOS DO COMÉRCIO DE VAREJO DE COMIDAS, DE BEBIDASE TABACO SEM INTERVENÇÃO DE LOJAS",
+      "status": "MONITORAR"
+    },
+    "6311": {
+      "nome": "SERVIÇOS DE ALOJAMENTO EM HOTEIS E MOTEIS",
+      "status": "MONITORAR"
+    },
+    "6319": {
+      "nome": "OUTROS SERVIÇOS DE ALOJAMENTO",
+      "status": "MONITORAR"
+    },
+    "6321": {
+      "nome": "SERVIÇOS DE FORNECIMENTO DE REFEIÇÃO COM SERVIÇO COMPLETO DERESTAURANTE",
+      "status": "MONITORAR"
+    },
+    "6322": {
+      "nome": "SERVIÇOS DE FORNECIMENTO DE REFEIÇÕES EM ESTABELECIMENTO DE AUTOSERVIÇO/SELF-SERVICE",
+      "status": "MONITORAR"
+    },
+    "6323": {
+      "nome": "SERVIÇOS DE FORNECEDOR, FORNECENDO REFEIÇÕES POR ENCOMENDA EXTERNAMENTE",
+      "status": "MONITORAR"
+    },
+    "6329": {
+      "nome": "OUTROS SERVIÇOS DE FORNECIMENTO DE COMIDA",
+      "status": "MONITORAR"
+    },
+    "6410": {
+      "nome": "SERVIÇOS DE TRANSPORTE TERRESTRE DE COMBINADAS MODALIDADES",
+      "status": "MONITORAR"
+    },
+    "6411": {
+      "nome": "TRANSPORTE DE CARGA - INTERNACIONAL",
+      "status": "DESCARTAR"
+    },
+    "6421": {
+      "nome": "SERVIÇOS DE TRANSPORTE FERROVIÁRIO DE PASSAGEIROS, URBANO / SUBURBANO,INTERUBANO/INTERESTADUAL",
+      "status": "CERTA"
+    },
+    "6422": {
+      "nome": "SERVIÇOS DE TRANSPORTE FERROVIÁRIO DE CARGA, POR VAGÃO REFRIGERADO, VAGÃO TANQUE, EM CONTAINERS EM VAGÕES PLANO E OUTROS",
+      "status": "DESCARTAR"
+    },
+    "6423": {
+      "nome": "SERVIÇOS FERROVIÁRIOS DE TRAÇÃO OU REBOQUE",
+      "status": "MONITORAR"
+    },
+    "6431": {
+      "nome": "SERVIÇOS REGULAR/PROGRAMADO DE TRANSPORTE RODOVIÁRIO DE PAS-SAGEIROS, URBANO/SUBURBANO/INTERURBANO",
+      "status": "MONITORAR"
+    },
+    "6432": {
+      "nome": "SERVIÇOS DE TRANSPORTE RODOVIÁRIO DE PASSAGEIROS NÃO PROGRA-MADO",
+      "status": "CERTA"
+    },
+    "6433": {
+      "nome": "SERVIÇOS DE TRANSPORTE RODOVIÁRIO DE CARGA, POR VEÍCULOS RE-FRIGERADOS, CAMINHÕES TANQUE E OUTROS TIPOS",
+      "status": "DESCARTAR"
+    },
+    "6434": {
+      "nome": "SERVIÇOS DE ENTREGAS LOCAIS/URBANAS VARIADAS",
+      "status": "MONITORAR"
+    },
+    "6435": {
+      "nome": "SERVIÇOS DE ALUGUEL DE CAMINHÕES COM OPERADOR/MOTORISTA",
+      "status": "MONITORAR"
+    },
+    "6441": {
+      "nome": "SERVIÇOS DE TRANSPORTE VIA TUBULAÇÃO DE PRETRÓLEO E GÁS NATURAL",
+      "status": "MONITORAR"
+    },
+    "6449": {
+      "nome": "SERVIÇOS DE TRANSPORTE VIA TUBULAÇÃO DE OUTROS PRODUTOS/BENS",
+      "status": "MONITORAR"
+    },
+    "6512": {
+      "nome": "SERVIÇOS DE TRANSPORTE MARÍTIMO/COSTEIRO E TRANSOCEÂNICO DE CARGA",
+      "status": "DESCARTAR"
+    },
+    "6522": {
+      "nome": "SERVIÇOS DE TRANSPORTE FLUVIAL/INTERIOR DE CARGA",
+      "status": "DESCARTAR"
+    },
+    "6719": {
+      "nome": "OUTROS SERVIÇOS DE MOVIMENTAÇÃO DE CARGA",
+      "status": "MONITORAR"
+    },
+    "6721": {
+      "nome": "SERVIÇOS DE ARMAZENAGEM",
+      "status": "MONITORAR"
+    },
+    "6729": {
+      "nome": "OUTROS SERVIÇOS DE ARMAZENAMENTO OU DE ARMAZENAGEM",
+      "status": "MONITORAR"
+    },
+    "6740": {
+      "nome": "SERVIÇOS DE SUPORTE PARA TRANSPORTE FERROVIÁRIO",
+      "status": "MONITORAR"
+    },
+    "6762": {
+      "nome": "SERVIÇOS DE PRATICAGEM E ATRACAÇÃO",
+      "status": "MONITORAR"
+    },
+    "6771": {
+      "nome": "SERVIÇOS DE ADMINISTRAÇÃO AEROPORTUÁRIA",
+      "status": "MONITORAR"
+    },
+    "6779": {
+      "nome": "OUTROS SUPORTES E SERVIÇOS PARA O TRANSPORTE AÉREO OU ESPACIAL",
+      "status": "MONITORAR"
+    },
+    "6781": {
+      "nome": "SERVIÇOS DE AGÊNCIA DE VIAGENS E OPERADORAS DE TURISMO",
+      "status": "MONITORAR"
+    },
+    "6782": {
+      "nome": "SERVIÇOS DE GUIAS TURÍSTICOS",
+      "status": "MONITORAR"
+    },
+    "6791": {
+      "nome": "SERVIÇOS DE AGENCIAMENTO DE TRANSPORTE DE CARGA E OUTROS SERVIÇOS AUXILIARES DE TRANSPORTE",
+      "status": "DESCARTAR"
+    },
+    "6799": {
+      "nome": "OUTROS SERVIÇOS AUXILIARES DE TRANSPORTE N.C.P",
+      "status": "MONITORAR"
+    },
+    "6811": {
+      "nome": "SERVIÇOS POSTAL E DE CORREIO",
+      "status": "MONITORAR"
+    },
+    "6911": {
+      "nome": "SERVIÇOS DE TRANSMISSÃO E DISTRIBUIÇÃO DE ELETRICIDADE",
+      "status": "MONITORAR"
+    },
+    "6912": {
+      "nome": "SERVIÇOS DE DISTRIBUIÇÃO DE GÁS ATRAVÉS DE TUBULAÇÃO",
+      "status": "MONITORAR"
+    },
+    "6921": {
+      "nome": "SERVIÇOS DE DISTRIBUIÇÃO DE ÁGUA ATRAVÉS DE TUBULAÇÃO,EXCETOVAPOR E ÁGUA QUENTE",
+      "status": "MONITORAR"
+    },
+    "6922": {
+      "nome": "SERVIÇOS DE DISTRIBUIÇÃO DE VAPOR E ÁGUA QUENTE ATRAVÉS DE TUBULAÇÃO",
+      "status": "MONITORAR"
+    },
+    "6923": {
+      "nome": "SERVIÇOS DE DISTRIBUIÇÃO DE ÁGUA ATRAVÉS DE TUBULAÇÃO",
+      "status": "MONITORAR"
+    },
+    "6929": {
+      "nome": "OUTROS SERVIÇOS DE FORNECIMENTO E DISTRIBUIÇÃO DE ÁGUA",
+      "status": "MONITORAR"
+    },
+    "7110": {
+      "nome": "SERVIÇOS DE INTERMEDIAÇÃO FINANCEIRA,EXCETO SERVIÇO BANCÁRIODE INVESTIMENTO,SERVIÇOS DE SEGUROS E DE PENSÕES",
+      "status": "MONITORAR"
+    },
+    "7120": {
+      "nome": "SERVIÇOS BANCÁRIO DE INVESTIMENTO",
+      "status": "MONITORAR"
+    },
+    "7131": {
+      "nome": "SERVIÇOS DE SEGUROS DE VIDA E DE PENSÕES(EXCETO SERVIÇOS DE RESEGURO)",
+      "status": "MONITORAR"
+    },
+    "7132": {
+      "nome": "SERVIÇOS DE SEGUROS DE ACIDENTES E DE SAÚDE",
+      "status": "MONITORAR"
+    },
+    "7133": {
+      "nome": "SERVIÇOS DE SEGUROS DE TRANSPORTE MARÍTIMO, AÉREO, VEÍCULOS À MOTOR, DE FRETE, DE PROPRIEDADE/BENS INDIVIDUAIS",
+      "status": "DESCARTAR"
+    },
+    "7134": {
+      "nome": "SERVIÇOS RELATIVOS A PREVIDÊNCIA COMPLEMENTAR",
+      "status": "MONITORAR"
+    },
+    "7151": {
+      "nome": "SERVIÇOS RELACIONADOS A OPERAÇÕES BANCÁRIAS DE INVESTIMENTOS",
+      "status": "MONITORAR"
+    },
+    "7152": {
+      "nome": "SERVIÇOS DE CORRETAGEM E SEGUROS E PRODUTOS CONEXOS",
+      "status": "MONITORAR"
+    },
+    "7153": {
+      "nome": "SERVIÇOS DE ADMINISTRAÇÃO DE CARTEIRAS,DE CONFIANÇA(FIDUCIÁ-RIA) E SERVIÇO DE CUSTÓDIA",
+      "status": "MONITORAR"
+    },
+    "7154": {
+      "nome": "SERVIÇOS RELACIONADOS COM A ADMINISTRAÇÃO DE MERCADOS FINAN-CEIROS",
+      "status": "MONITORAR"
+    },
+    "7155": {
+      "nome": "OUTROS SERVIÇOS AUXILIARES DA INTERMEDIAÇÃO FINANCEIRA",
+      "status": "MONITORAR"
+    },
+    "7211": {
+      "nome": "SERVIÇOS DE ARRENDAMENTO OU LEASING RELATIVOS A BENS REAIS PRÓPRIOS OU ARRENDADOS, RESIDENCIAIS E NÃO RESIDENCIAIS",
+      "status": "INFERIR"
+    },
+    "7212": {
+      "nome": "SERVIÇOS COMERCIAIS ASSOCIADOS COM EDIFÍCIOS E TERRENOS",
+      "status": "INFERIR"
+    },
+    "7213": {
+      "nome": "SERVIÇOS COMERCIAIS ASSOCIADOS COM TERRENOS DESOCUPADOS E SUBDIVIDIDOS",
+      "status": "INFERIR"
+    },
+    "7217": {
+      "nome": "SERVIÇOS DE ESTACIONAMENTO DE VEÍCULOS AUTOMOTORES - GERÊNCI",
+      "status": "INFERIR"
+    },
+    "7218": {
+      "nome": "SERVIÇOS DE CONSULTORIA E ASSESSORIA IMOBILIÁRIA",
+      "status": "INFERIR"
+    },
+    "7219": {
+      "nome": "SERVIÇOS IMOBILIÁRIOS RELATIVOS A LOCAÇÃO OU ARRENDAMENTO",
+      "status": "INFERIR"
+    },
+    "7221": {
+      "nome": "SERVIÇOS DE ADMINISTRAÇÃO DE PROPRIEDADES RESIDENCIAIS E NÃORESIDENCIAIS COMISSIONADOS OU POR CONTRATO",
+      "status": "MONITORAR"
+    },
+    "7222": {
+      "nome": "VENDA DE EDIFÍCIOS E TERRENOS CONEXOS COMISSIONADOS OU POR CONTRATO",
+      "status": "MONITORAR"
+    },
+    "7223": {
+      "nome": "VENDA DE TERRENOS COMISSIONADOS OU POR CONTRATO",
+      "status": "MONITORAR"
+    },
+    "7224": {
+      "nome": "SERVIÇOS DE AVALIAÇÃO DE PROPRIEDADES COMISSIONADOS OU POR CONTRATO",
+      "status": "MONITORAR"
+    },
+    "7311": {
+      "nome": "SERVIÇOS DE LEASING OU ALUGUEL VEÍCULOS A MOTOR, FERROVIÁRIOEMBARCAÇÕES, AERONAVES, DE EQUIPAMENTO DE TRANSPORTE, S/OPER",
+      "status": "MONITORAR"
+    },
+    "7312": {
+      "nome": "SERVIÇOS DE LEASING OU ALUGUEL DE OUTROS TIPOS DE MAQUINARIAE EQUIPAMENTO SEM OPERADOR",
+      "status": "MONITORAR"
+    },
+    "7321": {
+      "nome": "SERVIÇOS DE LEASING OU ALUGUEL DE TELEVISORES, RADIOS, GRAVADORES DE VÍDEO E EQUIPAMENTOS E ACESSÓRIOS CORRELATOS",
+      "status": "MONITORAR"
+    },
+    "7322": {
+      "nome": "SERVIÇOS DE LEASING OU ALUGUEL DE FITAS DE VÍDEO",
+      "status": "MONITORAR"
+    },
+    "7323": {
+      "nome": "SERVIÇOS DE LEASING OU ALUGUEL DE MÓVEIS E OUTROS UTENSÍLIOSE APARELHOS DOMÉSTICOS",
+      "status": "MONITORAR"
+    },
+    "7324": {
+      "nome": "SERVIÇOS DE LEASING OU ALUGUEL DE EQUIPAMENTOS DE RECREAÇÃO E RELAXAMENTO.",
+      "status": "MONITORAR"
+    },
+    "7325": {
+      "nome": "SERVIÇOS DE LEASING OU ALUGUEL DE ROUPA BRANCA PARA O LAR",
+      "status": "MONITORAR"
+    },
+    "7326": {
+      "nome": "SERVIÇOS DE LEASING OU ALUGUEL DE TÊXTEIS, ROUPAS E CALÇADOS",
+      "status": "MONITORAR"
+    },
+    "7327": {
+      "nome": "SERVIÇOS DE LEASING OU ALUGUEL DE MAQUINARIA E EQUIPAMENTOS DE ARTESANATO",
+      "status": "MONITORAR"
+    },
+    "7329": {
+      "nome": "SERVIÇOS DE LEASING OU ALUGUEL DE OUTROS BENS N.C.P.",
+      "status": "MONITORAR"
+    },
+    "7331": {
+      "nome": "SERVIÇOS DE LICENÇA PELO DIREITO DE USO DE SOFTWARE",
+      "status": "INFERIR"
+    },
+    "7339": {
+      "nome": "ASSINATURA DE BANCO DE DADOS DE INFORAÇÕES COMERCIAIS / CADA",
+      "status": "MONITORAR"
+    },
+    "8211": {
+      "nome": "SERVIÇOS JURÍDICOS DE ASSESSORIA E REPRESENTAÇÃO NOS DIFERENTES CAMPOS DO DIREITO",
+      "status": "MONITORAR"
+    },
+    "8213": {
+      "nome": "SERVIÇOS DE DOCUMENTAÇÃO JURÍDICA E CERTIFICAÇÃO",
+      "status": "MONITORAR"
+    },
+    "8221": {
+      "nome": "CONTABILIDADE E SERVIÇOS DE AUDITORIA FINANCEIRA",
+      "status": "MONITORAR"
+    },
+    "8231": {
+      "nome": "SERVIÇOS DE ASSESSORIA/CONSULTORIA RELACIONADOS A TRIBUTAÇÃO",
+      "status": "MONITORAR"
+    },
+    "8311": {
+      "nome": "SERVIÇOS DE CONSULTORIA EM GERÊNCIA/GESTÃO",
+      "status": "MONITORAR"
+    },
+    "8312": {
+      "nome": "SERVIÇOS DE CONSULTORIA PRESTADO ÀS EMPRESAS",
+      "status": "MONITORAR"
+    },
+    "8313": {
+      "nome": "SERVIÇOS DE CONSULTORIA CIENTÍFICA E TÉCNICA N.C.P",
+      "status": "MONITORAR"
+    },
+    "8314": {
+      "nome": "SERVIÇOS DE CONSULTORIA EM INFORMÁTICA",
+      "status": "MONITORAR"
+    },
+    "8315": {
+      "nome": "SERVIÇOS DE GERÊNCIA/GESTÃO EM INSTALAÇÕES DE INFORMÁTICA",
+      "status": "MONITORAR"
+    },
+    "8316": {
+      "nome": "SERVIÇOS DE MANUTENÇÃO DE SISTEMAS",
+      "status": "CERTA"
+    },
+    "8319": {
+      "nome": "OUTROS SERVIÇOS DE GERÊNCIA/GESTÃO, EXCETO OS DE PROJETOS DECONSTRUÇÃO",
+      "status": "CERTA"
+    },
+    "8321": {
+      "nome": "SERVIÇOS DE ARQUITETURA",
+      "status": "MONITORAR"
+    },
+    "8322": {
+      "nome": "SERVIÇOS DE PLANEJAMENTO URBANO E PAISAGISMO ARQUITETÔNICO",
+      "status": "MONITORAR"
+    },
+    "8331": {
+      "nome": "SERVIÇOS INTEGRADOS DE ENGENHARIA",
+      "status": "CERTA"
+    },
+    "8332": {
+      "nome": "SERVIÇOS DE GERÊNCIA/GESTÃO DE PROJETOS RELACIONADOS COM A CONSTRUÇÃO",
+      "status": "CERTA"
+    },
+    "8333": {
+      "nome": "SERVIÇOS DE ENGENHARIA DE ASSESSORAMENTO/CONSULTIVO E PRÉ-DESENHO/PRÉ-PROJETO",
+      "status": "CERTA"
+    },
+    "8334": {
+      "nome": "SERVIÇOS DE DESENHO/PROJETO DE ENGENHARIA",
+      "status": "CERTA"
+    },
+    "8335": {
+      "nome": "SERVIÇOS DE ENGENHARIA DURANTE A FASE DE CONSTRUÇÃO E DE INSTALAÇÃO",
+      "status": "CERTA"
+    },
+    "8339": {
+      "nome": "OUTROS SERVIÇOS DE ENGENHARIA",
+      "status": "CERTA"
+    },
+    "8351": {
+      "nome": "SERVIÇOS DE PROSPECÇÃO GEOLÓGICA,GEOFÍSICA E OUTROS SERVIÇOS DE PROSPECÇÃO",
+      "status": "MONITORAR"
+    },
+    "8352": {
+      "nome": "SERVIÇOS DE TOPOGRAFIA/INSPEÇÃO ABAIXO DA SUPERFÍCIE",
+      "status": "MONITORAR"
+    },
+    "8353": {
+      "nome": "SERVIÇOS DE TOPOGRAFIA/INSPEÇÃO DE SUPERFÍCIE",
+      "status": "MONITORAR"
+    },
+    "8354": {
+      "nome": "SERVIÇOS DE CARTOGRAFIA/CONFECÇÃO DE MAPAS",
+      "status": "MONITORAR"
+    },
+    "8355": {
+      "nome": "SERVIÇOS METEOROLÓGICOS E DE PREVISÃO DO TEMPO",
+      "status": "MONITORAR"
+    },
+    "8356": {
+      "nome": "SERVIÇOS DE ENSAIO E ANÁLISES TÉCNICAS",
+      "status": "MONITORAR"
+    },
+    "8361": {
+      "nome": "SERVIÇOS DE PUBLICAÇÃO, PRODUÇÃO JORNALÍSTICA, DIVULGAÇÃO TÉ",
+      "status": "INFERIR"
+    },
+    "8369": {
+      "nome": "OUTROS SERVIÇOS DE PUBLICIDADE",
+      "status": "INFERIR"
+    },
+    "8370": {
+      "nome": "SERVIÇOS DE PESQUISA DE MERCADO E DE OPINIÃO PÚBLICA(ENQUETE)",
+      "status": "MONITORAR"
+    },
+    "8371": {
+      "nome": "SERVIÇOS DE PESQUISA E ANÁLISE DE: MERCADO, DADOS ESTATÍSTIC",
+      "status": "MONITORAR"
+    },
+    "8372": {
+      "nome": "SERVIÇOS DE PESQUISA CARTOGRÁFICA, GEODÉSICA, MARÍTIMA, MINE",
+      "status": "MONITORAR"
+    },
+    "8373": {
+      "nome": "SERVIÇOS DE PESQUISA DE DOENÇA INFECTO CONTAGIOSA",
+      "status": "MONITORAR"
+    },
+    "8381": {
+      "nome": "SERVICOS FOTOGRAFICOS",
+      "status": "MONITORAR"
+    },
+    "8391": {
+      "nome": "SERVIÇOS DE TRADUÇÃO E INTERPRETAÇÃO",
+      "status": "MONITORAR"
+    },
+    "8399": {
+      "nome": "TODOS OS OUTROS SERVIÇOS DE NEGÓCIOS TÉCNICOS E PROFISSIONAIS",
+      "status": "MONITORAR"
+    },
+    "8411": {
+      "nome": "SERVIÇOS DE PROVEDORES",
+      "status": "INFERIR"
+    },
+    "8412": {
+      "nome": "SERVIÇOS DE TELEFONES FIXOS",
+      "status": "INFERIR"
+    },
+    "8413": {
+      "nome": "SERVIÇOS DE TELECOMUNICAÇÕES MÓVEIS",
+      "status": "INFERIR"
+    },
+    "8414": {
+      "nome": "SERVIÇOS DE REDES PRIVADAS",
+      "status": "INFERIR"
+    },
+    "8415": {
+      "nome": "SERVIÇOS DE TRANSMIÇÃO DE DADOS",
+      "status": "INFERIR"
+    },
+    "8416": {
+      "nome": "TODOS OS DEMAIS SERVIÇOS DE TELECOMUNICAÇÕES",
+      "status": "INFERIR"
+    },
+    "8417": {
+      "nome": "SERVIÇOS DE DISTRIBUIÇÃO DE PROGRAMAS",
+      "status": "INFERIR"
+    },
+    "8421": {
+      "nome": "SERVIÇOS DE TELECOMUNICAÇÕES DE INTERNET",
+      "status": "INFERIR"
+    },
+    "8422": {
+      "nome": "SERVIÇOS DE ACESSO À INTERNET",
+      "status": "INFERIR"
+    },
+    "8439": {
+      "nome": "SERVIÇOS DE FORNECIMENTO DE INFORMAÇÕES ON-LINE",
+      "status": "MONITORAR"
+    },
+    "8441": {
+      "nome": "SERVIÇOS DE AGÊNCIAS DE NOTÍCIAS/IMPRENSA AOS JORNAIS E AOS PERIÓDICOS",
+      "status": "MONITORAR"
+    },
+    "8442": {
+      "nome": "SERVIÇOS DE AGÊNCIAS DE NOTÍCIAS/IMPRENSA AOS MEIOS AUDIOVI-SUAIS",
+      "status": "MONITORAR"
+    },
+    "8451": {
+      "nome": "SERVIÇOS DE BIBLIOTECA",
+      "status": "MONITORAR"
+    },
+    "8511": {
+      "nome": "SERVIÇOS DE AGÊNCIAS DE PESQUISA DE EXECUTIVOS E DE EMPREGO",
+      "status": "MONITORAR"
+    },
+    "8512": {
+      "nome": "PRESTAÇÃO DE SERVIÇOS DE PESSOAL",
+      "status": "MONITORAR"
+    },
+    "8521": {
+      "nome": "SERVIÇOS DE INVESTIGAÇÃO",
+      "status": "CERTA"
+    },
+    "8522": {
+      "nome": "SERVIÇOS DE CONSULTORIA EM SEGURANÇA",
+      "status": "CERTA"
+    },
+    "8523": {
+      "nome": "SERVIÇO DE MONITORAÇÃO DE ALARME",
+      "status": "CERTA"
+    },
+    "8524": {
+      "nome": "SERVIÇOS DE CARRO FORTE/VEÍCULOS BLINDADOS",
+      "status": "CERTA"
+    },
+    "8525": {
+      "nome": "SERVIÇOS DE PROTEÇÃO",
+      "status": "CERTA"
+    },
+    "8529": {
+      "nome": "OUTROS SERVIÇOS DE SEGURANÇA",
+      "status": "CERTA"
+    },
+    "8531": {
+      "nome": "SERVIÇO DE DESINFECÇÃO E EXTERMINAÇÃO",
+      "status": "CERTA"
+    },
+    "8532": {
+      "nome": "SERVIÇOS DE LIMPEZA DE JANELA",
+      "status": "CERTA"
+    },
+    "8533": {
+      "nome": "SERVIÇOS GERAIS DE LIMPEZA",
+      "status": "CERTA"
+    },
+    "8534": {
+      "nome": "SERVIÇO ESPECIALIZADO DE LIMPEZA",
+      "status": "CERTA"
+    },
+    "8541": {
+      "nome": "SERVIÇOS DE EMPACOTAMENTO",
+      "status": "MONITORAR"
+    },
+    "8591": {
+      "nome": "SERVIÇOS DE INFORMAÇÕES CREDITÍCIAS",
+      "status": "MONITORAR"
+    },
+    "8592": {
+      "nome": "SERVIÇOS DE AGÊNCIAS DE COBRANÇA",
+      "status": "CERTA"
+    },
+    "8593": {
+      "nome": "SERVIÇOS DE SUPORTE DE CHAMADAS TELEFÔNICAS",
+      "status": "MONITORAR"
+    },
+    "8594": {
+      "nome": "SERVIÇOS DE CÓPIAS",
+      "status": "MONITORAR"
+    },
+    "8595": {
+      "nome": "SERVIÇOS DE COPILAÇÃO DE LISTAS DE ENVIOS POR CORREIO E SER-VIÇOS DE ENVIO POR CORREIO",
+      "status": "MONITORAR"
+    },
+    "8596": {
+      "nome": "SERVIÇOS DE PROCESSAMENTO DE DADOS",
+      "status": "MONITORAR"
+    },
+    "8597": {
+      "nome": "SERVIÇOS DE ORGANIZAÇÃO DE FEIRAS DE COMÉRCIO E EXPOSIÇÕES",
+      "status": "MONITORAR"
+    },
+    "8599": {
+      "nome": "OUTROS SERVIÇOS DE SUPORTE N.C.P",
+      "status": "MONITORAR"
+    },
+    "8611": {
+      "nome": "SERVIÇOS RELATIVOS À PRODUÇÃO",
+      "status": "MONITORAR"
+    },
+    "8612": {
+      "nome": "SERVIÇOS DE CRIAÇÃO ANIMAL",
+      "status": "MONITORAR"
+    },
+    "8615": {
+      "nome": "SERVIÇOS RELACIONADOS COM PESCA",
+      "status": "MONITORAR"
+    },
+    "8619": {
+      "nome": "SERVIÇOS RELATIVOS À AGRICULTURA, CAÇA, REFLORESTAMENTO E PE",
+      "status": "MONITORAR"
+    },
+    "8621": {
+      "nome": "SERVIÇOS RELACIONADOS COM A MINERAÇÃO",
+      "status": "MONITORAR"
+    },
+    "8631": {
+      "nome": "SERVIÇOS RELATIVOS A ELETRICIDADE, GÁS, E A DISTRIBUIÇÃO DE ÁGUA",
+      "status": "MONITORAR"
+    },
+    "8711": {
+      "nome": "SERVIÇOS DE MANUTENÇÃO E REPARO DE PRODUTOS FABRICADOS DE METAL,EXCETO MAQUINARIA E EQUIPQMENTOS",
+      "status": "CERTA"
+    },
+    "8712": {
+      "nome": "SERVIÇOS DE MANUTENÇÃO E REPARO DA MAQUINARIA DE ESCRITÓRIO E CONTABILIDADE",
+      "status": "CERTA"
+    },
+    "8713": {
+      "nome": "SERVIÇOS DE MANUTENÇÃO,REPARO E ATENÇÃO AO EQUIPAMENTO DE INFORMÁTICA",
+      "status": "CERTA"
+    },
+    "8714": {
+      "nome": "SERVIÇOS DE MANUTENÇÃO E REPARO DA MAQUINARIA E EQUIPAMENTOSDE TRANSPORTE",
+      "status": "CERTA"
+    },
+    "8715": {
+      "nome": "SERVIÇOS DE MANUTENÇÃO E REPARO DE OUTRAS MAQUINARIAS E EQUIPAMENTOS",
+      "status": "CERTA"
+    },
+    "8721": {
+      "nome": "SERVIÇOS DE REPARO DE CALÇADOS E ARTIGOS DE COURO",
+      "status": "MONITORAR"
+    },
+    "8722": {
+      "nome": "SERVIÇOS DE REPARO DE RELÓGIOS E JÓIAS",
+      "status": "MONITORAR"
+    },
+    "8723": {
+      "nome": "SERVIÇOS DE REPARO DE VESTUÁRIOS E PRODUTOS TÊXTEIS DOMÉSTI-COS",
+      "status": "MONITORAR"
+    },
+    "8724": {
+      "nome": "SERVIÇOS DE REPARO DE MOBILIÁRIO",
+      "status": "MONITORAR"
+    },
+    "8729": {
+      "nome": "SERVIÇOS DE MANUTENÇÃO E REPARO DE OUTROS PRODUTOS N.C.P",
+      "status": "CERTA"
+    },
+    "8731": {
+      "nome": "SERVIÇOS DE INSTALAÇÃO DE PRODUTOS FABRICADO DE METAL,EXCETOA MAQUINARIA E O EQUIPAMENTO",
+      "status": "CERTA"
+    },
+    "8732": {
+      "nome": "SERVIÇOS DE INSTALAÇÃO DE MAQUINARIA E DE EQUIPAMENTOS INDUSTRIAIS DE MANFATURA E SERVIÇOS",
+      "status": "CERTA"
+    },
+    "8733": {
+      "nome": "SERVIÇOS DE INSTALAÇÃO DE MÁQUINAS DE ESCRITÓRIO DE CONTABI-LIDADE E COMPUTADORES",
+      "status": "CERTA"
+    },
+    "8734": {
+      "nome": "SERVIÇOS DE INSTALAÇÃO DE EQUIPAMENTOS DE RÁDIO,TELEVISÃO E INSTRUMENTOS DE COMUNICAÇÃO",
+      "status": "CERTA"
+    },
+    "8735": {
+      "nome": "SERVIÇOS DE INSTALAÇÃO DA MAQUINARIA E DOS EQUIPAMENTOS MÉDICOS PROFISSIONAIS,E INSTRUMENTOS DE PRECISÃO E ÓTICOS",
+      "status": "CERTA"
+    },
+    "8736": {
+      "nome": "SERVIÇOS DE INSTALAÇÃO DA MAQUINARIA ELÉTRICA E DOS INSTRU- MENTOS N.C.P",
+      "status": "CERTA"
+    },
+    "8739": {
+      "nome": "SERVIÇOS DE INSTALAÇÃO DE OUTROS BENS N.C.P",
+      "status": "CERTA"
+    },
+    "8811": {
+      "nome": "SERVIÇOS DE MANUFATURA DE ALIMENTOS, BEBIDAS E TABACO",
+      "status": "MONITORAR"
+    },
+    "8812": {
+      "nome": "SERVIÇOS DE MANUFATURA DE ARTIGOS TÊXTEIS, PEÇAS DE VESTIR EARTIGOS DE COURO",
+      "status": "MONITORAR"
+    },
+    "8813": {
+      "nome": "SERVIÇOS DE MANUFATURA DE MADEIRA E DE CORTIÇA, EXCETO MÓVEIS, E DE MANUFATURA DE ARTIGOS DE PALHA E MATERIAL TRANÇÁVEL",
+      "status": "MONITORAR"
+    },
+    "8814": {
+      "nome": "SERVIÇO DE MANUFATURA E PRODUÇÃO DE PAPEL",
+      "status": "MONITORAR"
+    },
+    "8816": {
+      "nome": "SERVIÇO DE MANUFATURA DE SUBSTÂNCIAS E PRODUTOS QUÍMICOS",
+      "status": "MONITORAR"
+    },
+    "8817": {
+      "nome": "SERVIÇOS DE MANUFATURA DE PRODUTOS LÁTEX, BORRACHA E DE PLÁSTICOS",
+      "status": "MONITORAR"
+    },
+    "8818": {
+      "nome": "SERVIÇOS DE MANUFATURA DE PRODUTOS MINERAIS NÃO METÁLICOS",
+      "status": "MONITORAR"
+    },
+    "8819": {
+      "nome": "OUTROS SERVIÇOS DE MANUFATURA, EXCETO DE PRODUTOS METÁLICOS,MAQUINARIA E EQUIPAMENTO",
+      "status": "MONITORAR"
+    },
+    "8821": {
+      "nome": "SERVIÇOS DE FABRICAÇÃO REALIZADOS EM METAIS",
+      "status": "MONITORAR"
+    },
+    "8822": {
+      "nome": "SERVIÇOS DE FABRICAÇÃO DE EQUIPAMENTOS DE TRANSPORTE",
+      "status": "MONITORAR"
+    },
+    "8911": {
+      "nome": "SERVIÇOS DE PUBLICAÇÃO,COMISSIONADO OU POR CONTRATO",
+      "status": "MONITORAR"
+    },
+    "8912": {
+      "nome": "SERVIÇOS DE IMPRESSÃO E DE REPRODUÇÃO POR MEIOS DE GRAVAÇÃO,COMISSIONADO OU POR CONTRATO",
+      "status": "MONITORAR"
+    },
+    "8942": {
+      "nome": "SERVIÇOS DE RECICLAGEM DE RESÍDUOS NÃO METÁLICOS",
+      "status": "MONITORAR"
+    },
+    "9114": {
+      "nome": "SERVIÇOS GERAIS PARA O GOVERNO N.C.P.",
+      "status": "MONITORAR"
+    },
+    "9231": {
+      "nome": "SERVIÇOS DE EDUCAÇÃO TÉCNICA E PROFISSIONAL PÓS-SECUNDÁRIO",
+      "status": "MONITORAR"
+    },
+    "9239": {
+      "nome": "OUTROS SERVIÇOS DE EDUCAÇÃO UNIVERSITÁRIA E SUPERIOR",
+      "status": "MONITORAR"
+    },
+    "9290": {
+      "nome": "OUTROS SERVIÇOS DE EDUCAÇÃO E TREINAMENTO",
+      "status": "MONITORAR"
+    },
+    "9311": {
+      "nome": "SERVIÇOS HOSPITALARES",
+      "status": "MONITORAR"
+    },
+    "9312": {
+      "nome": "SERVICOS MEDICOS E ODONTOLOGICOS",
+      "status": "MONITORAR"
+    },
+    "9319": {
+      "nome": "OUTROS SERVIÇOS DE SAÚDE HUMANA",
+      "status": "MONITORAR"
+    },
+    "9321": {
+      "nome": "SERVIÇOS DE VETERINÁRIA",
+      "status": "MONITORAR"
+    },
+    "9331": {
+      "nome": "SERVIÇOS SOCIAIS",
+      "status": "MONITORAR"
+    },
+    "9411": {
+      "nome": "SERVIÇOS DE TRATAMENTO DE ESGOTO",
+      "status": "CERTA"
+    },
+    "9412": {
+      "nome": "SERVIÇOS DE ESVAZIAMENTO E LIMPEZA DE TANQUES/DEPÓSITOS",
+      "status": "CERTA"
+    },
+    "9421": {
+      "nome": "SERVIÇOS DE COLETA,TRATAMENTO E ELIMINAÇÃO DE RESÍDUOS NÃO PERIGOSOS",
+      "status": "MONITORAR"
+    },
+    "9422": {
+      "nome": "SERVIÇOS DE COLETA,TRATAMENTO E ELIMINAÇÃO DE RESÍDUOS PERI-GOSOS",
+      "status": "MONITORAR"
+    },
+    "9431": {
+      "nome": "SERVIÇOS DE VARREDURA/VARRIDO E DE REMOÇÃO DE NEVE",
+      "status": "CERTA"
+    },
+    "9439": {
+      "nome": "OUTROS SERVIÇOS DE SANEAMENTO",
+      "status": "CERTA"
+    },
+    "9490": {
+      "nome": "OUTROS SERVIÇOS DE PROTEÇÃO AMBIENTAL N.C.P",
+      "status": "MONITORAR"
+    },
+    "9511": {
+      "nome": "SERVIÇOS FORNECIDOS POR ORGANIZAÇÕES COMERCIAL, DE EMPREGADO",
+      "status": "MONITORAR"
+    },
+    "9599": {
+      "nome": "SERVIÇOS PRESTADOS POR OUTRAS ORGANIZAÇÕES ASSOCIATIVAS",
+      "status": "MONITORAR"
+    },
+    "9611": {
+      "nome": "GRAVAÇÃO DE SOM E SERVIÇOS DE PÓS-PRODUÇÃO DE ÁUDIO",
+      "status": "MONITORAR"
+    },
+    "9612": {
+      "nome": "IMAGEM, VÍDEO, TELEVISÃO E PROGRAMA DE RÁDIO SERVIÇOS DE PRODUÇÃO",
+      "status": "MONITORAR"
+    },
+    "9614": {
+      "nome": "SERVIÇOS RELACIONADOS COM A PRODUÇÃO DE FILMES CINEMATOGRÁFICOS, DE TELEVISÃO E PROGRAMAS DE RÁDIO",
+      "status": "MONITORAR"
+    },
+    "9616": {
+      "nome": "SERVIÇOS DE RADIODIFUSÃO - PROGRAMAÇÃO E AGENDAMENTO",
+      "status": "MONITORAR"
+    },
+    "9621": {
+      "nome": "SERVIÇOS DE PROMOÇÃO E APRESENTAÇÃO RELACIONADOS AS ARTES CÊ",
+      "status": "MONITORAR"
+    },
+    "9631": {
+      "nome": "SERVIÇOS DE ARTISTAS",
+      "status": "MONITORAR"
+    },
+    "9632": {
+      "nome": "SERVICOS DE AUTORES, COMPOSITORES, ESCULTORES E OUTROS ARTISTAS",
+      "status": "MONITORAR"
+    },
+    "9641": {
+      "nome": "SERVIÇOS DOS MUSEUS E CONSERVAÇÃO DE LOCAIS E MONUMENTOS HISTÓRICOS",
+      "status": "CERTA"
+    },
+    "9652": {
+      "nome": "SERVIÇOS DE EXPLORAÇÃO DE INSTALAÇÕES, DESPORTO E ESPORTE RECREATIVOS",
+      "status": "MONITORAR"
+    },
+    "9659": {
+      "nome": "OUTROS ESPORTES E SERVIÇOS DE ESPORTES RECREATIVOS",
+      "status": "MONITORAR"
+    },
+    "9691": {
+      "nome": "PARQUE DE DIVERSÕES E ATRAÇÃO DE SERVIÇOS SIMILARES",
+      "status": "MONITORAR"
+    },
+    "9699": {
+      "nome": "OUTROS SERVIÇOS DE RECREAÇÃO E DIVERSÃO",
+      "status": "MONITORAR"
+    },
+    "9711": {
+      "nome": "SERVIÇOS DE LAVANDERIA, LIMPEZA E TINTURARIA",
+      "status": "CERTA"
+    },
+    "9723": {
+      "nome": "SERVIÇOS DE BEM-ESTAR FÍSICO",
+      "status": "MONITORAR"
+    },
+    "9729": {
+      "nome": "OUTROS SERVIÇOS DE TRATAMENTO DE BELEZA N.C.P.",
+      "status": "MONITORAR"
+    },
+    "9731": {
+      "nome": "SERVIÇOS FUNERÁRIOS, DE CREMAÇÃO E DE SEPULTAMENTO",
+      "status": "MONITORAR"
+    },
+    "9791": {
+      "nome": "SERVIÇOS DE ESCOLTA/COMBOIO",
+      "status": "MONITORAR"
+    },
+    "9799": {
+      "nome": "OUTROS SERVIÇOS DIVERSOS/MISCELÂNEA N.C.P",
+      "status": "MONITORAR"
+    }
+  },
+  "_nota": "status por CLASSE do catálogo oficial"
+}
