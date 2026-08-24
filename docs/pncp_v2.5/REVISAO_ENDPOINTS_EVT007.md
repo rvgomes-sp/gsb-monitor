@@ -152,11 +152,21 @@ ausentes, o caso segue para triagem, não é descartado nem aprovado só por iss
 > `situacaoCompraItemResultado`** + **1.17 `dataCancelamento`** (tiram cancelado/desclassificado da base
 > comercial, mantendo em evidência). **Calculado por nós:** `valorTotalHomologado_item = 1.3 × 1.4`.
 
-### Participantes — "banco vivo"
-Persistir **todas** as linhas de `listaResultados` por item (não só a 1ª): quando o item tem vários
-`sequencialResultado`, capturamos cada fornecedor classificado. **Investigação pendente:** confirmar ao vivo
-se o PNCP lista também os **desclassificados/perdedores** ou só classificados/homologados — define até onde o
-"todos que concorreram" é alcançável pela 10.17.
+### Participantes — "banco vivo" (alcance definido pelo manual)
+Domínios (manual §7.16): `situacaoCompraItemResultadoId` = **1 Informado** ou **2 Cancelado**; item
+(`situacaoCompraItemId`) = 1 Em Andamento, 2 Homologado, 3 Anulado/Revogado/Cancelado, 4 Deserto,
+**5 Fracassado** (fornecedores desclassificados/inabilitados).
+
+**Conclusão:** a 10.17 registra o **resultado do vencedor informado** por item — e pode ter **mais de uma linha**
+(`sequencialResultado`) quando há **reserva/remanescente** (`reservaRemanescente`: 2 Remanescente, 3 Cadastro de
+Reserva). Os **perdedores (desclassificados/inabilitados) NÃO geram registro**; eles só se refletem no item
+"Fracassado". Portanto, **pelo PNCP o "banco vivo de participantes" = vencedor + reserva/remanescente**, não a
+lista completa de concorrentes. A lista de todos que concorreram (mapa de lances) vive no **sistema de origem**
+(ata de julgamento do compras.gov) ou nos **documentos do edital** — fonte separada, tratada no motor de editais/
+enriquecimento, não no coletor PNCP.
+
+**No coletor:** persistir **todas** as linhas de `listaResultados` por item (vencedor + reserva/remanescente),
+cada uma com seu fornecedor, porte, natureza e situação.
 
 ---
 
@@ -182,7 +192,6 @@ se o PNCP lista também os **desclassificados/perdedores** ou só classificados/
 8. **Gatilho 85% — confirmado: SOMENTE obras.** `ratio_85 = valorTotalHomologado_item ÷ valorTotal_item(estimado)`
    calculado e avaliado **apenas** para itens da família *obras*; nas demais famílias não se aplica.
 
-**PENDENTE:**
-
-9. **Participantes:** confirmar ao vivo se o PNCP expõe desclassificados/perdedores ou só classificados/homologados
-   (define o alcance do "banco vivo com todos que concorreram").
+9. **Participantes — resolvido pelo manual (§6).** PNCP entrega **vencedor + reserva/remanescente** (múltiplos
+   `sequencialResultado`); **perdedores não têm registro** na 10.17. Lista completa de concorrentes = fonte
+   separada (ata do sistema de origem / documentos do edital), fora do coletor PNCP.
