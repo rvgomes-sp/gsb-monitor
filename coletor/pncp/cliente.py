@@ -44,15 +44,16 @@ class Evidencia:
 
 @dataclass
 class ClientePNCP:
-    timeout: float = 60.0
-    tentativas: int = 12
+    timeout: float = 25.0
+    tentativas: int = 5
     _cli: httpx.Client = field(default=None, repr=False)
     evidencias: list[Evidencia] = field(default_factory=list, repr=False)
     guardar_evidencia: bool = False
 
     def __post_init__(self):
         self._cli = httpx.Client(
-            timeout=self.timeout,
+            # timeouts explícitos: nunca pendurar (connect/read/write/pool)
+            timeout=httpx.Timeout(self.timeout, connect=10.0, read=self.timeout, pool=10.0),
             headers={
                 "Accept": "application/json",
                 "User-Agent": "GSB-EVT007/3.0",
@@ -78,7 +79,7 @@ class ClientePNCP:
         @retry(
             retry=retry_if_exception_type(TransitorioPNCP),
             stop=stop_after_attempt(self.tentativas),
-            wait=wait_exponential_jitter(initial=1, max=60),
+            wait=wait_exponential_jitter(initial=1, max=8),
             reraise=True,
         )
         def _bater() -> Any:

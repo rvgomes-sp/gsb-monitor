@@ -14,6 +14,7 @@ O frescor pertence ao EVENTO novo; os R$ 10 MM à CONTRATAÇÃO consolidada
 """
 from __future__ import annotations
 
+import sys
 import time
 from dataclasses import dataclass, field
 from datetime import date
@@ -62,6 +63,12 @@ class Funil:
     backfills_eliminados: int = 0        # tinham evento hoje, mas só BACKFILL
     oportunidades_frescas: int = 0
     por_classe_obra: dict = field(default_factory=dict)
+    rejeitados: list = field(default_factory=list)   # NAO_OBRA (sem drill) — auditoria dos dois lados
+    descartes_frescor: list = field(default_factory=list)  # candidatas s/ evento hoje ou backfill
+
+
+def _log(msg: str):
+    print(msg, file=sys.stderr, flush=True)
 
 
 @dataclass
@@ -69,12 +76,15 @@ class Motor:
     cli: ClientePNCP
     piso: Decimal = PISO_PADRAO
     pausa: float = 0.15
+    max_pages: int = 0          # 0 = todas; >0 limita a descoberta por modalidade
 
     # ---- descoberta (homologado consolidado >= piso) ----
     def descobrir(self, alvo: date, modalidade: int, fun: Funil):
         ds = alvo.strftime("%Y%m%d")
         pagina, total_paginas = 1, None
         while total_paginas is None or pagina <= total_paginas:
+            if self.max_pages and pagina > self.max_pages:
+                break
             q = urlencode({"dataInicial": ds, "dataFinal": ds,
                            "codigoModalidadeContratacao": modalidade,
                            "pagina": pagina, "tamanhoPagina": 50})
@@ -83,12 +93,16 @@ class Motor:
             except TransitorioPNCP:
                 fun.paginas_puladas += 1
                 fun.status = "PARTIAL"
+                _log(f"  [mod {modalidade}] página {pagina} instável — pulada")
                 pagina += 1
                 total_paginas = total_paginas or (pagina + 1)
                 continue
             fun.paginas_lidas += 1
             if total_paginas is None:
                 total_paginas = int(payload.get("totalPaginas") or 0)
+                _log(f"  [mod {modalidade}] {total_paginas} páginas a varrer")
+            if pagina % 10 == 0:
+                _log(f"  [mod {modalidade}] página {pagina}/{total_paginas} | descobertas={fun.descobertas} candidatas={fun.candidatas_obra} ops={fun.oportunidades_frescas}")
             for r in (payload.get("data") or []):
                 if _dec(r.get("valorTotalHomologado")) >= self.piso:
                     yield r
@@ -114,13 +128,30 @@ class Motor:
             itens = itens.get("itens") if isinstance(itens, dict) else []
         cl = clf.classificar_contratacao(itens or [], row.get("objetoCompra") or "")
         fun.por_classe_obra[cl.classe] = fun.por_classe_obra.get(cl.classe, 0) + 1
+        # auditoria dos itens (barato, sem drill de resultados)
+        materiais = sorted({(it.get("materialOuServico") or "?") for it in (itens or [])})
+        descr = [(it.get("descricao") or "")[:60] for it in (itens or [])[:3]]
+        unidades = sorted({(it.get("unidadeMedida") or "?") for it in (itens or [])})[:5]
+        objeto = row.get("objetoCompra") or ""
         if cl.classe == clf.NAO_OBRA:
             fun.nao_obra_eliminadas += 1
+            # marca fronteira: rejeitado que ainda cheira engenharia/projeto/limítrofe
+            fronteira = ("engenharia" in objeto.lower()
+                         or cl.classe_objeto in (clf.NEGATIVO_PROJETO_SEM_EXECUCAO, clf.LIMITROFE)
+                         or "S" in materiais)
+            fun.rejeitados.append({
+                "numero_controle_pncp": row.get("numeroControlePNCP"),
+                "objeto": objeto[:160], "materialOuServico": materiais,
+                "descricao_itens": descr, "unidadeMedida": unidades,
+                "classe": cl.classe, "classe_objeto": cl.classe_objeto,
+                "motivo_exclusao": cl.motivo, "fronteira": fronteira,
+            })
             return None
         fun.candidatas_obra += 1
 
         # 2) drill /resultados só nos itens candidatos (com resultado)
         fun.drill_executado += 1
+        _log(f"  drill {row.get('numeroControlePNCP')} [{cl.classe}] {objeto[:55]}")
         alvo_itens = set(cl.itens_obra) or {it.get("numeroItem") for it in itens}
         eventos_hoje = []      # frescor de cada resultado incluído HOJE
         vencedores = []
@@ -153,6 +184,9 @@ class Motor:
 
         # sem evento NOVO hoje -> não é EVT-007 fresco de hoje
         if not eventos_hoje:
+            fun.descartes_frescor.append({"numero_controle_pncp": row.get("numeroControlePNCP"),
+                                          "objeto": objeto[:120], "classe": cl.classe,
+                                          "motivo": "candidata a obra, mas sem resultado incluído hoje"})
             return None
         fun.obras_homologadas_piso += 1
 
@@ -161,6 +195,9 @@ class Motor:
         f = mais_fresco[2]
         if not f.no_radar:
             fun.backfills_eliminados += 1
+            fun.descartes_frescor.append({"numero_controle_pncp": row.get("numeroControlePNCP"),
+                                          "objeto": objeto[:120], "classe": cl.classe,
+                                          "motivo": f"BACKFILL Δcal={f.delta_calendar_days} Δutil={f.delta_business_days}"})
             return None  # só BACKFILL hoje -> fica na auditoria, fora do radar
         fun.oportunidades_frescas += 1
 

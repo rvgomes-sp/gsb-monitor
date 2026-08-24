@@ -30,6 +30,7 @@ def main() -> int:
     p.add_argument("--date", help="AAAA-MM-DD; padrão D-1 (BRT)")
     p.add_argument("--modalities", default="", help="ex: 4,5,6,7 (padrão)")
     p.add_argument("--piso", type=float, default=10_000_000)
+    p.add_argument("--max-pages", type=int, default=0, help="teto de páginas/modalidade (0=todas)")
     p.add_argument("--out", help="grava as oportunidades em JSON")
     a = p.parse_args()
 
@@ -37,7 +38,7 @@ def main() -> int:
     mods = [int(x) for x in a.modalities.split(",") if x.strip()] if a.modalities else MODALIDADES_PADRAO
 
     with ClientePNCP() as cli:
-        motor = Motor(cli=cli, piso=Decimal(str(a.piso)))
+        motor = Motor(cli=cli, piso=Decimal(str(a.piso)), max_pages=a.max_pages)
         print(f"Coletando EVT-007 obra | D={alvo.isoformat()} | mod={mods} | piso={a.piso:,.0f}",
               file=sys.stderr, flush=True)
         fun, ops = motor.rodar(alvo, mods)
@@ -65,6 +66,18 @@ def main() -> int:
         print(f"  FRESCOR: dataResultado={o['data_resultado']} dataInclusao={o['data_inclusao']} "
               f"Δcal={o['delta_calendar_days']} Δutil={o['delta_business_days']} [{o['freshness_class']}]")
         print(f"  origem: {o['source_sender_raw']} | {o['source_host']}")
+
+    # rejeitados de FRONTEIRA (para caçar falso negativo — sem drill)
+    fronteira = [r for r in fun.rejeitados if r.get("fronteira")]
+    print(f"\n--- rejeitados de fronteira ({len(fronteira)} de {len(fun.rejeitados)} NAO_OBRA; materiais/compras óbvios omitidos) ---")
+    for r in fronteira:
+        print(f"  [{r['classe_objeto']}] {r['numero_controle_pncp']}")
+        print(f"     objeto: {(r['objeto'] or '')[:100]}")
+        print(f"     MS={r['materialOuServico']} unid={r['unidadeMedida']} | motivo: {r['motivo_exclusao']}")
+    if fun.descartes_frescor:
+        print(f"\n--- candidatas descartadas por frescor ({len(fun.descartes_frescor)}) ---")
+        for d in fun.descartes_frescor:
+            print(f"  {d['numero_controle_pncp']} | {d['motivo']} | {(d['objeto'] or '')[:70]}")
 
     if a.out:
         Path(a.out).parent.mkdir(parents=True, exist_ok=True)
