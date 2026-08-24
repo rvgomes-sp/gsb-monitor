@@ -113,16 +113,70 @@ ausentes, o caso segue para triagem, não é descartado nem aprovado só por iss
 
 ---
 
-## 5. Decisões em aberto — trazer ao Rodrigo antes de codar o definitivo
+## 6. Seleção de campos confirmada (Rodrigo, 2026-08-24)
 
-1. **Rede de datas (a mais importante).** A descoberta lança a rede pela **data de atualização** da contratação
-   e o coletor antigo mantinha só resultados com `dataResultado == dia-alvo`. **Ao vivo isso perde caso:** o
-   caso-teste tem `dataResultado=18/08` mas `dataInclusao=19/08` (resultado incluído com atraso). Como o EVT-007
-   é caracterizado por **data do resultado E inclusão no PNCP**, precisamos decidir a chave da rede:
-   (a) manter `dataResultado`; (b) capturar por `dataInclusao` do resultado; (c) usar `/contratacoes/publicacao`;
-   (d) usar o histórico (10.19). `dataResultado` e `dataInclusao` **não podem ser fundidas** (governança).
-2. **Homologação — resolvido.** A descoberta (Passo 1) **já devolve `valorTotalHomologado`**, então trazemos a
-   homologação do caso sem custo extra. A 10.5 fica como *refetch* autoritativo opcional por caso (snapshot mais
-   fresco) — não obrigatória no fluxo diário.
-3. **Backend:** decidido **Postgres/Supabase** (motor diário: coleta → grava → qualifica → sobe ao monitor).
-4. **Enriquecimento comercial / leitura de editais:** **módulos independentes** (servem outros monitores) — fora do coletor.
+### 10.5 / Descoberta — campos do caso a persistir
+| ID | Campo | ID | Campo |
+|----|-------|----|-------|
+| 1 | numeroControlePNCP | 14 | informacaoComplementar |
+| 2 | numeroCompra | 15 | srp |
+| 3 | anoCompra | 20 | **valorTotalHomologado** |
+| 7 | modalidadeId | 27 | orgaoEntidade |
+| 8 | modalidadeNome | 27.1 | orgaoEntidade.cnpj |
+| 9 | modoDisputaId | 27.2 | orgaoEntidade.razaoSocial |
+| 10 | modoDisputaNome | 31 | usuarioNome (plataforma) |
+| 11 | situacaoCompraId | 32 | linkSistemaOrigem |
+| 12 | situacaoCompraNome | 35 | dataAtualizacaoGlobal |
+| 13 | objetoCompra | | |
+
+> Nota: **UF/município** (10.5 id 28 `unidadeOrgao`) não foi marcado aqui porque já vem na **descoberta** — fonte única, sem GET redundante. `sequencialCompra` (id 26) é derivado da descoberta. `valorTotalEstimado` (id 19) fica só na descoberta (filtro), não na 10.5.
+
+### 10.17 — campos do resultado a persistir
+| ID | Campo | ID | Campo |
+|----|-------|----|-------|
+| 1 | listaResultados (a lista) | 1.10 | porteFornecedorNome |
+| 1.1 | numeroItem | 1.11 | naturezaJuridicaId |
+| 1.2 | sequencialResultado | 1.12 | naturezaJuridicaNome |
+| 1.3 | quantidadeHomologada | 1.13 | codigoPais |
+| 1.6 | tipoPessoa (PJ/PF/PE) | 1.14 | indicadorSubcontratacao |
+| 1.7 | niFornecedor | 1.16 | dataResultado |
+| 1.8 | nomeRazaoSocialFornecedor | 1.21 | dataInclusao |
+| 1.9 | porteFornecedorId | | |
+
+> **⚠️ Duas lacunas a confirmar (recomendo incluir):**
+> - **1.4 `valorUnitarioHomologado`** — sem ele **não dá** para calcular o total homologado do item
+>   (`quantidade × unitário`), nem escolher os 10 maiores itens por valor, nem o ratio do gatilho 85%.
+>   A quantidade (1.3) sozinha não fecha a conta. **Fortemente recomendado incluir.**
+> - **1.19/1.20 `situacaoCompraItemResultado`** (+ 1.17 `dataCancelamento`) — necessários para tirar
+>   resultado **cancelado/desclassificado** da base comercial (regra "cancelado só em evidência").
+
+### Participantes — "banco vivo"
+Persistir **todas** as linhas de `listaResultados` por item (não só a 1ª): quando o item tem vários
+`sequencialResultado`, capturamos cada fornecedor classificado. **Investigação pendente:** confirmar ao vivo
+se o PNCP lista também os **desclassificados/perdedores** ou só classificados/homologados — define até onde o
+"todos que concorreram" é alcançável pela 10.17.
+
+---
+
+## 5. Decisões — fechadas e pendentes
+
+**FECHADAS:**
+
+1. **Rede de datas — guardar as DUAS, sem fundir.** Persistimos `dataResultado` **e** `dataInclusao` em toda
+   linha. Justificativa factual: no manual, `dataInclusao` (10.17 id 1.21) é a **data de inclusão do registro**
+   (estável); quem se move por eventos subsequentes é `dataAtualizacao` (id 1.22) — logo a inclusão não "anda".
+   No teste com compras.gov o delta era **zero**; guardar as duas revela o delta por fonte de compra e cobre o
+   caso de resultado incluído com atraso. `dataResultado` e `dataInclusao` **nunca fundidas** (governança).
+2. **Homologação — resolvido.** A descoberta já devolve `valorTotalHomologado` (homologação sem GET extra).
+   10.5 fica como *refetch* autoritativo opcional. **Sempre trabalhamos com o dia D.**
+3. **Backend:** **Postgres/Supabase** — motor diário: coleta → grava → qualifica → sobe ao monitor. **Banco vivo.**
+4. **Módulos independentes:** coletor, **leitura de editais** e **enriquecimento comercial** são motores
+   separados (servem outros monitores da VF_Intelligence_Platform) — não acoplados a este monitor.
+5. **Monitor atual = teste antigo → zerar.** O `monitor_feed_real.json` de 12/08 é teste e será descartado.
+6. **Primeira coleta real = D-1** (para medir volume antes de cravar o modelo de serviços/materiais).
+
+**PENDENTES (confirmar com Rodrigo):**
+
+7. **10.17 lacunas de campo:** incluir `valorUnitarioHomologado` (1.4) e `situacaoCompraItemResultado`
+   (1.19/1.20) na seleção? (ver §6 — recomendado).
+8. **Participantes:** confirmar ao vivo se o PNCP expõe desclassificados/perdedores ou só classificados.
