@@ -2,31 +2,31 @@ import { drizzle } from "drizzle-orm/postgres-js";
 import postgres from "postgres";
 import * as schema from "./schema";
 
-// Conexão Supabase Postgres (observatorio-sg), schema `monitor`.
-// DATABASE_URL: pooler de transação do Supabase (porta 6543).
-// Serverless (Vercel): SSL explícito, sem prepared statements, timeouts curtos.
-let client: ReturnType<typeof postgres> | null = null;
-
+// Conexão Supabase Postgres (observatorio-sg), schema `monitor`, via pooler de
+// transação (porta 6543). Em serverless (Vercel), NÃO reutilizamos conexão em
+// cache: um socket em cache morre quando o lambda congela e o próximo request
+// pendura. Cada request abre uma conexão curta ao pooler (padrão do Supavisor)
+// e ela se encerra por idle_timeout.
 export function getSql() {
-  if (!client) {
-    const url = process.env.DATABASE_URL;
-    if (!url) {
-      throw new Error(
-        "DATABASE_URL não definida. Configure a connection string do Supabase (pooler, porta 6543) no ambiente.",
-      );
-    }
-    client = postgres(url, {
-      max: 1,
-      prepare: false,          // pooler de transação não suporta prepared statements
-      ssl: "require",          // pooler exige SSL; sslmode da URL não é lido pelo postgres-js
-      connect_timeout: 15,
-      idle_timeout: 20,
-      max_lifetime: 60 * 30,
-    });
+  const url = process.env.DATABASE_URL;
+  if (!url) {
+    throw new Error(
+      "DATABASE_URL não definida. Configure a connection string do Supabase (pooler, porta 6543) no ambiente.",
+    );
   }
-  return client;
+  return postgres(url, {
+    max: 1,
+    prepare: false,          // pooler de transação não suporta prepared statements
+    ssl: "require",          // pooler exige SSL; postgres-js não lê sslmode da URL
+    connect_timeout: 10,
+    idle_timeout: 5,         // fecha a conexão logo após o request
+    max_lifetime: 60,
+    fetch_types: false,      // evita round-trip extra de introspecção de tipos
+  });
 }
 
+// Mantido por compat; as rotas usam getSql() (SQL cru) — o pooler de transação
+// não aceita os prepared statements que o drizzle emitiria.
 export function getDb() {
   return drizzle(getSql(), { schema });
 }
