@@ -138,17 +138,19 @@ ausentes, o caso segue para triagem, não é descartado nem aprovado só por iss
 | 1.1 | numeroItem | 1.11 | naturezaJuridicaId |
 | 1.2 | sequencialResultado | 1.12 | naturezaJuridicaNome |
 | 1.3 | quantidadeHomologada | 1.13 | codigoPais |
-| 1.6 | tipoPessoa (PJ/PF/PE) | 1.14 | indicadorSubcontratacao |
-| 1.7 | niFornecedor | 1.16 | dataResultado |
-| 1.8 | nomeRazaoSocialFornecedor | 1.21 | dataInclusao |
-| 1.9 | porteFornecedorId | | |
+| 1.4 | **valorUnitarioHomologado** | 1.14 | indicadorSubcontratacao |
+| 1.6 | tipoPessoa (PJ/PF/PE) | 1.16 | dataResultado |
+| 1.7 | niFornecedor | 1.17 | dataCancelamento |
+| 1.8 | nomeRazaoSocialFornecedor | 1.19 | situacaoCompraItemResultadoId |
+| 1.9 | porteFornecedorId | 1.20 | situacaoCompraItemResultadoNome |
+| 1.10 | porteFornecedorNome | 1.21 | dataInclusao |
+| 1.11 | naturezaJuridicaId | | |
+| 1.12 | naturezaJuridicaNome | | |
 
-> **⚠️ Duas lacunas a confirmar (recomendo incluir):**
-> - **1.4 `valorUnitarioHomologado`** — sem ele **não dá** para calcular o total homologado do item
->   (`quantidade × unitário`), nem escolher os 10 maiores itens por valor, nem o ratio do gatilho 85%.
->   A quantidade (1.3) sozinha não fecha a conta. **Fortemente recomendado incluir.**
-> - **1.19/1.20 `situacaoCompraItemResultado`** (+ 1.17 `dataCancelamento`) — necessários para tirar
->   resultado **cancelado/desclassificado** da base comercial (regra "cancelado só em evidência").
+> **Confirmado (Rodrigo, 2026-08-24):** incluídos **1.4 `valorUnitarioHomologado`** (fecha `qtd × unitário` =
+> total homologado do item, ranking dos 10 maiores e ratio do gatilho 85%) e **1.19/1.20
+> `situacaoCompraItemResultado`** + **1.17 `dataCancelamento`** (tiram cancelado/desclassificado da base
+> comercial, mantendo em evidência). **Calculado por nós:** `valorTotalHomologado_item = 1.3 × 1.4`.
 
 ### Participantes — "banco vivo"
 Persistir **todas** as linhas de `listaResultados` por item (não só a 1ª): quando o item tem vários
@@ -175,8 +177,12 @@ se o PNCP lista também os **desclassificados/perdedores** ou só classificados/
 5. **Monitor atual = teste antigo → zerar.** O `monitor_feed_real.json` de 12/08 é teste e será descartado.
 6. **Primeira coleta real = D-1** (para medir volume antes de cravar o modelo de serviços/materiais).
 
-**PENDENTES (confirmar com Rodrigo):**
+7. **10.17 campos — resolvido.** Incluídos `valorUnitarioHomologado` (1.4), `situacaoCompraItemResultado`
+   (1.19/1.20) e `dataCancelamento` (1.17). Ver §6.
+8. **Gatilho 85% — confirmado: SOMENTE obras.** `ratio_85 = valorTotalHomologado_item ÷ valorTotal_item(estimado)`
+   calculado e avaliado **apenas** para itens da família *obras*; nas demais famílias não se aplica.
 
-7. **10.17 lacunas de campo:** incluir `valorUnitarioHomologado` (1.4) e `situacaoCompraItemResultado`
-   (1.19/1.20) na seleção? (ver §6 — recomendado).
-8. **Participantes:** confirmar ao vivo se o PNCP expõe desclassificados/perdedores ou só classificados.
+**PENDENTE:**
+
+9. **Participantes:** confirmar ao vivo se o PNCP expõe desclassificados/perdedores ou só classificados/homologados
+   (define o alcance do "banco vivo com todos que concorreram").
