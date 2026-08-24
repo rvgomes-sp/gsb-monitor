@@ -75,7 +75,7 @@ def _log(msg: str):
 class Motor:
     cli: ClientePNCP
     piso: Decimal = PISO_PADRAO
-    pausa: float = 0.15
+    pausa: float = 0.0          # pacing fica no cliente (delay+jitter por chamada)
     max_pages: int = 0          # 0 = todas; >0 limita a descoberta por modalidade
 
     # ---- descoberta (homologado consolidado >= piso) ----
