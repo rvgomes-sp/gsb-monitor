@@ -1,0 +1,39 @@
+# Segredos / credenciais — NUNCA versionar
+.env
+*.env
+.env.*
+secrets/
+*.pat
+*token*
+
+# Dados operacionais (gerados, não versionados)
+.scratch/
+data/state/
+*.db
+*.sqlite
+*.sqlite3
+monitor/data/monitor_feed_*.json
+!monitor/data/monitor_feed_real.json
+
+# Editais / documentos baixados
+documentos/
+*.pdf
+
+# Saídas de coleta
+*.xlsx
+*.jsonl
+saidas/
+out/
+
+# Python
+__pycache__/
+*.pyc
+.venv/
+venv/
+.pytest_cache/
+
+# SO / editor
+Thumbs.db
+.DS_Store
+.idea/
+.vscode/
