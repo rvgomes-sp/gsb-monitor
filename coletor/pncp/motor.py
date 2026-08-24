@@ -1,14 +1,16 @@
-"""Motor de coleta EVT-007 — orquestra descoberta -> drill -> qualificação.
+"""Motor de coleta EVT-007 — produção. Funil comercial: obra fresca >= R$ 10 MM.
 
-Fluxo (decisões em docs/pncp_v2.5/REVISAO_ENDPOINTS_EVT007.md):
-  1. Descoberta (Consulta /contratacoes/atualizacao) por dia D, modalidades 4/5/6/7,
-     tamanhoPagina=50, filtrando valorTotalHomologado >= piso (10 MM).
-  2. Por caso: drill 10.13 itens + 10.17 resultados (lista crua). Rede de datas =
-     resultado INCLUÍDO no dia D (data_inclusao == D); guardamos data_resultado E
-     data_inclusao. (10.19 confirma inclusão como auditoria — opcional.)
-  3. Qualifica: caso homologado > piso, com resultado, máx 10 itens (maiores),
-     família por CÓDIGO de catálogo, gatilho 85% só obras, CPF descartado.
-Coleta honesta: página instável é pulada e contada; status COMPLETE/PARTIAL.
+Fluxo (Rodrigo, 2026-08-25):
+  DIA D → descoberta mod 4-7 (homologado consolidado >= piso)
+        → GET /itens (1×/contratação) → CLASSIFICADOR BARATO de obra
+            NAO_OBRA → para  |  OBRA_FORTE/REVISAR → drill
+        → GET /resultados só nos candidatos → resultados vigentes
+        → valor homologado CONSOLIDADO (nível contratação) >= R$ 10 MM
+        → FRESCOR (dataResultado × dataInclusao): FRESH/EXCEPTION = radar; BACKFILL = auditoria
+        → OPORTUNIDADE
+
+O frescor pertence ao EVENTO novo; os R$ 10 MM à CONTRATAÇÃO consolidada
+(não exigir tudo homologado hoje). Perfil temporal é subproduto (grava delta/plataforma).
 """
 from __future__ import annotations
 
@@ -16,11 +18,11 @@ import time
 from dataclasses import dataclass, field
 from datetime import date
 from decimal import Decimal
-from urllib.parse import urlencode
+from urllib.parse import urlencode, urlparse
 
-from .cliente import (CONSULTA, INTEGRACAO, ClientePNCP, ErroPNCP,
-                      TransitorioPNCP)
-from .familias import Classificador
+from . import classificador as clf
+from . import frescor as fr
+from .cliente import CONSULTA, INTEGRACAO, ClientePNCP, ErroPNCP, TransitorioPNCP
 
 MODALIDADES_PADRAO = [4, 5, 6, 7]
 PISO_PADRAO = Decimal("10000000")
@@ -35,54 +37,56 @@ def _dec(v) -> Decimal:
 
 def _cpf(ni: str | None) -> bool:
     d = "".join(c for c in (ni or "") if c.isdigit())
-    # CNPJ (mesmo alfanumérico) tem 14 chars; CPF tem 11 dígitos
     return len(d) == 11 and len((ni or "").strip()) == 11
 
 
+def _host(link) -> str:
+    try:
+        return (urlparse(link).hostname or "").lower() if link else ""
+    except Exception:
+        return ""
+
+
 @dataclass
-class Relatorio:
+class Funil:
     data_alvo: str
-    modalidades: list[int]
     piso: str
     status: str = "COMPLETE"
     paginas_lidas: int = 0
     paginas_puladas: int = 0
-    casos_descobertos: int = 0
-    casos_qualificados: int = 0
-    itens_qualificados: int = 0
-    resultados: int = 0
-    por_familia_status: dict = field(default_factory=dict)
-    por_uf: dict = field(default_factory=dict)
-    por_plataforma: dict = field(default_factory=dict)
-    amostra: list = field(default_factory=list)
+    descobertas: int = 0                 # contratações mod 4-7 com homologado >= piso
+    nao_obra_eliminadas: int = 0         # descartadas após /itens
+    candidatas_obra: int = 0             # OBRA_FORTE + REVISAR
+    drill_executado: int = 0
+    obras_homologadas_piso: int = 0      # obra + consolidado >= piso + tem resultado hoje
+    backfills_eliminados: int = 0        # tinham evento hoje, mas só BACKFILL
+    oportunidades_frescas: int = 0
+    por_classe_obra: dict = field(default_factory=dict)
 
 
 @dataclass
 class Motor:
     cli: ClientePNCP
-    clf: Classificador
     piso: Decimal = PISO_PADRAO
-    max_itens: int = 10
-    pausa: float = 0.2
+    pausa: float = 0.15
 
-    # ---- Descoberta ----------------------------------------------------------
-    def descobrir(self, alvo: date, modalidade: int, rel: Relatorio):
+    # ---- descoberta (homologado consolidado >= piso) ----
+    def descobrir(self, alvo: date, modalidade: int, fun: Funil):
         ds = alvo.strftime("%Y%m%d")
         pagina, total_paginas = 1, None
         while total_paginas is None or pagina <= total_paginas:
             q = urlencode({"dataInicial": ds, "dataFinal": ds,
                            "codigoModalidadeContratacao": modalidade,
                            "pagina": pagina, "tamanhoPagina": 50})
-            url = f"{CONSULTA}/v1/contratacoes/atualizacao?{q}"
             try:
-                payload = self.cli.get(url, endpoint="descoberta")
+                payload = self.cli.get(f"{CONSULTA}/v1/contratacoes/atualizacao?{q}", endpoint="descoberta")
             except TransitorioPNCP:
-                rel.paginas_puladas += 1
-                rel.status = "PARTIAL"
+                fun.paginas_puladas += 1
+                fun.status = "PARTIAL"
                 pagina += 1
                 total_paginas = total_paginas or (pagina + 1)
                 continue
-            rel.paginas_lidas += 1
+            fun.paginas_lidas += 1
             if total_paginas is None:
                 total_paginas = int(payload.get("totalPaginas") or 0)
             for r in (payload.get("data") or []):
@@ -93,167 +97,112 @@ class Motor:
             pagina += 1
             time.sleep(self.pausa)
 
-    # ---- Drill de um caso ----------------------------------------------------
-    def coletar_caso(self, row: dict, alvo: date) -> dict | None:
+    # ---- processa uma contratação candidata ----
+    def processar(self, row: dict, alvo: date, fun: Funil) -> dict | None:
         org = row.get("orgaoEntidade") or {}
         cnpj, ano, seq = org.get("cnpj"), row.get("anoCompra"), row.get("sequencialCompra")
         if not (cnpj and ano and seq):
             return None
         base = f"{INTEGRACAO}/v1/orgaos/{cnpj}/compras/{ano}/{seq}"
+
+        # 1) /itens (1×) + classificador BARATO
         try:
             itens = self.cli.get(f"{base}/itens", endpoint="10.13")
         except (TransitorioPNCP, ErroPNCP):
             return None
         if not isinstance(itens, list):
             itens = itens.get("itens") if isinstance(itens, dict) else []
+        cl = clf.classificar_contratacao(itens or [], row.get("objetoCompra") or "")
+        fun.por_classe_obra[cl.classe] = fun.por_classe_obra.get(cl.classe, 0) + 1
+        if cl.classe == clf.NAO_OBRA:
+            fun.nao_obra_eliminadas += 1
+            return None
+        fun.candidatas_obra += 1
 
-        itens_qual = []
-        for it in itens or []:
-            if not it.get("temResultado"):
-                continue
+        # 2) drill /resultados só nos itens candidatos (com resultado)
+        fun.drill_executado += 1
+        alvo_itens = set(cl.itens_obra) or {it.get("numeroItem") for it in itens}
+        eventos_hoje = []      # frescor de cada resultado incluído HOJE
+        vencedores = []
+        for it in itens:
             n = it.get("numeroItem")
+            if n not in alvo_itens or not it.get("temResultado"):
+                continue
             try:
                 res = self.cli.get(f"{base}/itens/{n}/resultados", endpoint="10.17")
             except (TransitorioPNCP, ErroPNCP):
                 continue
             if not isinstance(res, list):
                 res = res.get("listaResultados") if isinstance(res, dict) else []
-            # rede de datas: resultado INCLUÍDO no dia D
-            res_do_dia = [r for r in (res or []) if _data(r.get("dataInclusao")) == alvo]
-            if not res_do_dia:
-                continue
-            fam = self.clf.classificar(it)
-            eh_obra = self.clf.eh_obra(it)
-            resultados = []
-            for r in res_do_dia:
-                ni = r.get("niFornecedor")
-                if _cpf(ni):  # pessoa física descartada
+            for rr in (res or []):
+                ni = rr.get("niFornecedor")
+                if _cpf(ni):
                     continue
-                qtd = _dec(r.get("quantidadeHomologada"))
-                unit = _dec(r.get("valorUnitarioHomologado"))
-                total_item = qtd * unit
-                ratio = None
-                if eh_obra:
-                    est = _dec(it.get("valorTotal"))
-                    if est > 0 and total_item > 0:
-                        ratio = round(float(total_item / est), 4)
-                resultados.append({
-                    "sequencial_resultado": r.get("sequencialResultado"),
-                    "ni_fornecedor": ni, "nome_fornecedor": r.get("nomeRazaoSocialFornecedor"),
-                    "tipo_pessoa": r.get("tipoPessoa"),
-                    "porte_id": r.get("porteFornecedorId"), "porte_nome": r.get("porteFornecedorNome"),
-                    "natureza_juridica_id": r.get("naturezaJuridicaId"),
-                    "natureza_juridica_nome": r.get("naturezaJuridicaNome"),
-                    "codigo_pais": r.get("codigoPais"),
-                    "quantidade_homologada": str(qtd), "valor_unitario_homologado": str(unit),
-                    "valor_total_homologado_item": str(total_item),
-                    "data_resultado": _iso(r.get("dataResultado")),
-                    "data_inclusao": r.get("dataInclusao"),
-                    "situacao_resultado_id": r.get("situacaoCompraItemResultadoId"),
-                    "situacao_resultado_nome": r.get("situacaoCompraItemResultadoNome"),
-                    "data_cancelamento": r.get("dataCancelamento"),
-                    "indicador_subcontratacao": r.get("indicadorSubcontratacao"),
-                    "ordem_classificacao_srp": r.get("ordemClassificacaoSrp"),
-                    "reserva_remanescente": (r.get("reservaRemanescente") or {}),
-                    "papel": _papel(r.get("reservaRemanescente")),
-                    "ratio_85": ratio,
-                })
-            if not resultados:
-                continue
-            total_item = sum(_dec(x["valor_total_homologado_item"]) for x in resultados)
-            itens_qual.append({
-                "numero_item": n, "material_ou_servico": it.get("materialOuServico"),
-                "descricao": it.get("descricao"),
-                "valor_unitario_estimado": str(_dec(it.get("valorUnitarioEstimado"))),
-                "valor_total_estimado": str(_dec(it.get("valorTotal"))),
-                "criterio_julgamento_nome": it.get("criterioJulgamentoNome"),
-                "catalogo_codigo_item": it.get("catalogoCodigoItem"),
-                "categoria_item_catalogo": it.get("categoriaItemCatalogo"),
-                "item_categoria_id": it.get("itemCategoriaId"),
-                "ncm_nbs_codigo": it.get("ncmNbsCodigo"),
-                "familia_codigo": fam.codigo, "familia_nome": fam.nome,
-                "familia_status": fam.status, "eh_obra": eh_obra,
-                "_total_homologado": total_item,
-                "resultados": resultados,
-            })
-        if not itens_qual:
-            return None
-        # máx 10 itens (maiores por homologado)
-        itens_qual.sort(key=lambda x: x["_total_homologado"], reverse=True)
-        if len(itens_qual) > self.max_itens:
-            itens_qual = itens_qual[:self.max_itens]
+                f = fr.avaliar(rr.get("dataResultado"), rr.get("dataInclusao"))
+                if f.data_inclusao and f.data_inclusao.date() == alvo:
+                    eventos_hoje.append((n, rr, f))
+                    vencedores.append({
+                        "numero_item": n, "ni_fornecedor": ni,
+                        "nome_fornecedor": rr.get("nomeRazaoSocialFornecedor"),
+                        "porte_nome": rr.get("porteFornecedorNome"),
+                        "natureza_juridica_nome": rr.get("naturezaJuridicaNome"),
+                        "quantidade_homologada": str(_dec(rr.get("quantidadeHomologada"))),
+                        "valor_unitario_homologado": str(_dec(rr.get("valorUnitarioHomologado"))),
+                    })
+            time.sleep(self.pausa)
 
-        homologado_caso = _dec(row.get("valorTotalHomologado"))
+        # sem evento NOVO hoje -> não é EVT-007 fresco de hoje
+        if not eventos_hoje:
+            return None
+        fun.obras_homologadas_piso += 1
+
+        # 3) frescor = evento mais fresco entre os que chegaram hoje
+        mais_fresco = min(eventos_hoje, key=lambda e: (e[2].delta_business_days if e[2].delta_business_days is not None else 9999))
+        f = mais_fresco[2]
+        if not f.no_radar:
+            fun.backfills_eliminados += 1
+            return None  # só BACKFILL hoje -> fica na auditoria, fora do radar
+        fun.oportunidades_frescas += 1
+
+        homologado = _dec(row.get("valorTotalHomologado"))
         uni = row.get("unidadeOrgao") or {}
         return {
             "numero_controle_pncp": row.get("numeroControlePNCP"),
             "cnpj_orgao": cnpj, "ano": ano, "sequencial": seq,
-            "numero_compra": row.get("numeroCompra"),
-            "modalidade_id": row.get("modalidadeId"), "modalidade_nome": row.get("modalidadeNome"),
-            "modo_disputa_id": row.get("modoDisputaId"), "modo_disputa_nome": row.get("modoDisputaNome"),
-            "situacao_compra_id": row.get("situacaoCompraId"), "situacao_compra_nome": row.get("situacaoCompraNome"),
-            "objeto_compra": row.get("objetoCompra"),
-            "informacao_complementar": row.get("informacaoComplementar"),
-            "srp": row.get("srp"),
-            "valor_total_estimado": str(_dec(row.get("valorTotalEstimado"))),
-            "valor_total_homologado": str(homologado_caso),
-            "orgao_razao_social": org.get("razaoSocial"),
-            "uf": uni.get("ufSigla"), "municipio": uni.get("municipioNome"),
-            "usuario_nome": row.get("usuarioNome"),
+            "orgao": org.get("razaoSocial"), "uf": uni.get("ufSigla"),
+            "municipio": uni.get("municipioNome"),
+            "modalidade": row.get("modalidadeNome"), "modalidade_id": row.get("modalidadeId"),
+            "objeto": row.get("objetoCompra"),
+            "classe_obra": cl.classe, "itens_obra": cl.itens_obra, "motivo_obra": cl.motivo,
+            "valor_homologado_consolidado": str(homologado),
+            "vencedores": vencedores,
+            # frescor / perfil temporal (subproduto)
+            "source_sender_raw": row.get("usuarioNome"),
+            "source_host": _host(row.get("linkSistemaOrigem")),
             "link_sistema_origem": row.get("linkSistemaOrigem"),
-            "data_atualizacao_global": row.get("dataAtualizacaoGlobal"),
-            "rota": "VAZQUEZ_FONSECA" if homologado_caso > self.piso else "VIEIRA_MENDONCA",
-            "itens": itens_qual,
+            "data_resultado": f.data_resultado.isoformat() if f.data_resultado else None,
+            "data_inclusao": f.data_inclusao.isoformat() if f.data_inclusao else None,
+            "delta_calendar_days": f.delta_calendar_days,
+            "delta_business_days": f.delta_business_days,
+            "freshness_class": f.classe,
         }
 
-    # ---- Execução ------------------------------------------------------------
-    def rodar(self, alvo: date, modalidades: list[int]) -> tuple[Relatorio, list[dict]]:
-        rel = Relatorio(alvo.isoformat(), modalidades, str(self.piso))
-        vistos: set[str] = set()
-        casos: list[dict] = []
+    # ---- execução ----
+    def rodar(self, alvo: date, modalidades: list[int]) -> tuple[Funil, list[dict]]:
+        fun = Funil(alvo.isoformat(), str(self.piso))
+        vistos: set = set()
+        ops: list[dict] = []
         for mod in modalidades:
-            for row in self.descobrir(alvo, mod, rel):
+            for row in self.descobrir(alvo, mod, fun):
                 chave = row.get("numeroControlePNCP") or f"{row.get('anoCompra')}/{row.get('sequencialCompra')}"
                 if chave in vistos:
                     continue
                 vistos.add(chave)
-                rel.casos_descobertos += 1
+                fun.descobertas += 1
                 try:
-                    caso = self.coletar_caso(row, alvo)
+                    op = self.processar(row, alvo, fun)
                 except Exception:
                     continue
-                if not caso:
-                    continue
-                casos.append(caso)
-                rel.casos_qualificados += 1
-                rel.itens_qualificados += len(caso["itens"])
-                for it in caso["itens"]:
-                    rel.resultados += len(it["resultados"])
-                    rel.por_familia_status[it["familia_status"]] = rel.por_familia_status.get(it["familia_status"], 0) + 1
-                rel.por_uf[caso.get("uf") or "?"] = rel.por_uf.get(caso.get("uf") or "?", 0) + 1
-                p = caso.get("usuario_nome") or "?"
-                rel.por_plataforma[p] = rel.por_plataforma.get(p, 0) + 1
-                if len(rel.amostra) < 5:
-                    rel.amostra.append({k: caso[k] for k in
-                                        ("numero_controle_pncp", "orgao_razao_social", "uf",
-                                         "valor_total_homologado", "rota") if k in caso})
-        return rel, casos
-
-
-def _data(s) -> date | None:
-    if not s:
-        return None
-    try:
-        return date.fromisoformat(str(s)[:10])
-    except ValueError:
-        return None
-
-
-def _iso(s):
-    d = _data(s)
-    return d.isoformat() if d else None
-
-
-def _papel(reserva) -> str:
-    cod = (reserva or {}).get("codigo") if isinstance(reserva, dict) else None
-    return {2: "REMANESCENTE", 3: "RESERVA"}.get(cod, "VENCEDOR")
+                if op:
+                    ops.append(op)
+        return fun, ops

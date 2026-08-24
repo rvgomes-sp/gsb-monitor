@@ -1,13 +1,12 @@
 #!/usr/bin/env python3
-"""CLI do Motor de Coleta EVT-007 (PNCP).
+"""CLI do Motor de Coleta EVT-007 (produção) — obra fresca >= R$ 10 MM.
 
 Uso:
-  python coletor/run_coleta_evt007.py                      # D-1 (BRT), dry-run, modalidades 4-7
-  python coletor/run_coleta_evt007.py --date 2026-08-23
-  python coletor/run_coleta_evt007.py --date 2026-08-23 --modalities 6 --out saida.json
+  python coletor/run_coleta_evt007.py --date 2026-08-24
+  python coletor/run_coleta_evt007.py --date 2026-08-24 --out saidas/oportunidades.json
 
-Dry-run por padrão (não grava banco): mede volume. A persistência no Supabase
-(licitacoes) entra com --gravar (exige DATABASE_URL no ambiente).
+Imprime o FUNIL de aceite (descobertas -> não-obra -> candidatas -> drill ->
+homologadas>=10MM -> backfills -> oportunidades frescas) e detalha cada oportunidade.
 """
 from __future__ import annotations
 
@@ -21,42 +20,57 @@ from pathlib import Path
 sys.path.insert(0, str(Path(__file__).resolve().parent))
 
 from pncp.cliente import ClientePNCP
-from pncp.familias import Classificador
 from pncp.motor import MODALIDADES_PADRAO, Motor
 
 BRT = timezone(timedelta(hours=-3))
 
 
 def main() -> int:
-    p = argparse.ArgumentParser(description="Coleta EVT-007 do PNCP (banco vivo de licitações)")
+    p = argparse.ArgumentParser(description="Coleta EVT-007 — obra fresca >= R$ 10 MM")
     p.add_argument("--date", help="AAAA-MM-DD; padrão D-1 (BRT)")
-    p.add_argument("--modalities", default="", help="ex: 6 ou 4,5,6,7 (padrão 4,5,6,7)")
-    p.add_argument("--piso", type=float, default=10_000_000, help="piso do homologado (padrão 10 MM)")
-    p.add_argument("--max-itens", type=int, default=10)
-    p.add_argument("--out", help="grava os casos coletados em JSON neste caminho")
-    p.add_argument("--gravar", action="store_true", help="grava no Supabase (exige DATABASE_URL)")
+    p.add_argument("--modalities", default="", help="ex: 4,5,6,7 (padrão)")
+    p.add_argument("--piso", type=float, default=10_000_000)
+    p.add_argument("--out", help="grava as oportunidades em JSON")
     a = p.parse_args()
 
     alvo = date.fromisoformat(a.date) if a.date else (datetime.now(BRT).date() - timedelta(days=1))
     mods = [int(x) for x in a.modalities.split(",") if x.strip()] if a.modalities else MODALIDADES_PADRAO
 
-    clf = Classificador()
     with ClientePNCP() as cli:
-        motor = Motor(cli=cli, clf=clf, piso=Decimal(str(a.piso)), max_itens=a.max_itens)
-        print(f"Coletando EVT-007 | D={alvo.isoformat()} | modalidades={mods} | piso={a.piso:,.0f}",
+        motor = Motor(cli=cli, piso=Decimal(str(a.piso)))
+        print(f"Coletando EVT-007 obra | D={alvo.isoformat()} | mod={mods} | piso={a.piso:,.0f}",
               file=sys.stderr, flush=True)
-        rel, casos = motor.rodar(alvo, mods)
+        fun, ops = motor.rodar(alvo, mods)
+
+    print("\n" + "=" * 56)
+    print(f"FUNIL EVT-007 — D={fun.data_alvo}  (status {fun.status})")
+    print("=" * 56)
+    print(f"  Contratações MOD 4-7 (homologado >= piso):  {fun.descobertas:>5}")
+    print(f"  Não-obras eliminadas após /itens:           {fun.nao_obra_eliminadas:>5}")
+    print(f"  Candidatas a obra (FORTE/REVISAR):          {fun.candidatas_obra:>5}   {fun.por_classe_obra}")
+    print(f"  Drill de resultados executado:              {fun.drill_executado:>5}")
+    print(f"  Obras c/ evento homologado hoje:            {fun.obras_homologadas_piso:>5}")
+    print(f"  Backfills eliminados (só delta grande):     {fun.backfills_eliminados:>5}")
+    print(f"  OPORTUNIDADES FRESCAS entregues:            {fun.oportunidades_frescas:>5}")
+    if fun.paginas_puladas:
+        print(f"  (páginas instáveis puladas: {fun.paginas_puladas})")
+
+    print("\n--- oportunidades ---")
+    for o in ops:
+        print(f"\n• {o['orgao']} ({o['uf']}) | {o['modalidade']} | R$ {float(Decimal(o['valor_homologado_consolidado']))/1e6:,.1f} MM")
+        print(f"  {o['numero_controle_pncp']} | classe={o['classe_obra']} itens_obra={o['itens_obra']}")
+        print(f"  objeto: {(o['objeto'] or '')[:90]}")
+        venc = o['vencedores'][0] if o['vencedores'] else {}
+        print(f"  vencedor: {venc.get('nome_fornecedor')} ({venc.get('ni_fornecedor')}) porte={venc.get('porte_nome')}")
+        print(f"  FRESCOR: dataResultado={o['data_resultado']} dataInclusao={o['data_inclusao']} "
+              f"Δcal={o['delta_calendar_days']} Δutil={o['delta_business_days']} [{o['freshness_class']}]")
+        print(f"  origem: {o['source_sender_raw']} | {o['source_host']}")
 
     if a.out:
-        Path(a.out).write_text(json.dumps(casos, ensure_ascii=False, indent=1, default=str), encoding="utf-8")
-        print(f"[casos gravados em {a.out}]", file=sys.stderr)
-
-    if a.gravar:
-        from pncp.banco import gravar
-        n = gravar(casos, rel)
-        print(f"[gravados {n} casos no Supabase]", file=sys.stderr)
-
-    print(json.dumps(rel.__dict__, ensure_ascii=False, indent=2, default=str))
+        Path(a.out).parent.mkdir(parents=True, exist_ok=True)
+        Path(a.out).write_text(json.dumps({"funil": fun.__dict__, "oportunidades": ops},
+                                          ensure_ascii=False, indent=1, default=str), encoding="utf-8")
+        print(f"\n[gravado em {a.out}]", file=sys.stderr)
     return 0
 
 
