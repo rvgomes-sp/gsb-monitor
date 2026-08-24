@@ -91,7 +91,7 @@ def get_ev(cli: ClientePNCP, url: str, endpoint: str):
     return payload, meta
 
 
-def rodar(alvo: str, por_modalidade: int, modalidades: list[int], piso: Decimal):
+def rodar(alvos: list[str], por_modalidade: int, modalidades: list[int], piso: Decimal):
     SCR.mkdir(exist_ok=True)
     f13 = (SCR / "assinatura_1013.jsonl").open("w", encoding="utf-8")
     f14 = (SCR / "assinatura_1014.jsonl").open("w", encoding="utf-8")
@@ -105,12 +105,17 @@ def rodar(alvo: str, por_modalidade: int, modalidades: list[int], piso: Decimal)
     # frequência global de campos
     freq = defaultdict(Counter)
     unidades = defaultdict(Counter)
+    # P(catalogo preenchido | plataforma / modalidade / materialOuServico)
+    fill = {"plataforma": defaultdict(lambda: Counter()),
+            "modalidade": defaultdict(lambda: Counter()),
+            "materialOuServico": defaultdict(lambda: Counter())}
     # auditoria 10.13 x 10.14
     audit = {"casos_comparados": 0, "mesmas_chaves": 0, "extras_1014": Counter(),
              "faltantes_1014": Counter(), "divergencia_valor": 0}
     n_itens = n_casos = 0
 
     with ClientePNCP(guardar_evidencia=True) as cli:
+      for alvo in alvos:
         for mod in modalidades:
             achei, pg, tp = 0, 1, None
             while (tp is None or pg <= tp) and achei < por_modalidade:
@@ -134,6 +139,7 @@ def rodar(alvo: str, por_modalidade: int, modalidades: list[int], piso: Decimal)
                     if not (cnpj and ano and seq):
                         continue
                     objeto = r.get("objetoCompra") or ""
+                    plataforma = (r.get("usuarioNome") or "?").strip()
                     base = f"{INTEGRACAO}/v1/orgaos/{cnpj}/compras/{ano}/{seq}"
                     try:
                         itens, ev13 = get_ev(cli, f"{base}/itens", "10.13")
@@ -158,6 +164,12 @@ def rodar(alvo: str, por_modalidade: int, modalidades: list[int], piso: Decimal)
                             obra_x[obra][c][st] += 1
                             freq[c][st] += 1
                         unidades[bucket][(it.get("unidadeMedida") or "?")] += 1
+                        # P(catalogo preenchido | plataforma/modalidade/materialOuServico)
+                        cat_ok = estado(it, "catalogoCodigoItem") == "VALUE"
+                        for dim, chave in (("plataforma", plataforma), ("modalidade", mod), ("materialOuServico", ms)):
+                            fill[dim][chave]["n"] += 1
+                            if cat_ok:
+                                fill[dim][chave]["cat"] += 1
                         f13.write(json.dumps({"modalidadeId": mod, "modalidadeNome": r.get("modalidadeNome"),
                                               "objeto": objeto[:150], "evidencia": ev13,
                                               "chaves": sorted(it.keys()), "item": it},
@@ -186,8 +198,8 @@ def rodar(alvo: str, por_modalidade: int, modalidades: list[int], piso: Decimal)
     f13.close()
     f14.close()
 
-    saida = {"data": alvo, "n_casos": n_casos, "n_itens": n_itens,
-             "matriz_por_ms_modalidade": {}, "por_obra_heuristica": {},
+    saida = {"datas": alvos, "n_casos": n_casos, "n_itens": n_itens,
+             "p_catalogo_preenchido": {}, "matriz_por_ms_modalidade": {}, "por_obra_heuristica": {},
              "frequencia_campos": {}, "auditoria_10_13_x_10_14": {
                  "casos_comparados": audit["casos_comparados"],
                  "mesmas_chaves": audit["mesmas_chaves"],
@@ -215,6 +227,11 @@ def rodar(alvo: str, por_modalidade: int, modalidades: list[int], piso: Decimal)
             "non_null_pct": round(100 * freq[c]["VALUE"] / tot, 1) if tot else 0,
             "estados": dict(freq[c])}
 
+    for dim, mapa in fill.items():
+        saida["p_catalogo_preenchido"][dim] = {
+            str(k): {"n": v["n"], "cat_pct": round(100 * v["cat"] / v["n"], 1) if v["n"] else 0}
+            for k, v in sorted(mapa.items(), key=lambda kv: -kv[1]["n"])}
+
     (SCR / "assinatura_matriz.json").write_text(json.dumps(saida, ensure_ascii=False, indent=1), encoding="utf-8")
 
     # ---- stdout resumido ----
@@ -236,6 +253,12 @@ def rodar(alvo: str, por_modalidade: int, modalidades: list[int], piso: Decimal)
     for c in CAMPOS:
         fc = saida["frequencia_campos"][c]
         print(f"  {c:24} present_key={fc['present_key_pct']:>5}%  non_null={fc['non_null_pct']:>5}%")
+    print("\n--- P(catalogoCodigoItem preenchido | plataforma)  [decide se 0% é do valor ou da origem] ---")
+    for k, v in list(saida["p_catalogo_preenchido"]["plataforma"].items())[:12]:
+        print(f"  {k[:40]:40} n={v['n']:>4}  cat_preenchido={v['cat_pct']}%")
+    print("--- P(catalogo | materialOuServico) ---")
+    for k, v in saida["p_catalogo_preenchido"]["materialOuServico"].items():
+        print(f"  MS={k:8} n={v['n']:>4}  cat={v['cat_pct']}%")
     print("\n--- auditoria 10.13 x 10.14 ---")
     a = saida["auditoria_10_13_x_10_14"]
     print(f"  casos={a['casos_comparados']} mesmas_chaves={a['mesmas_chaves']} "
@@ -249,7 +272,8 @@ def main():
     ap.add_argument("--modalidades", default="4,5,6,7")
     ap.add_argument("--piso", type=float, default=10_000_000)
     a = ap.parse_args()
-    rodar(a.date.replace("-", ""), a.por_modalidade,
+    alvos = [d.strip().replace("-", "") for d in a.date.split(",") if d.strip()]
+    rodar(alvos, a.por_modalidade,
           [int(x) for x in a.modalidades.split(",") if x.strip()], Decimal(str(a.piso)))
 
 
