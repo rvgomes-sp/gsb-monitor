@@ -46,3 +46,4 @@ dev.stderr.log
 dev-*.log
 tsconfig.tsbuildinfo
 gsb-monitor-site*.tar.gz
+.env*.local
