@@ -170,6 +170,42 @@ cada uma com seu fornecedor, porte, natureza e situação.
 
 ---
 
+## 7. Classificação de família por CÓDIGO de catálogo (nunca por palavra-chave)
+
+Decisão (Rodrigo, 2026-08-24): a família do item é definida pelos **códigos do catálogo oficial**
+(CATMAT p/ material, CATSER p/ serviço) — **não** por palavra-chave no `objetoCompra`/`descricao`.
+O coletor antigo fazia o contrário (lista `TERMOS_OBRA` de palavras) — **abandonado**.
+
+**Fonte da classificação (no repo):** `config/familias_catalogo_classe.json` — status por **CLASSE** (4 díg.):
+`CERTA` (alvo comercial), `INFERIR` (provável, precisa checagem), `MONITORAR` (visível, não-alvo),
+`DESCARTAR`. Curadoria por família em `GSB_Classificacao_Familias_Garantia.xlsx` (nível Grupo/Divisão) e
+hierarquia oficial em `GSB_Catalogo_Completo_Material_Servico.xlsx`.
+Famílias-alvo em CATSER (ex.): **54** Construção (obras), **64/65/67** Transporte, **87** Manutenção/reparo,
+**94** Saneamento → `CERTA`. Materiais (CATMAT) em geral `MONITORAR`/`DESCARTAR` (não são obra/serviço-alvo).
+
+**De onde vem o código no item (10.13):** `catalogoCodigoItem` (código do item no catálogo),
+`categoriaItemCatalogo{id,nome}`, `catalogo{id,nome}`. Resolver item→classe→família pela tabela.
+> **⚠️ `itemCategoriaId` NÃO é família** — é só `1-Bem Imóvel / 2-Bem Móvel / 3-Não se aplica` (conf. 10.10 id 15).
+
+**⚠️ Limitação real (verificada ao vivo):** `catalogoCodigoItem`/`categoriaItemCatalogo` são campos
+**opcionais** (10.10 ids 24–26 = "Não") — muitos órgãos inserem o item como **texto livre, sem código**
+(o caso-teste veio com tudo `null`). Sem código e **sem palavra-chave**, esses itens **não têm família** →
+caem em **"monitorado/pendente"** até enriquecimento (leitura de edital). **Decisão para o Rodrigo (§5.10).**
+
+## 8. Endpoints auxiliares — 10.18 e 10.19
+
+- **10.18 `GET /v1/orgaos/{cnpj}/compras/{ano}/{seq}/itens/{numeroItem}/resultados/{sequencialResultado}`**
+  — os mesmos campos da 10.17, para **um resultado específico**. Uso: *refetch* pontual/auditoria; não é
+  necessário na coleta em massa (10.17 já lista todos os resultados do item).
+- **10.19 `GET /v1/orgaos/{cnpj}/compras/{ano}/{seq}/historico`** (paginado) — **log de eventos** da
+  contratação/itens/resultados/documentos. Campos-chave: `logManutencaoDataInclusao`, `tipoLogManutencao`
+  (**0-Inclusão**, 1-Retificação, 2-Exclusão), `categoriaLogManutencao` (**5 = Resultado de Item**),
+  `itemNumero`/`itemResultadoNumero`. **Valor para nós:** é a fonte **auditável** para saber que um
+  **resultado foi INCLUÍDO no dia D** (EVT-007 novo) vs. **retificado/excluído** — desambigua a rede de datas
+  sem fundir `dataResultado`/`dataInclusao`. Custo: 1 GET por caso → usar sob demanda, não em todo caso.
+
+---
+
 ## 5. Decisões — fechadas e pendentes
 
 **FECHADAS:**
@@ -192,6 +228,15 @@ cada uma com seu fornecedor, porte, natureza e situação.
 8. **Gatilho 85% — confirmado: SOMENTE obras.** `ratio_85 = valorTotalHomologado_item ÷ valorTotal_item(estimado)`
    calculado e avaliado **apenas** para itens da família *obras*; nas demais famílias não se aplica.
 
-9. **Participantes — resolvido pelo manual (§6).** PNCP entrega **vencedor + reserva/remanescente** (múltiplos
-   `sequencialResultado`); **perdedores não têm registro** na 10.17. Lista completa de concorrentes = fonte
-   separada (ata do sistema de origem / documentos do edital), fora do coletor PNCP.
+9. **Participantes — resolvido.** PNCP entrega **vencedor + reserva/remanescente** (múltiplos
+   `sequencialResultado`); **perdedores não têm registro** na 10.17. Lista completa de concorrentes vem do
+   **documento de homologação/ata** (via 10.8/10.9), lido pelo **motor de editais** — fora do coletor PNCP.
+10. **Classificação por código (§7) — fechada.** Família vem do **código de catálogo**, nunca de palavra-chave.
+    Item **sem** `catalogoCodigoItem` (opcional, comum) entra como **"monitorado/pendente"** e só ganha família
+    no enriquecimento por edital.
+
+**PENDENTE:**
+
+11. **Rede de datas — usar 10.19?** Fechado guardar as duas datas; falta decidir se a coleta diária confirma
+    "EVT-007 novo" pelo evento de **inclusão de resultado** (10.19, categoria 5, tipo 0) ou basta o `dataInclusao`
+    já presente na 10.17.
