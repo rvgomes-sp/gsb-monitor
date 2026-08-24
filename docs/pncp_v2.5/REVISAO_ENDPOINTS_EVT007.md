@@ -235,8 +235,10 @@ caem em **"monitorado/pendente"** até enriquecimento (leitura de edital). **Dec
     Item **sem** `catalogoCodigoItem` (opcional, comum) entra como **"monitorado/pendente"** e só ganha família
     no enriquecimento por edital.
 
-**PENDENTE:**
+11. **Rede de datas — FECHADA: confirmar por 10.19.** A coleta diária confirma "EVT-007 novo" pelo **evento de
+    inclusão de resultado** no histórico (10.19: `categoriaLogManutencao=5`, `tipoLogManutencao=0`, datado por
+    `logManutencaoDataInclusao`). Fluxo: descoberta (atualização em D) → por caso candidato, 10.19 enumera
+    inclusões de resultado em D → drill 10.13/10.17 só desses itens. Guardamos `dataResultado` **e**
+    `dataInclusao`. Retificação/exclusão (tipo 1/2) **não** dispara oportunidade nova.
 
-11. **Rede de datas — usar 10.19?** Fechado guardar as duas datas; falta decidir se a coleta diária confirma
-    "EVT-007 novo" pelo evento de **inclusão de resultado** (10.19, categoria 5, tipo 0) ou basta o `dataInclusao`
-    já presente na 10.17.
+**TODAS as decisões de coleta estão fechadas — pronto para construir o Motor de Coleta.**
