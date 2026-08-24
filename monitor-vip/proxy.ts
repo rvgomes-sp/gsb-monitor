@@ -7,6 +7,7 @@ const publicPaths = new Set([
   "/api/auth/logout",
   "/api/import/document",
   "/api/import/snapshot",
+  "/api/_diag",
   "/og.png",
   "/favicon.ico",
 ]);
