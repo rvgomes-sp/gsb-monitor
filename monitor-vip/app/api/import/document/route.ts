@@ -1,9 +1,14 @@
-import { env } from "cloudflare:workers";
+import { getSql } from "../../../../db";
 import { ensureDatabase } from "../../../../db/runtime";
+import { putDocument } from "../../../../lib/storage";
+
+function importToken() {
+  return process.env.IMPORT_TOKEN ?? "";
+}
 
 export async function POST(request: Request) {
   const supplied = request.headers.get("x-import-token") ?? "";
-  if (!env.IMPORT_TOKEN || supplied !== env.IMPORT_TOKEN) {
+  if (!importToken() || supplied !== importToken()) {
     return Response.json({ error: "Não autorizado." }, { status: 401 });
   }
   await ensureDatabase();
@@ -18,22 +23,19 @@ export async function POST(request: Request) {
   }
   const key = `editais/${processId.replace(/[^\w.-]/g, "_")}/${fileName}`;
   const bytes = await request.arrayBuffer();
-  await env.DOCUMENTS.put(key, bytes, { httpMetadata: { contentType } });
+  await putDocument(key, bytes, contentType);
   const now = new Date().toISOString();
-  await env.DB.prepare(`INSERT INTO documents(
+  const label = fileName.toLocaleLowerCase().includes("edital") ? "Abrir edital" : fileName;
+  const documentType = fileName.split(".").pop()?.toLowerCase() ?? "";
+  const sql = getSql();
+  await sql`INSERT INTO monitor.documents(
     process_id,label,object_key,sha256,document_type,reading_status,created_at
-  ) VALUES(?,?,?,?,?,?,?)
+  ) VALUES(${processId},${label},${key},${sha256},${documentType},${readingStatus},${now})
   ON CONFLICT(process_id,object_key) DO UPDATE SET
     label=excluded.label,sha256=excluded.sha256,
-    document_type=excluded.document_type,reading_status=excluded.reading_status`)
-    .bind(
-      processId,
-      fileName.toLocaleLowerCase().includes("edital") ? "Abrir edital" : fileName,
-      key,
-      sha256,
-      fileName.split(".").pop()?.toLowerCase() ?? "",
-      readingStatus,
-      now,
-    ).run();
+    document_type=excluded.document_type,reading_status=excluded.reading_status`;
   return Response.json({ status: "OK", process_id: processId, key, bytes: bytes.byteLength });
 }
+
+export const runtime = "nodejs";
+export const dynamic = "force-dynamic";

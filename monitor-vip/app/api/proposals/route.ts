@@ -1,5 +1,5 @@
 import { cookies } from "next/headers";
-import { env } from "cloudflare:workers";
+import { getSql } from "../../../db";
 import { ensureDatabase } from "../../../db/runtime";
 import {
   portalProfile,
@@ -39,12 +39,12 @@ export async function POST(request: Request) {
     const now = new Date();
     const year = now.getFullYear();
     const counterKey = `proposal_${year}`;
-    await env.DB.prepare(
-      "INSERT INTO counters(key,value) VALUES(?,1) ON CONFLICT(key) DO UPDATE SET value=value+1",
-    ).bind(counterKey).run();
-    const counter = await env.DB.prepare("SELECT value FROM counters WHERE key=?")
-      .bind(counterKey).first<{ value: number }>();
-    const number = `VF-${year}-${String(counter?.value ?? 1).padStart(4, "0")}`;
+    const sql = getSql();
+    const counterRows = await sql<{ value: number }[]>`
+      INSERT INTO monitor.counters(key,value) VALUES(${counterKey}, 1)
+      ON CONFLICT(key) DO UPDATE SET value = monitor.counters.value + 1
+      RETURNING value`;
+    const number = `VF-${year}-${String(counterRows[0]?.value ?? 1).padStart(4, "0")}`;
     const insuredAmount = contractValue * guaranteePercentage / 100;
     const estimatedPremium = insuredAmount * annualRate / 100 * termMonths / 12;
     const proposal = {
@@ -67,11 +67,17 @@ export async function POST(request: Request) {
       notes: String(payload.notes ?? ""),
       operator: await authenticatedOperator(payload.operator),
     };
-    await env.DB.prepare(`INSERT INTO proposals(
+    await sql`INSERT INTO monitor.proposals(
       number,created_at,status,process_id,supplier,supplier_cnpj,agency,tender,
       administrative_process,decision_maker,contract_value,guarantee_percentage,
       insured_amount,annual_rate,term_months,estimated_premium,notes,operator
-    ) VALUES(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)`).bind(...Object.values(proposal)).run();
+    ) VALUES(
+      ${proposal.number}, ${proposal.created_at}, ${proposal.status}, ${proposal.process_id},
+      ${proposal.supplier}, ${proposal.supplier_cnpj}, ${proposal.agency}, ${proposal.tender},
+      ${proposal.administrative_process}, ${proposal.decision_maker}, ${proposal.contract_value},
+      ${proposal.guarantee_percentage}, ${proposal.insured_amount}, ${proposal.annual_rate},
+      ${proposal.term_months}, ${proposal.estimated_premium}, ${proposal.notes}, ${proposal.operator}
+    )`;
     return Response.json({ status: "OK", proposal }, { status: 201 });
   } catch (error) {
     return Response.json(
@@ -80,3 +86,6 @@ export async function POST(request: Request) {
     );
   }
 }
+
+export const runtime = "nodejs";
+export const dynamic = "force-dynamic";
