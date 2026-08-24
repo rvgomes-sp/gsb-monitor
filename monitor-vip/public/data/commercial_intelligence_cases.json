@@ -1,0 +1,298 @@
+{
+  "version": "1.0.0",
+  "generatedAt": "2026-07-28T12:00:00-03:00",
+  "cases": {
+    "04892707000291-1-000011/2025": {
+      "processId": "04892707000291-1-000011/2025",
+      "caseName": "ETAM · BR-319/AM · Lote C",
+      "supplier": "CONSTRUTORA ETAM LTDA",
+      "supplierCnpj": "22.768.840/0001-31",
+      "agency": "Departamento Nacional de Infraestrutura de Transportes — DNIT",
+      "tender": "Concorrência Eletrônica nº 90326/2025",
+      "administrativeProcess": "50601.001268/2025-24",
+      "item": "Obras de pavimentação da BR-319/AM — Lote C, 31,8 km",
+      "homologationAt": "23/07/2026 15:39",
+      "commercialRoute": "Corretora Vazquez & Fonseca",
+      "stage": "HOMOLOGADA_AGUARDANDO_FORMALIZACAO",
+      "limitStatus": "NAO_VERIFICADO",
+      "flags": [
+        "DIVERGENCIA_DOCUMENTAL",
+        "ALTA_IMPORTANCIA_SEGURADA",
+        "LONGA_VIGENCIA",
+        "LOGISTICA_DESAFIADORA",
+        "CARTEIRA_PUBLICA_RELEVANTE"
+      ],
+      "guarantee": {
+        "contractValue": 329133053.9686,
+        "budgetValue": 329297702.82,
+        "proposalValue": 329133053.9686,
+        "executionPercent": 10,
+        "laborCoveragePercent": {
+          "min": 5,
+          "max": 10
+        },
+        "executionTermMonths": 30,
+        "additionalValidityDays": 90,
+        "insuranceAccepted": true,
+        "article59Applicable": false,
+        "status": "VALIDACAO_HUMANA_OBRIGATORIA"
+      },
+      "documentaryReading": {
+        "confidence": "ALTA",
+        "humanReview": "OBRIGATORIA_ANTES_DA_COTACAO",
+        "clauses": [
+          {
+            "reference": "TR 4.16",
+            "finding": "Garantia de execução de 10% do valor contratado.",
+            "classification": "FATO_DOCUMENTAL"
+          },
+          {
+            "reference": "TR 4.20",
+            "finding": "Na opção por seguro-garantia, apresentação vinculada à formalização contratual.",
+            "classification": "FATO_DOCUMENTAL"
+          },
+          {
+            "reference": "TR 4.25",
+            "finding": "Vigência da garantia por 90 dias após o término do contrato.",
+            "classification": "FATO_DOCUMENTAL"
+          },
+          {
+            "reference": "TR 4.28",
+            "finding": "Cobertura adicional trabalhista e previdenciária indicada em 10% do contrato.",
+            "classification": "FATO_DOCUMENTAL"
+          },
+          {
+            "reference": "TR 4.30",
+            "finding": "Sob o título Garantia adicional, a mesma cobertura aparece em 5% do contrato.",
+            "classification": "DIVERGENCIA_DOCUMENTAL"
+          }
+        ],
+        "decision": "Não escolher silenciosamente entre 5% e 10%. Confirmar com DNIT/contrato e submeter os dois cenários à seguradora."
+      },
+      "portfolio": {
+        "label": "Carteira pública observada no DNIT",
+        "scope": "Contratos encontrados na fonte pública consultada; não representa backlog executável confirmado.",
+        "contracts": [
+          {
+            "number": "00489/2025",
+            "signedAt": "15/09/2025",
+            "endAt": "17/07/2026",
+            "value": 2257165.24,
+            "status": "VIGENCIA_ENCERRADA_OU_A_CONFIRMAR"
+          },
+          {
+            "number": "00197/2026",
+            "signedAt": "15/04/2026",
+            "endAt": "15/04/2027",
+            "value": 6566280.43,
+            "status": "VIGENTE"
+          },
+          {
+            "number": "00791/2025",
+            "signedAt": "15/12/2025",
+            "endAt": "08/10/2026",
+            "value": 36624315.82,
+            "status": "VIGENTE"
+          },
+          {
+            "number": "00845/2025",
+            "signedAt": "22/12/2025",
+            "endAt": "24/09/2026",
+            "value": 39288026.49,
+            "status": "VIGENTE"
+          },
+          {
+            "number": "00198/2026",
+            "signedAt": "10/04/2026",
+            "endAt": "10/03/2028",
+            "value": 44187047.57,
+            "status": "VIGENTE"
+          },
+          {
+            "number": "00026/2026",
+            "signedAt": "04/02/2026",
+            "endAt": "09/10/2026",
+            "value": 44589290.86,
+            "status": "VIGENTE"
+          },
+          {
+            "number": "00333/2026",
+            "signedAt": "25/05/2026",
+            "endAt": "25/10/2028",
+            "value": 362039723.75,
+            "status": "VIGENTE"
+          }
+        ],
+        "newHomologationValue": 329133053.9686,
+        "backlogStatus": "NAO_CONFIRMADO",
+        "questions": [
+          "Qual o saldo a executar de cada contrato vigente?",
+          "Quais apólices e limites já estão comprometidos?",
+          "Há contratos em consórcio, aditivos ou medições não refletidos na fonte?",
+          "Qual é a programação físico-financeira dos próximos 12 meses?"
+        ]
+      },
+      "positioning": {
+        "marketHistory": "Atuação recorrente em obras rodoviárias do DNIT, com sete contratos públicos observados na amostra e presença relevante no Amazonas.",
+        "governanceEvidence": "Relatório institucional público apresenta Presidência, Diretorias Administrativa/Financeira, Comercial e Executiva, além de Engenharia, Obras, Suprimentos, Jurídico/Contratos e Compliance.",
+        "capacityReadiness": {
+          "level": "EXIGE_VALIDACAO_IMEDIATA",
+          "label": "Prontidão de capacidade: validar imediatamente",
+          "explanation": "A empresa demonstra experiência e governança, mas o limite disponível não é público. A nova necessidade nominal pode variar entre 15% e 20% do contrato, além da carteira já observada."
+        },
+        "ratePressure": {
+          "level": "ALTA",
+          "label": "Pressão indicativa de taxa: alta",
+          "positiveFactors": [
+            "Experiência comprovada em contratos rodoviários",
+            "Estrutura formal de governança, compliance e gestão de obras",
+            "Relacionamento recorrente com o DNIT"
+          ],
+          "pressureFactors": [
+            "Importância segurada elevada",
+            "Prazo de execução de 30 meses mais 90 dias",
+            "Logística desafiadora na BR-319/AM",
+            "Cobertura trabalhista adicional divergente",
+            "Concentração relevante em contratos públicos observados"
+          ],
+          "disclaimer": "Proxy comercial, não cotação. Taxa e limite dependem de demonstrações financeiras, carteira garantida, resseguro e aceitação da seguradora."
+        }
+      },
+      "approachMap": [
+        {
+          "priority": 1,
+          "area": "Diretoria Administrativa e Financeira",
+          "decisionMaker": "Nome a validar",
+          "primaryChannel": "E-mail executivo + telefone",
+          "why": "Concentra estratégia financeira, capacidade de garantias e informações exigidas na análise de limite.",
+          "objective": "Validar limite disponível, carteira de apólices, urgência da assinatura e documentos financeiros.",
+          "confidence": "ALTA"
+        },
+        {
+          "priority": 2,
+          "area": "Diretoria Comercial",
+          "decisionMaker": "Giancarlo Ciola — função específica a confirmar",
+          "primaryChannel": "E-mail direto + LinkedIn",
+          "why": "A homologação nasce da frente comercial e exige coordenação rápida para a formalização do contrato.",
+          "objective": "Obter patrocínio interno e identificar quem conduz a garantia desta concorrência.",
+          "confidence": "MEDIA"
+        },
+        {
+          "priority": 3,
+          "area": "Jurídico e Contratos",
+          "decisionMaker": "Nome a validar",
+          "primaryChannel": "E-mail técnico",
+          "why": "A divergência de 5% e 10% muda a importância segurada e precisa ser resolvida antes da cotação.",
+          "objective": "Confirmar a interpretação contratual e a redação que prevalecerá na apólice.",
+          "confidence": "ALTA"
+        },
+        {
+          "priority": 4,
+          "area": "Compliance",
+          "decisionMaker": "Nome a validar",
+          "primaryChannel": "E-mail institucional",
+          "why": "Pode orientar o processo de homologação da Vazquez & Fonseca como parceira e o fluxo de documentos.",
+          "objective": "Antecipar cadastro, políticas de integridade e documentos de fornecedor.",
+          "confidence": "ALTA"
+        },
+        {
+          "priority": 5,
+          "area": "Presidência / Diretoria Executiva",
+          "decisionMaker": "Nome a validar",
+          "primaryChannel": "Introdução executiva",
+          "why": "Escalada adequada se a importância segurada exigir decisão de alocação de capacidade ou relacionamento institucional.",
+          "objective": "Destravar patrocínio e priorização interna.",
+          "confidence": "MEDIA"
+        },
+        {
+          "priority": 6,
+          "area": "Gestão de Obras",
+          "decisionMaker": "Nome a validar",
+          "primaryChannel": "Telefone",
+          "why": "Conhece o cronograma operacional e a data real em que a garantia passa a bloquear a mobilização.",
+          "objective": "Confirmar urgência, marcos de início e risco de atraso.",
+          "confidence": "MEDIA"
+        }
+      ],
+      "cadence": [
+        {
+          "day": "D0",
+          "action": "E-mail executivo para Administrativo/Financeiro e Comercial",
+          "goal": "Confirmar responsável e urgência"
+        },
+        {
+          "day": "D1",
+          "action": "Telefone para o contato principal",
+          "goal": "Validar recebimento e fluxo interno"
+        },
+        {
+          "day": "D2",
+          "action": "Nota técnica ao Jurídico/Contratos",
+          "goal": "Resolver divergência de cobertura"
+        },
+        {
+          "day": "D4",
+          "action": "Enviar checklist de limite e subscrição",
+          "goal": "Abrir análise com seguradoras"
+        },
+        {
+          "day": "D7",
+          "action": "Repique com cenários de 15% e 20%",
+          "goal": "Evitar surpresa na formalização"
+        },
+        {
+          "day": "D10",
+          "action": "Escalada executiva se não houver definição",
+          "goal": "Preservar prazo e capacidade"
+        }
+      ],
+      "emailDrafts": [
+        {
+          "id": "finance",
+          "audience": "Administrativo / Financeiro",
+          "subject": "Capacidade de garantia para a Concorrência 90326/2025 — BR-319/AM",
+          "body": "Prezado(a) {{decisor}},\n\nMeu nome é Ana Fonseca, Diretora Institucional da Vazquez & Fonseca.\n\nNosso monitor identificou a homologação, em 23/07/2026, da Concorrência Eletrônica nº 90326/2025 em favor da Construtora ETAM, no valor de R$ 329,13 milhões.\n\nO Termo de Referência prevê garantia de execução de 10%, equivalente a aproximadamente R$ 32,91 milhões. Há ainda uma divergência relevante: a cobertura adicional trabalhista aparece em 10% no item 4.28 e em 5% no item 4.30. Isso pode elevar a necessidade nominal total para uma faixa entre R$ 49,37 milhões e R$ 65,83 milhões.\n\nA Vazquez & Fonseca atua na concessão e gestão de limite, preparação da subscrição, estruturação da apólice e acompanhamento de aditivos durante toda a vigência. Podemos validar rapidamente o cenário correto e organizar a análise de capacidade antes que a formalização do contrato transforme o tema em urgência.\n\nEste assunto está sob sua responsabilidade? Se não, poderia me indicar quem conduz as garantias da operação?\n\nAtenciosamente,\n\nAna Fonseca\nDiretora Institucional\nVazquez & Fonseca"
+        },
+        {
+          "id": "legal",
+          "audience": "Jurídico / Contratos",
+          "subject": "Ponto contratual a validar — cobertura adicional de 5% ou 10%",
+          "body": "Prezado(a) {{decisor}},\n\nAcompanhamos a homologação da Concorrência Eletrônica nº 90326/2025 e identificamos um ponto que merece validação antes da emissão da garantia.\n\nO item 4.16 estabelece garantia de execução de 10%. Já a cobertura adicional trabalhista e previdenciária aparece em 10% no item 4.28 e em 5% no item 4.30, sob o título Garantia adicional.\n\nComo a diferença representa aproximadamente R$ 16,46 milhões de importância segurada, nossa recomendação é confirmar com o DNIT e com a minuta contratual qual redação prevalecerá, submetendo os dois cenários à seguradora enquanto a questão é esclarecida.\n\nA Vazquez & Fonseca pode apoiar essa leitura e estruturar a apólice de modo aderente à obrigação efetiva, evitando insuficiência ou contratação excessiva de cobertura.\n\nPodemos falar por 15 minutos?\n\nAtenciosamente,\n\nAna Fonseca\nDiretora Institucional\nVazquez & Fonseca"
+        },
+        {
+          "id": "commercial",
+          "audience": "Diretoria Comercial",
+          "subject": "A homologação ocorreu. A capacidade de garantia já está reservada?",
+          "body": "Prezado(a) {{decisor}},\n\nA Concorrência Eletrônica nº 90326/2025 foi homologada em favor da Construtora ETAM em 23/07/2026, no valor de R$ 329,13 milhões.\n\nA garantia principal estimada é de R$ 32,91 milhões e o Termo de Referência contém uma cobertura adicional que pode levar a necessidade total para R$ 49,37 milhões ou R$ 65,83 milhões, conforme a interpretação dos itens 4.28 e 4.30.\n\nNosso trabalho começa antes da emissão: organizamos limite, subscrição, negociação com seguradoras, redação da apólice e acompanhamento futuro de prazo, valor e aditivos. O objetivo é impedir que a garantia se torne o gargalo entre a homologação e a assinatura.\n\nQuem, na ETAM, está coordenando esse tema? Posso encaminhar o mapa objetivo da operação e o checklist para análise imediata.\n\nAtenciosamente,\n\nAna Fonseca\nDiretora Institucional\nVazquez & Fonseca"
+        }
+      ],
+      "evidence": [
+        {
+          "source": "PNCP / EVT-007",
+          "fact": "Homologação registrada em 23/07/2026 às 15:39.",
+          "confidence": "ALTA"
+        },
+        {
+          "source": "Termo de homologação",
+          "fact": "Valor homologado de R$ 329.133.053,97 e desconto aproximado de 0,05%.",
+          "confidence": "ALTA"
+        },
+        {
+          "source": "Termo de Referência",
+          "fact": "Garantia principal de 10%, prazo de 30 meses e extensão de 90 dias.",
+          "confidence": "ALTA"
+        },
+        {
+          "source": "Portal da Transparência",
+          "fact": "Sete contratos DNIT observados somando R$ 535,55 milhões na fonte consultada.",
+          "confidence": "ALTA"
+        },
+        {
+          "source": "Relatório institucional ETAM",
+          "fact": "Estrutura de governança, compliance, áreas comerciais, financeiras, jurídicas e operacionais.",
+          "confidence": "MEDIA_ALTA"
+        }
+      ]
+    }
+  }
+}

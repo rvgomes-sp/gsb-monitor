@@ -1,0 +1,303 @@
+﻿<!doctype html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>VIP | GSB Monitor</title>
+  <link rel="stylesheet" href="./assets/vip_monitor.css">
+</head>
+<body>
+  <div class="app">
+    <aside class="sidebar">
+      <div class="brand">
+        <div class="emblem"></div>
+        <h1>GSB Monitor</h1>
+        <span>VIP</span>
+      </div>
+
+      <nav class="nav">
+        <a class="active" href="#"><span class="nav-icon">⌂</span>Painel Executivo</a>
+        <a href="#"><span class="nav-icon">▦</span>Matriz de Eventos</a>
+        <a href="./roadmap.html"><span class="nav-icon">◷</span>Cronograma Executivo</a>
+        <a href="#"><span class="nav-icon">◇</span>Oportunidades</a>
+        <a href="#"><span class="nav-icon">◉</span>Monitoramento</a>
+        <a href="#"><span class="nav-icon">▧</span>Análises & Insights</a>
+        <a href="#"><span class="nav-icon">⌁</span>Mapas de Atuação</a>
+        <a href="#"><span class="nav-icon">◌</span>Alertas & Notificações</a>
+        <a href="#"><span class="nav-icon">☷</span>Relatórios</a>
+        <a href="#"><span class="nav-icon">⌘</span>Integrações</a>
+        <a href="#"><span class="nav-icon">⚙</span>Configurações</a>
+      </nav>
+
+      <div class="sidebar-footer">
+        VF<br>
+        INTELLIGENCE PLATFORM<br>
+        VIP
+      </div>
+    </aside>
+
+    <main class="main">
+      <header class="topbar">
+        <section class="title">
+          <h2 id="brand-title">VIP | GSB Monitor</h2>
+          <p id="brand-subtitle">Inteligência de Contratações Públicas & Seguro Garantia</p>
+        </section>
+
+        <label class="search">
+          <span>⌕</span>
+          <input id="opportunity-search" type="search" placeholder="Buscar empresa, órgão, processo ou objeto...">
+        </label>
+
+        <div class="userbox">
+          <div class="userbox-copy">
+            <strong id="operator-name">Operador local</strong><br>
+            <small id="operator-role">Ambiente de teste</small>
+          </div>
+          <div class="avatar" id="operator-initials">LOCAL</div>
+          <button class="logout-button" id="logout-button" type="button" title="Encerrar sessão">
+            <span aria-hidden="true">↪</span>
+            Sair
+          </button>
+        </div>
+      </header>
+
+      <section class="live-strip" aria-label="Situação operacional ao vivo">
+        <div class="live-clock">
+          <span id="live-date">—</span>
+          <strong id="live-time">--:--:--</strong>
+        </div>
+        <div class="signal-board">
+          <div class="signal signal-green"><i></i><span><strong id="signal-on-track">0</strong> em acompanhamento</span></div>
+          <div class="signal signal-yellow"><i></i><span><strong id="signal-due">0</strong> repiques hoje</span></div>
+          <div class="signal signal-red"><i></i><span><strong id="signal-overdue">0</strong> repiques vencidos</span></div>
+        </div>
+        <div class="ticker-window">
+          <div class="ticker-track" id="ticker-track">Inteligência que acompanha cada oportunidade.</div>
+        </div>
+      </section>
+
+      <section class="kpis" id="kpis"></section>
+
+      <section class="operations-kpis" id="operations-kpis">
+        <div class="card operations-kpi"><small>A preparar</small><strong id="ops-to-prepare">0</strong></div>
+        <div class="card operations-kpi"><small>Aguardando retorno</small><strong id="ops-waiting">0</strong></div>
+        <div class="card operations-kpi"><small>Propostas geradas</small><strong id="ops-proposals">0</strong></div>
+        <div class="card operations-kpi"><small>Negociações</small><strong id="ops-negotiations">0</strong></div>
+      </section>
+
+      <section class="grid">
+        <div>
+          <section class="card panel">
+            <h3 class="panel-title">Matriz de eventos & fluxo de monitoramento</h3>
+            <div class="queue-grid" id="queues"></div>
+
+            <div class="timeline">
+              <h3 class="panel-title">Pipeline completo de eventos</h3>
+              <div class="event-strip" id="events"></div>
+            </div>
+          </section>
+
+          <section class="card panel table-panel" id="opportunities-section">
+            <h3 class="panel-title">Oportunidades em monitoramento</h3>
+            <div class="route-navigation" id="route-navigation"></div>
+            <div class="table-scroll">
+              <table>
+                <thead>
+                  <tr>
+                    <th>Tomador e item</th>
+                    <th>Licitação</th>
+                    <th>Homologação</th>
+                    <th>Garantia e documentos</th>
+                    <th>Valor e rota</th>
+                    <th>Operação</th>
+                  </tr>
+                </thead>
+                <tbody id="opportunities"></tbody>
+              </table>
+            </div>
+            <nav class="opportunity-pagination" id="opportunity-pagination" aria-label="Paginação das oportunidades"></nav>
+          </section>
+        </div>
+
+        <aside class="side">
+          <section class="card panel">
+            <h3 class="panel-title">Insights inteligentes</h3>
+            <div class="insight-network">
+              <div id="insight-left"></div>
+              <div class="mini-emblem">GB</div>
+              <div id="insight-right"></div>
+            </div>
+          </section>
+
+          <section class="card panel map">
+            <h3 class="panel-title">Oportunidades monitoradas por órgão</h3>
+            <div class="map-shape"></div>
+            <div class="map-stats">
+              <div><strong id="summary-organs">—</strong><span>Órgãos</span></div>
+              <div><strong id="summary-states">—</strong><span>UFs</span></div>
+              <div><strong id="summary-opportunities">—</strong><span>Oportunidades</span></div>
+            </div>
+          </section>
+        </aside>
+      </section>
+
+      <footer class="footer">
+        <div class="motto">
+          Inteligência que protege. Dados que decidem. Oportunidades que transformam.
+        </div>
+        <div class="signature">
+          <strong id="signature-name">Ana Fonseca</strong>
+          <span id="signature-message">"...sabes muito bem tudo o que faço"</span>
+        </div>
+      </footer>
+    </main>
+  </div>
+
+  <div class="email-modal" id="email-modal" hidden>
+    <div class="email-modal-backdrop" data-close-email-modal></div>
+    <section class="email-composer" role="dialog" aria-modal="true" aria-labelledby="email-modal-title">
+      <header class="email-composer-header">
+        <div>
+          <small>Vazquez & Fonseca · abordagem institucional</small>
+          <h2 id="email-modal-title">Preparar e-mail</h2>
+        </div>
+        <button class="icon-button" type="button" data-close-email-modal aria-label="Fechar">×</button>
+      </header>
+
+      <div class="email-context" id="email-context"></div>
+
+      <label class="field">
+        <span>Decisor / destinatário</span>
+        <input id="email-decision-maker" type="text" placeholder="Nome do decisor">
+      </label>
+
+      <label class="field">
+        <span>E-mail do destinatário</span>
+        <input id="email-recipient" type="email" placeholder="decisor@empresa.com.br">
+      </label>
+
+      <label class="field">
+        <span>Assunto</span>
+        <input id="email-subject" type="text">
+      </label>
+
+      <label class="field">
+        <span>Mensagem editável</span>
+        <textarea id="email-body" rows="18"></textarea>
+      </label>
+
+      <div class="email-actions">
+        <button class="secondary-button" id="regenerate-email" type="button">Atualizar mensagem</button>
+        <button class="secondary-button" id="copy-subject" type="button">Copiar assunto</button>
+        <button class="primary-button" id="copy-email" type="button">Copiar mensagem</button>
+        <button class="primary-button" id="open-mail-client" type="button">Abrir no e-mail</button>
+        <button class="success-button" id="register-sent" type="button">Registrar como enviado</button>
+      </div>
+      <p class="copy-feedback" id="copy-feedback" aria-live="polite"></p>
+      <p class="email-safety">Rascunho local. Nenhum e-mail é enviado pelo monitor.</p>
+    </section>
+  </div>
+
+  <div class="portal-modal" id="outreach-modal" hidden>
+    <div class="portal-modal-backdrop" data-close-outreach></div>
+    <section class="portal-dialog" role="dialog" aria-modal="true" aria-labelledby="outreach-title">
+      <header class="email-composer-header">
+        <div><small>Controle comercial</small><h2 id="outreach-title">Contato e repique</h2></div>
+        <button class="icon-button" type="button" data-close-outreach aria-label="Fechar">×</button>
+      </header>
+      <div class="email-context" id="outreach-context"></div>
+      <div class="form-grid">
+        <label class="field"><span>Situação</span>
+          <select id="outreach-status">
+            <option value="NAO_INICIADO">Não iniciado</option>
+            <option value="EM_PREPARACAO">Em preparação</option>
+            <option value="PRONTO_PARA_ENVIO">Pronto para envio</option>
+            <option value="ENVIADO">Enviado</option>
+            <option value="AGUARDANDO_RETORNO">Aguardando retorno</option>
+            <option value="RESPONDEU">Respondeu</option>
+            <option value="PROPOSTA_EM_PREPARACAO">Proposta em preparação</option>
+            <option value="PROPOSTA_ENVIADA">Proposta enviada</option>
+            <option value="NEGOCIACAO">Negociação</option>
+            <option value="FECHADO">Fechado</option>
+            <option value="SEM_INTERESSE">Sem interesse</option>
+          </select>
+        </label>
+        <label class="field"><span>Próximo repique</span><input id="outreach-follow-up" type="date"></label>
+        <label class="field"><span>Decisor</span><input id="outreach-decision-maker" type="text"></label>
+        <label class="field"><span>E-mail</span><input id="outreach-email" type="email"></label>
+        <label class="field"><span>Telefone</span><input id="outreach-phone" type="text"></label>
+        <label class="field"><span>Último contato</span><input id="outreach-last-contact" type="datetime-local"></label>
+      </div>
+      <label class="field"><span>Observações</span><textarea id="outreach-notes" rows="6"></textarea></label>
+      <div class="email-actions">
+        <button class="secondary-button" type="button" data-close-outreach>Cancelar</button>
+        <button class="primary-button" id="save-outreach" type="button">Salvar controle</button>
+      </div>
+      <p class="copy-feedback" id="outreach-feedback" aria-live="polite"></p>
+    </section>
+  </div>
+
+  <div class="portal-modal" id="insights-modal" hidden>
+    <div class="portal-modal-backdrop" data-close-insights></div>
+    <section class="portal-dialog insights-dialog" role="dialog" aria-modal="true" aria-labelledby="insights-title">
+      <header class="email-composer-header">
+        <div><small>Inteligência da base homologada</small><h2 id="insights-title">Insights da empresa</h2></div>
+        <button class="icon-button" type="button" data-close-insights aria-label="Fechar">×</button>
+      </header>
+      <div id="company-insights"></div>
+    </section>
+  </div>
+
+  <div class="portal-modal" id="commercial-intelligence-modal" hidden>
+    <div class="portal-modal-backdrop" data-close-commercial-intelligence></div>
+    <section class="portal-dialog dossier-dialog" role="dialog" aria-modal="true" aria-labelledby="commercial-intelligence-title">
+      <header class="email-composer-header dossier-header">
+        <div>
+          <small>VF Commercial Intelligence · caso operacional</small>
+          <h2 id="commercial-intelligence-title">Dossiê comercial</h2>
+        </div>
+        <div class="dossier-header-actions">
+          <button class="secondary-button" id="print-commercial-intelligence" type="button">Imprimir dossiê</button>
+          <button class="icon-button" type="button" data-close-commercial-intelligence aria-label="Fechar">×</button>
+        </div>
+      </header>
+      <div id="commercial-intelligence-content"></div>
+      <p class="copy-feedback dossier-feedback" id="commercial-intelligence-feedback" aria-live="polite"></p>
+    </section>
+  </div>
+
+  <div class="portal-modal" id="proposal-modal" hidden>
+    <div class="portal-modal-backdrop" data-close-proposal></div>
+    <section class="portal-dialog proposal-dialog" role="dialog" aria-modal="true" aria-labelledby="proposal-title">
+      <header class="email-composer-header">
+        <div><small>Vazquez & Fonseca</small><h2 id="proposal-title">Gerar proposta numerada</h2></div>
+        <button class="icon-button" type="button" data-close-proposal aria-label="Fechar">×</button>
+      </header>
+      <div class="email-context" id="proposal-context"></div>
+      <div class="form-grid">
+        <label class="field"><span>Valor da contratação</span><input id="proposal-contract-value" type="number" min="0" step="0.01"></label>
+        <label class="field"><span>Garantia de execução (%)</span><input id="proposal-guarantee" type="number" min="0" max="30" step="0.01"></label>
+        <label class="field"><span>Taxa anual (%)</span><input id="proposal-rate" type="number" min="0" step="0.01" value="0.75"></label>
+        <label class="field"><span>Prazo (meses)</span><input id="proposal-term" type="number" min="1" step="1" value="12"></label>
+        <label class="field"><span>Decisor</span><input id="proposal-decision-maker" type="text"></label>
+      </div>
+      <label class="field"><span>Observações</span><textarea id="proposal-notes" rows="4"></textarea></label>
+      <div class="proposal-estimate" id="proposal-estimate"></div>
+      <div class="email-actions">
+        <button class="secondary-button" type="button" data-close-proposal>Cancelar</button>
+        <button class="primary-button" id="generate-proposal" type="button">Gerar número e proposta</button>
+      </div>
+      <p class="copy-feedback" id="proposal-feedback" aria-live="polite"></p>
+      <article class="proposal-output" id="proposal-output" hidden>
+        <div id="proposal-print-content"></div>
+        <div class="email-actions no-print">
+          <button class="secondary-button" id="copy-proposal" type="button">Copiar proposta</button>
+          <button class="primary-button" id="print-proposal" type="button">Imprimir / salvar PDF</button>
+        </div>
+      </article>
+    </section>
+  </div>
+
+  <script type="module" src="./assets/vip_monitor.js"></script>
+</body>
+</html>
