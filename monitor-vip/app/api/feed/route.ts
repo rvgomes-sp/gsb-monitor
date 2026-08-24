@@ -1,45 +1,41 @@
-import { asc } from "drizzle-orm";
-import { getDb } from "../../../db";
-import { ensureDatabase } from "../../../db/runtime";
-import { documents, feedMetadata, opportunities } from "../../../db/schema";
+import { getSql } from "../../../db";
 import { requireAuthenticatedSession } from "../../../lib/require-session";
 
+// SQL cru (postgres-js) — o pooler de transação do Supabase não suporta os
+// prepared statements que o drizzle emite; raw sql é o caminho comprovado.
 export async function GET() {
   const guard = await requireAuthenticatedSession();
   if (!guard.ok) return guard.response;
   try {
-    await ensureDatabase();
-    const db = getDb();
-    const [metadataRows, rows, documentRows] = await Promise.all([
-      db.select().from(feedMetadata),
-      db.select().from(opportunities).orderBy(asc(opportunities.position)),
-      db.select().from(documents).orderBy(asc(documents.createdAt)),
+    const sql = getSql();
+    const [metaRows, rows, documentRows] = await Promise.all([
+      sql`SELECT payload_json, updated_at FROM monitor.feed_metadata WHERE id = 1`,
+      sql`SELECT process_id, payload_json FROM monitor.opportunities ORDER BY position ASC`,
+      sql`SELECT process_id, label, object_key FROM monitor.documents ORDER BY created_at ASC`,
     ]);
     if (!rows.length) {
       return Response.json({ error: "Feed ainda não sincronizado." }, { status: 404 });
     }
-    const metadata = metadataRows[0]
-      ? JSON.parse(metadataRows[0].payloadJson)
-      : {};
+    const metadata = metaRows[0]?.payload_json ? JSON.parse(metaRows[0].payload_json) : {};
     const documentsByProcess = new Map<string, Array<{ label: string; url: string }>>();
     for (const document of documentRows) {
-      const list = documentsByProcess.get(document.processId) ?? [];
+      const list = documentsByProcess.get(document.process_id) ?? [];
       list.push({
         label: document.label,
-        url: `/api/document?key=${encodeURIComponent(document.objectKey)}`,
+        url: `/api/document?key=${encodeURIComponent(document.object_key)}`,
       });
-      documentsByProcess.set(document.processId, list);
+      documentsByProcess.set(document.process_id, list);
     }
     return Response.json({
       ...metadata,
       opportunities: rows.map((row) => {
-        const item = JSON.parse(row.payloadJson);
+        const item = JSON.parse(row.payload_json);
         return {
           ...item,
-          documentos: documentsByProcess.get(row.processId) ?? item.documentos ?? [],
+          documentos: documentsByProcess.get(row.process_id) ?? item.documentos ?? [],
         };
       }),
-      cloud: { storage: "D1", updated_at: metadataRows[0]?.updatedAt ?? "" },
+      cloud: { storage: "Supabase", updated_at: metaRows[0]?.updated_at ?? "" },
     });
   } catch (error) {
     return Response.json(

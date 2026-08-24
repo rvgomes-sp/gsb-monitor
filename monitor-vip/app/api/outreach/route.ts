@@ -1,8 +1,5 @@
 import { cookies } from "next/headers";
-import { eq } from "drizzle-orm";
-import { getDb } from "../../../db";
-import { ensureDatabase } from "../../../db/runtime";
-import { outreach, outreachHistory } from "../../../db/schema";
+import { getSql } from "../../../db";
 import {
   portalProfile,
   SESSION_COOKIE,
@@ -29,7 +26,7 @@ export async function POST(request: Request) {
   const guard = await requireAuthenticatedSession();
   if (!guard.ok) return guard.response;
   try {
-    await ensureDatabase();
+    const sql = getSql();
     const payload = await request.json() as {
       process_id?: string;
       data?: Record<string, unknown>;
@@ -43,55 +40,39 @@ export async function POST(request: Request) {
     }
 
     const now = new Date().toISOString();
-    const db = getDb();
-    const [previous] = await db.select().from(outreach).where(eq(outreach.processId, processId));
-    const operator = await authenticatedOperator(data.operator ?? previous?.operator);
-    const record = {
-      processId,
+    const prev = (await sql`SELECT * FROM monitor.outreach WHERE process_id = ${processId}`)[0];
+    const operator = await authenticatedOperator(data.operator ?? prev?.operator);
+    const rec = {
       status,
-      decisionMaker: String(data.decision_maker ?? previous?.decisionMaker ?? "").trim(),
-      email: String(data.email ?? previous?.email ?? "").trim(),
-      phone: String(data.phone ?? previous?.phone ?? "").trim(),
-      lastContactAt: String(data.last_contact_at ?? previous?.lastContactAt ?? "").trim(),
-      sentAt: String(
-        data.sent_at ??
-        previous?.sentAt ??
-        (status === "ENVIADO" ? now : ""),
-      ).trim(),
-      nextFollowUpAt: String(data.next_follow_up_at ?? previous?.nextFollowUpAt ?? "").trim(),
-      subject: String(data.subject ?? previous?.subject ?? "").trim(),
-      body: String(data.body ?? previous?.body ?? "").trim(),
-      notes: String(data.notes ?? previous?.notes ?? "").trim(),
+      decision_maker: String(data.decision_maker ?? prev?.decision_maker ?? "").trim(),
+      email: String(data.email ?? prev?.email ?? "").trim(),
+      phone: String(data.phone ?? prev?.phone ?? "").trim(),
+      last_contact_at: String(data.last_contact_at ?? prev?.last_contact_at ?? "").trim(),
+      sent_at: String(data.sent_at ?? prev?.sent_at ?? (status === "ENVIADO" ? now : "")).trim(),
+      next_follow_up_at: String(data.next_follow_up_at ?? prev?.next_follow_up_at ?? "").trim(),
+      subject: String(data.subject ?? prev?.subject ?? "").trim(),
+      body: String(data.body ?? prev?.body ?? "").trim(),
+      notes: String(data.notes ?? prev?.notes ?? "").trim(),
       operator,
-      createdAt: previous?.createdAt ?? now,
-      updatedAt: now,
+      created_at: prev?.created_at ?? now,
+      updated_at: now,
     };
-    await db.insert(outreach).values(record).onConflictDoUpdate({
-      target: outreach.processId,
-      set: {
-        status: record.status,
-        decisionMaker: record.decisionMaker,
-        email: record.email,
-        phone: record.phone,
-        lastContactAt: record.lastContactAt,
-        sentAt: record.sentAt,
-        nextFollowUpAt: record.nextFollowUpAt,
-        subject: record.subject,
-        body: record.body,
-        notes: record.notes,
-        operator: record.operator,
-        updatedAt: record.updatedAt,
-      },
-    });
-    await db.insert(outreachHistory).values({
-      processId,
-      at: now,
-      event: "OUTREACH_UPDATED",
-      fieldsJson: JSON.stringify(Object.keys(data).sort()),
-      status,
-      operator: record.operator,
-    });
-    return Response.json({ status: "OK", record });
+    await sql`INSERT INTO monitor.outreach(
+      process_id,status,decision_maker,email,phone,last_contact_at,sent_at,
+      next_follow_up_at,subject,body,notes,operator,created_at,updated_at
+    ) VALUES(
+      ${processId}, ${rec.status}, ${rec.decision_maker}, ${rec.email}, ${rec.phone},
+      ${rec.last_contact_at}, ${rec.sent_at}, ${rec.next_follow_up_at}, ${rec.subject},
+      ${rec.body}, ${rec.notes}, ${rec.operator}, ${rec.created_at}, ${rec.updated_at}
+    ) ON CONFLICT(process_id) DO UPDATE SET
+      status=excluded.status, decision_maker=excluded.decision_maker, email=excluded.email,
+      phone=excluded.phone, last_contact_at=excluded.last_contact_at, sent_at=excluded.sent_at,
+      next_follow_up_at=excluded.next_follow_up_at, subject=excluded.subject, body=excluded.body,
+      notes=excluded.notes, operator=excluded.operator, updated_at=excluded.updated_at`;
+    await sql`INSERT INTO monitor.outreach_history(process_id,at,event,fields_json,status,operator)
+      VALUES(${processId}, ${now}, ${"OUTREACH_UPDATED"},
+             ${JSON.stringify(Object.keys(data).sort())}, ${status}, ${rec.operator})`;
+    return Response.json({ status: "OK", record: { processId, ...rec } });
   } catch (error) {
     return Response.json(
       { error: error instanceof Error ? error.message : "Falha ao salvar." },
