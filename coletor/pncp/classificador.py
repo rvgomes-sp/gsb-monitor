@@ -61,6 +61,14 @@ SERVICO_NEG = ["consultoria", "assessoria", "apoio tecnico", "servico tecnico", 
 # manutenção predial (limítrofe)
 MANUT_PREDIAL = ["predial", "bens imoveis", "imoveis", "corretiva", "preventiva",
                  "infraestrutura predial", "predios"]
+# serviços "duros" cujo objeto-NÚCLEO nunca é obra, mesmo que citem manutenção incidental
+HARD_SERVICO = ["alimentacao escolar", "merenda", "generos aliment", "nutric", "refeic",
+                "alimentacao", "transporte escolar", "limpeza urbana", "coleta de residuo",
+                "coleta de lixo", "vigilancia", "seguranca patrimonial", "portaria",
+                "brigada", "call center", "telemarketing", "mao de obra terceiriz"]
+# verbos que caracterizam ATIVIDADE de obra (para distinguir de simples fornecimento de produto)
+ATIVIDADE_OBRA = ["pavimenta", "recapea", "execucao", "construcao", "construir", "reforma",
+                  "obra", "terraplan", "drenagem", "edifica", "implanta", "restaura", "recupera"]
 # empreitada / execução completa: a CONTRATADA fornece material E mão de obra para
 # EXECUTAR o objeto (positivo de obra). NÃO confundir com 'aquisição de material'
 # (o órgão comprando material = negativo). Reforça obra quando há verbo de execução.
@@ -111,6 +119,18 @@ def classificar_objeto(texto: str) -> tuple[str, str]:
     #    Ressalva: 'fornecimento de materiais e mão de obra' é a CONTRATADA executando -> NÃO é compra.
     if _tem(t, ["aquisic", "compra de"]) and "materia" in t and not empreitada:
         return NEGATIVO_MATERIAL, "aquisição de material (verbo de compra pelo órgão)"
+
+    # 3b) serviços DUROS não-obra (alimentação, limpeza, vigilância, transporte...) -> serviço.
+    #     Objeto-núcleo domina manutenção/execução incidental de equipamentos.
+    if _tem(t, HARD_SERVICO):
+        return NEGATIVO_SERVICO, "serviço não-obra (alimentação/limpeza/vigilância/transporte)"
+
+    # 3c) FORNECIMENTO/aquisição de PRODUTO (sem empreitada, sem atividade de obra) -> material.
+    #     Pega 'fornecimento de cimento asfáltico' (o 'asfalt' é adjetivo do produto, não a obra).
+    supply = _tem(t, ["fornecimento de", "aquisic", "compra de", "propostas para fornecimento",
+                      "aquisicao de", "registro de precos para fornecimento"])
+    if supply and not empreitada and not _tem(t, ATIVIDADE_OBRA):
+        return NEGATIVO_MATERIAL, "fornecimento/aquisição de produto (sem execução de obra)"
 
     # 4) manutenção de praças/parques ou consultoria/serviço técnico -> negativo
     if "manuten" in t and _tem(t, MANUT_SERVICO):

@@ -76,6 +76,18 @@
      "classe_esperada": "LIMITROFE",
      "sinais_positivos": ["engenharia", "fornecimento de materiais/insumos/equipamentos"],
      "sinais_negativos": ["manutenção predial", "bens imóveis (manutenção, não construção)"],
-     "regra_testada": "manutenção predial com materiais — limítrofe; 'execução+material+mão de obra' sozinho NÃO basta (cf. serralheria)"}
+     "regra_testada": "manutenção predial com materiais — limítrofe; 'execução+material+mão de obra' sozinho NÃO basta (cf. serralheria)"},
+
+    {"id": "prod_aracaju_alimentacao", "arquivo": "(produção 20/08/2026, mod 6)",
+     "objeto": "CONTRATAÇÃO DE SERVIÇO CONTÍNUO DE FORNECIMENTO DE ALIMENTAÇÃO ESCOLAR, INCLUINDO PRÉ-PREPARO, PREPARO E DISTRIBUIÇÃO, COM FORNECIMENTO DOS GÊNEROS ALIMENTÍCIOS, EQUIPAMENTOS COM A MANUTENÇÃO PREVENTIVA/CORRETIVA DESTES, LIMPEZA, LOGÍSTICA, SUPERVISÃO",
+     "classe_esperada": "NEGATIVO_SERVICO",
+     "sinais_negativos": ["alimentação escolar", "serviço contínuo", "gêneros alimentícios"],
+     "regra_testada": "ERRO DE PRODUÇÃO: objeto-núcleo (merenda) domina a manutenção INCIDENTAL de equipamentos; não é obra"},
+
+    {"id": "prod_cimento_asfaltico", "arquivo": "(produção 20/08/2026, mod 6)",
+     "objeto": "Seleção de propostas para fornecimento de Cimento Asfáltico de Petróleo (CAP)",
+     "classe_esperada": "NEGATIVO_MATERIAL",
+     "sinais_negativos": ["fornecimento de", "cimento asfáltico (produto, não pavimentação)"],
+     "regra_testada": "ERRO DE PRODUÇÃO: 'asfalt' é adjetivo do produto fornecido, não a atividade de obra -> material"}
   ]
 }
