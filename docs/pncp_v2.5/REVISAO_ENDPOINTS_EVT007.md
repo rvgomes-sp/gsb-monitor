@@ -241,4 +241,11 @@ caem em **"monitorado/pendente"** até enriquecimento (leitura de edital). **Dec
     inclusões de resultado em D → drill 10.13/10.17 só desses itens. Guardamos `dataResultado` **e**
     `dataInclusao`. Retificação/exclusão (tipo 1/2) **não** dispara oportunidade nova.
 
+12. **Pipeline em 3 estágios com TRIAGEM (Rodrigo, 2026-08-24).**
+    `Coleta → Supabase (licitacoes) → TRIAGEM → Monitor`. O monitor **não** exibe a coleta crua:
+    entre o banco vivo e o monitor há uma etapa de **triagem/qualificação** que refina o que vira
+    oportunidade. Materialização: tabela `licitacoes.oportunidades` (casos aprovados na triagem,
+    com status/decisão); o monitor lê **somente** dela. A triagem começa manual/assistida e evolui
+    para regras automáticas conforme o modelo ideal se consolida.
+
 **TODAS as decisões de coleta estão fechadas — pronto para construir o Motor de Coleta.**
