@@ -1,9 +1,25 @@
 import { getSql } from "./index";
 
+let done = false;
 let ready: Promise<void> | null = null;
 
 export function ensureDatabase(): Promise<void> {
-  if (!ready) ready = initialize();
+  // As tabelas já existem em produção; o bootstrap é só uma rede de segurança.
+  // Nunca reter uma promise pendurada/falhada (envenenaria a instância inteira).
+  if (done) return Promise.resolve();
+  if (!ready) {
+    ready = Promise.race([
+      initialize().then(() => {
+        done = true;
+      }),
+      new Promise<void>((_, reject) =>
+        setTimeout(() => reject(new Error("bootstrap do banco excedeu 8s")), 8000),
+      ),
+    ]).catch((error) => {
+      ready = null; // permite nova tentativa no próximo request
+      throw error;
+    });
+  }
   return ready;
 }
 
