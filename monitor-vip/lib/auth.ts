@@ -72,12 +72,12 @@ export type PortalProfile = {
 };
 
 const portalProfiles: Record<string, Omit<PortalProfile, "email">> = {
-  "rvgomes.sp@gmail.com": {
+  "rodrigo.vazquez@vazquezefonseca.com.br": {
     name: "Rodrigo Vazquez",
     role: "Diretor do Projeto",
     initials: "RV",
   },
-  "ana.fonseca@garantiasembarreiras.com": {
+  "ana.fonseca@vazquezefonseca.com.br": {
     name: "Ana Fonseca",
     role: "Diretora Institucional",
     initials: "AF",
