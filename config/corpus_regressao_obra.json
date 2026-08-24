@@ -1,0 +1,81 @@
+{
+  "_descricao": "Golden set de regressão do classificador de obra (EVT-007). Cada caso vem de um edital real extraído por Rodrigo (pasta Editais/). classe_esperada é o rótulo humano; o classificador.py v2 deve reproduzi-lo. Objetivo: fechar a regra SEM overfitting — patch só é aceito se preservar positivos e eliminar negativos conhecidos.",
+  "_classes": ["POSITIVO_OBRA", "POSITIVO_ENGENHARIA_EXECUTIVA", "NEGATIVO_MATERIAL", "NEGATIVO_SERVICO", "NEGATIVO_PROJETO_SEM_EXECUCAO", "LIMITROFE"],
+  "casos": [
+    {"id": "ed26_mel", "arquivo": "26)...CONCORRENCIA...007-2024-CP.pdf",
+     "objeto": "Contratação de Empresa de Engenharia para execução dos serviços de Construção de Uma Unidade de Beneficiamento de Mel, com fornecimento de materiais e mão de obra",
+     "classe_esperada": "POSITIVO_OBRA",
+     "sinais_positivos": ["execução", "construção", "fornecimento de materiais e mão de obra"],
+     "regra_testada": "construção física + materiais + mão de obra = obra"},
+
+    {"id": "ed28_rodovia", "arquivo": "28_2020.pdf",
+     "objeto": "Obra rodoviária BR-158/262/MS, trecho Entr. BR-158/MS - Div. SP/MS",
+     "classe_esperada": "POSITIVO_OBRA",
+     "sinais_positivos": ["rodovia", "trecho", "km"],
+     "regra_testada": "obra rodoviária (unidade KM, semântica rodovia)"},
+
+    {"id": "ed_reforma_vestiarios", "arquivo": "EDITAL RETIFICADO.pdf",
+     "objeto": "Serviços de engenharia para a REFORMA dos vestiários 3 e 4 do centro esportivo e reforma do vestiário do campo de futebol",
+     "classe_esperada": "POSITIVO_OBRA",
+     "sinais_positivos": ["reforma", "engenharia"],
+     "regra_testada": "reforma predial física = obra"},
+
+    {"id": "ed21_inmetro", "arquivo": "EDITAL_21_2025.pdf",
+     "objeto": "Serviços comuns de engenharia sob demanda para adequação, adaptação e revitalização da infraestrutura predial, elétrica, pavimentação",
+     "classe_esperada": "POSITIVO_OBRA",
+     "sinais_positivos": ["revitalização", "pavimentação", "infraestrutura predial", "engenharia"],
+     "regra_testada": "revitalização/pavimentação predial = obra (mesmo em pregão/SRP)"},
+
+    {"id": "ed10_reparos_escolas", "arquivo": "Edital 10 00037 24 01 Ata de Obras.pdf",
+     "objeto": "Ata de registro de preços para EXECUÇÃO de pequenos serviços de engenharia relativos a reparos e correções nos prédios escolares e administrativos, empreitada",
+     "classe_esperada": "POSITIVO_OBRA",
+     "sinais_positivos": ["execução", "reparos e correções", "prédios", "empreitada"],
+     "regra_testada": "execução física de reparos prediais por empreitada = obra"},
+
+    {"id": "ed_casas_minha_casa", "arquivo": "EditalChamamentoPublicoCasasMinhaCasa.pdf",
+     "objeto": "Seleção de empresas de construção civil para elaboração de projetos e posterior construção de 150 unidades habitacionais",
+     "classe_esperada": "POSITIVO_OBRA",
+     "sinais_positivos": ["construção civil", "construção de 150 unidades", "projetos E posterior construção"],
+     "regra_testada": "projeto + posterior construção (design+build) = obra"},
+
+    {"id": "ed_mercado_popular", "arquivo": "Edital_CONCORRENCIA_Construcao_do_Mercado_Popular.pdf",
+     "objeto": "Contratação de empresa especializada no ramo de engenharia para a construção de um mercado popular, empreitada por preço unitário",
+     "classe_esperada": "POSITIVO_OBRA",
+     "sinais_positivos": ["construção", "empreitada"],
+     "regra_testada": "construção de edificação = obra"},
+
+    {"id": "ed25_pregao90012", "arquivo": "25. Edital Pregão 90.012-2025 UASG 160384.pdf",
+     "objeto": "Contratação de serviços comuns de engenharia a serem realizados nas unidades",
+     "classe_esperada": "POSITIVO_ENGENHARIA_EXECUTIVA",
+     "sinais_positivos": ["serviços de engenharia", "a serem realizados/executados"],
+     "regra_testada": "serviços de engenharia com execução (não só projeto)"},
+
+    {"id": "pe90013_projeto_acessibilidade", "arquivo": "P.E.90013.26.retificado.pdf",
+     "objeto": "Contratação de empresa para prestação de serviços de Arquitetura ou Engenharia para Elaboração de Projeto Básico e Executivo para Acessibilidade de 99 unidades escolares",
+     "classe_esperada": "NEGATIVO_PROJETO_SEM_EXECUCAO",
+     "sinais_positivos": ["engenharia"],
+     "sinais_negativos": ["elaboração de projeto", "sem execução física", "projeto básico e executivo (isolado)"],
+     "regra_testada": "CHAVE: 'elaboração de projeto' SEM 'execução/construção' e SEM 'contratação integrada' -> NEGATIVO. Distingue de design+build."},
+
+    {"id": "ed_jatai_pracas", "arquivo": "EDITAL.pdf",
+     "objeto": "Serviços contínuos de manutenção completa de praças e parques públicos do Município de Jataí, com disponibilização de equipes",
+     "classe_esperada": "NEGATIVO_SERVICO",
+     "sinais_positivos": [],
+     "sinais_negativos": ["manutenção de praças e parques", "serviços contínuos", "disponibilização de equipes (mão de obra contínua)"],
+     "regra_testada": "manutenção de praças/parques/jardinagem = serviço contínuo, não obra"},
+
+    {"id": "pe90009_nav_manut_corretiva", "arquivo": "PE 90009 2026 Serviços_engenharia (SRP).pdf",
+     "objeto": "Empresa de engenharia para execução de serviços comuns de engenharia destinados à manutenção corretiva em dependências da NAV Brasil (SRP)",
+     "classe_esperada": "LIMITROFE",
+     "sinais_positivos": ["execução", "engenharia"],
+     "sinais_negativos": ["manutenção corretiva", "SRP (registro de preços)"],
+     "regra_testada": "manutenção corretiva de engenharia — obra-adjacente; depende de escala/execução física"},
+
+    {"id": "prg90046_cindacta_mnt_predial", "arquivo": "PRG SRP 90046-2025 MNT PREDIAL CINDACTA 3.pdf",
+     "objeto": "Serviço comum de engenharia para manutenção dos bens imóveis (CINDACTA III), incluindo fornecimento de materiais, insumos, equipamentos",
+     "classe_esperada": "LIMITROFE",
+     "sinais_positivos": ["engenharia", "fornecimento de materiais/insumos/equipamentos"],
+     "sinais_negativos": ["manutenção predial", "bens imóveis (manutenção, não construção)"],
+     "regra_testada": "manutenção predial com materiais — limítrofe; 'execução+material+mão de obra' sozinho NÃO basta (cf. serralheria)"}
+  ]
+}
