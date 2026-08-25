@@ -56,10 +56,10 @@ class ClientePNCP:
     """
     timeout: float = 25.0
     tentativas: int = 3
-    pausa_base: float = 0.4          # delay base entre chamadas (s)
-    jitter: float = 0.4              # + aleatório [0, jitter]
-    breaker_limite: int = 5          # timeouts consecutivos p/ acionar breaker
-    breaker_cooldown: float = 120.0  # cooldown do breaker (s)
+    pausa_base: float = 1.5          # delay base entre chamadas (s) — PNCP estrangula sob carga
+    jitter: float = 1.5              # + aleatório [0, jitter]
+    breaker_limite: int = 4          # timeouts consecutivos p/ acionar breaker
+    breaker_cooldown: float = 90.0   # cooldown do breaker (s)
     verboso: bool = False
     _cli: httpx.Client = field(default=None, repr=False)
     evidencias: list[Evidencia] = field(default_factory=list, repr=False)
