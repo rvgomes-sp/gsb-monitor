@@ -1,0 +1,159 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>GSB Monitor | EVT-007 — Homologação Assimétrica</title>
+  <link rel="stylesheet" href="./assets/evt007_assimetrica.css">
+</head>
+<body>
+  <div class="app-shell">
+    <aside class="sidebar">
+      <div class="brand-lockup">
+        <div class="brand-orb">GB</div>
+        <div>
+          <strong>GSB MONITOR</strong>
+          <span>LICITAÇÃO ASSIMÉTRICA</span>
+        </div>
+      </div>
+      <p class="brand-motto">Os fatos não mudam.<br><em>Muda a compreensão.</em></p>
+      <nav class="nav">
+        <a class="active" href="#overview">Visão Executiva</a>
+        <a href="#opportunities">Oportunidades</a>
+        <a href="#intelligence">Inteligência & Insights</a>
+        <a href="#monitoring">Monitoramento</a>
+        <a href="#actions">Ações & Follow-up</a>
+      </nav>
+      <div class="sidebar-foot">
+        <small>VF Intelligence Platform</small>
+        <strong>EVT-007</strong>
+        <span>Homologação</span>
+      </div>
+    </aside>
+
+    <main class="main">
+      <header class="topbar">
+        <div>
+          <div class="eyebrow">GSB Monitor · Licitação Assimétrica</div>
+          <h1>EVT-007 — Homologação</h1>
+          <p>Transformar um fato público em uma oportunidade qualificada de receita.</p>
+        </div>
+        <div class="top-actions">
+          <label class="search"><span>⌕</span><input id="search" type="search" placeholder="Buscar empresa, órgão, edital ou objeto..."></label>
+          <button class="ghost" id="refresh" type="button">Atualizar</button>
+        </div>
+      </header>
+
+      <section class="principle-banner" id="overview">
+        <div>
+          <span class="micro">PERGUNTA CENTRAL</span>
+          <strong>Qual fragilidade escondida existe entre a vitória e a assinatura do contrato?</strong>
+        </div>
+        <p>A homologação é o gatilho. A oportunidade nasce quando existe assimetria, urgência, desencaixe ou necessidade provável de intervenção.</p>
+      </section>
+
+      <section class="kpi-grid" id="kpis">
+        <article class="kpi-card"><span>Oportunidades EVT-007</span><strong id="kpi-open">—</strong><small>abertas</small></article>
+        <article class="kpi-card"><span>Assimetria alta</span><strong id="kpi-asym">—</strong><small>prioridade</small></article>
+        <article class="kpi-card"><span>RNA elevado</span><strong id="kpi-rna">—</strong><small>risco &gt; 60</small></article>
+        <article class="kpi-card"><span>Missão potencial</span><strong id="kpi-mission">—</strong><small>IPM &gt; 50</small></article>
+        <article class="kpi-card money"><span>Garantias potenciais</span><strong id="kpi-guarantee">—</strong><small>estimativa</small></article>
+        <article class="kpi-card money"><span>Receita potencial</span><strong id="kpi-revenue">—</strong><small>grupo</small></article>
+      </section>
+
+      <section class="decision-layout">
+        <article class="hero-card" id="hero-card">
+          <header class="section-head">
+            <div><span class="micro">OPORTUNIDADE DESTAQUE</span><h2 id="hero-company">Selecione uma oportunidade</h2></div>
+            <span class="status-pill" id="hero-status">EVT-007</span>
+          </header>
+          <div class="hero-grid">
+            <div class="facts-grid">
+              <div><span>Órgão</span><strong id="hero-org">—</strong></div>
+              <div><span>Edital / Processo</span><strong id="hero-process">—</strong></div>
+              <div class="wide"><span>Objeto</span><strong id="hero-object">—</strong></div>
+              <div><span>Homologação</span><strong id="hero-date">—</strong></div>
+              <div><span>Valor homologado</span><strong id="hero-value">—</strong></div>
+              <div><span>Prazo</span><strong id="hero-term">—</strong></div>
+              <div><span>Local</span><strong id="hero-place">—</strong></div>
+            </div>
+            <div class="economic-card">
+              <span class="micro">ESTRUTURA ECONÔMICA</span>
+              <div class="economic-main"><span>Valor da contratação</span><strong id="econ-contract">—</strong></div>
+              <div class="economic-row"><span>Garantia estimada</span><strong id="econ-guarantee">—</strong></div>
+              <div class="economic-row"><span>Percentual</span><strong id="econ-percent">—</strong></div>
+              <div class="economic-row"><span>Potencial do Grupo</span><strong id="econ-total">—</strong></div>
+              <div class="route-box"><span>Rota recomendada</span><strong id="route-model">A confirmar</strong><small id="route-why">Aguardando inteligência.</small></div>
+            </div>
+          </div>
+        </article>
+
+        <aside class="asymmetry-card" id="intelligence">
+          <header class="section-head"><div><span class="micro">ASSIMETRIAS IDENTIFICADAS</span><h3>Onde está a dor?</h3></div></header>
+          <div id="asymmetry-list" class="asymmetry-list"></div>
+          <div class="dominant-box"><span>Assimetria dominante</span><strong id="dominant-asym">A confirmar</strong></div>
+        </aside>
+      </section>
+
+      <section class="analysis-grid">
+        <article class="card kpi-analysis">
+          <header class="section-head"><div><span class="micro">KPIs DO EVENTO</span><h3>Intensidade da intervenção</h3></div></header>
+          <div class="score-grid" id="score-grid"></div>
+        </article>
+        <article class="card perspective-card">
+          <div class="perspective market">
+            <span class="micro">O QUE O MERCADO PROVAVELMENTE ENXERGARÁ</span>
+            <ul id="market-view"></ul>
+          </div>
+          <div class="perspective system">
+            <span class="micro">O QUE O SISTEMA IDENTIFICOU</span>
+            <ul id="system-view"></ul>
+          </div>
+        </article>
+      </section>
+
+      <section class="mission-grid">
+        <article class="card mission-card">
+          <span class="micro">POTENCIAL DE MISSÃO</span>
+          <div class="mission-score"><strong id="ipm-score">—</strong><span>/100</span></div>
+          <h3 id="ipm-label">A confirmar</h3>
+          <p id="ipm-explanation">O sistema ainda está reunindo evidências suficientes para recomendar a rota.</p>
+        </article>
+        <article class="card neck-card">
+          <span class="micro">A CORDA NO PESCOÇO</span>
+          <h3>O que pode impedir esta homologação de virar contrato?</h3>
+          <ul id="neck-list"></ul>
+          <div class="pressure"><span>Pressão</span><strong id="pressure-level">A confirmar</strong></div>
+        </article>
+        <article class="card action-card" id="actions">
+          <span class="micro">AÇÃO RECOMENDADA</span>
+          <h3 id="next-action-title">Próximo passo</h3>
+          <p id="next-action-copy">Selecione uma oportunidade para receber a recomendação.</p>
+          <div class="action-buttons">
+            <button type="button" data-action="document">Buscar e ler edital</button>
+            <button type="button" data-action="decision-maker">Buscar decisor</button>
+            <button type="button" data-action="email">Preparar e-mail</button>
+            <button type="button" data-action="proposal">Gerar proposta</button>
+            <button type="button" data-action="follow-up">Registrar follow-up</button>
+          </div>
+        </article>
+      </section>
+
+      <section class="card opportunities-card" id="opportunities">
+        <header class="section-head">
+          <div><span class="micro">OPORTUNIDADES EVT-007</span><h3>Prioridade explicada, não apenas ordenada</h3></div>
+          <span class="count" id="opportunity-count">0 oportunidades</span>
+        </header>
+        <div class="opportunity-list" id="opportunity-list"></div>
+      </section>
+
+      <footer class="footer" id="monitoring">
+        <span>GSB — Licitação Assimétrica</span>
+        <strong>Os fatos não mudam. Muda a compreensão.</strong>
+        <small id="data-status">Carregando fonte...</small>
+      </footer>
+    </main>
+  </div>
+  <script type="module" src="./assets/evt007_assimetrica.js"></script>
+</body>
+</html>
