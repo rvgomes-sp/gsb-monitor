@@ -1,0 +1,7 @@
+<!doctype html><html lang="pt-BR"><head><meta charset="utf-8"><meta name="robots" content="noindex,nofollow"><title>GSB — validação visual</title><style>html,body{margin:0;padding:0;background:#080a0b}iframe{display:block;border:0}</style></head><body><iframe title="Tela real no viewport de aceite" id="acceptance-frame"></iframe><script>
+// Harness de leitura para o Preview. Não altera a aplicação nem usa fixtures.
+const q=new URLSearchParams(location.search),sizes={'1920':[1920,1080],'1600':[1600,900],'1366':[1366,768]},size=sizes[q.get('width')]||sizes['1920'];
+const pages={investigation:'investigacao_evt007.html',ana:'carteira_ana.html'},page=pages[q.get('view')]||pages.investigation;
+const frame=document.querySelector('iframe');frame.width=size[0];frame.height=size[1];document.body.style.width=size[0]+'px';document.body.style.height=size[1]+'px';
+const src=new URL(page,location.href);if(q.has('case_id'))src.searchParams.set('case_id',q.get('case_id'));frame.src=src.href;document.title=`GSB · ${page} · ${size[0]} × ${size[1]}`;
+</script></body></html>
