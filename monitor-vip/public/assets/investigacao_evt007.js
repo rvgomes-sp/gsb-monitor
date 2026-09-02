@@ -6,7 +6,7 @@ document.querySelector('#app').innerHTML=shell('investigation');
 function render(contract,context,item){
  const v=makeView(contract,context,item),{field,fields,card,action,remaining}=v;
  const futureBlock=(key,kicker,title,prefix,ids,extra={})=>card({key,kicker,title,ids,more:remaining('investigation',prefix,ids),...extra});
- const event=['I0101','I0103','I0104','I0107','I0108','I0701','I0116','I0122'];
+ const event=['I0101','I0103','I0104','I0107','I0108','I0701'];
  const pains=['I1201','I1202','I1203','I1205','I1206','I1207'];
  const nav=[['company','Tomador'],['contracts','Carteira contratual'],['operational','Operacional'],['friction','Contratual'],['guarantee','Garantia & seguradora'],['signature','Assinatura'],['decision','Decisores'],['evidence','Evidências'],['attack','Plano de ação']];
  document.querySelector('#dossier-content').innerHTML=`
@@ -22,7 +22,7 @@ function render(contract,context,item){
  ${futureBlock('company','03 · Perfil do tomador','Empresa & histórico','03',['I0301','I0302','I0303','I0316'],{actionId:'N008',actionLabel:'Ver organograma',reason:'Aguardando integração OSINT'})}
  ${futureBlock('contracts','04 · Ciclo financeiro dos contratos','Carteira contratual','04',['I0402','I0403','I0404','I0405','I0406'],{extra:'<div class="capability-placeholder"><span>FLUXO DE CAIXA DOS CONTRATOS</span><strong>Aguardando integração</strong><small>Receita prevista · desembolso · exposição acumulada</small></div>'})}
  ${futureBlock('guarantee','07 / 08 · Garantia & seguradora','Compreender a obrigação','07/08',['I0701','I0710','I0804','I0805'],{extra:'<p class="reading-note">O texto de garantia é um registro herdado. A obrigação final depende da regra documental.</p>',actionId:'N011',actionLabel:'Ver análise seguradora',reason:'Aguardando integração seguradora'})}
- ${futureBlock('operational','05 · Pressão operacional','Estrutura para executar','05',['I0501','I0502','I0503','I0505'],{extra:'<div class="capability-placeholder map-placeholder"><span>MAPA OPERACIONAL</span><strong>Aguardando integração OSINT</strong><small>Sede · estrutura regional · execução</small></div>',actionId:'N009',actionLabel:'Ver mapa ampliado',reason:'Aguardando integração OSINT'})}
+ ${futureBlock('operational','05 · Pressão operacional','Estrutura para executar','05',['I0501','I0502','I0503'],{extra:'<div class="capability-placeholder map-placeholder"><span>MAPA OPERACIONAL</span><strong>Aguardando integração OSINT</strong><small>Sede · estrutura regional · execução</small></div>',actionId:'N009',actionLabel:'Ver mapa ampliado',reason:'Aguardando integração OSINT'})}
  ${futureBlock('friction','06 · Fricção contratual','Obrigações & condições','06',['I0601','I0602','I0603','I0608'],{actionId:'N010',actionLabel:'Ver matriz de riscos',reason:'Aguardando integração do Motor de Edital'})}
  ${futureBlock('decision','11 · Decisores & memória','Contato e notas reais','11',['I1101','I1102','I1103','I1104'],{extra:contactHistory(context,item),actionId:'N012',actionLabel:'Ver todos os decisores',reason:'Aguardando integração OSINT'})}
  ${futureBlock('signature','09 · Pressão de assinatura','O que falta para formalizar?','09',['I0906','I0907'])}
@@ -30,7 +30,7 @@ function render(contract,context,item){
  ${futureBlock('fiscal','10 · Fiscal · reservado','Integração futura','10',['I1001','I1002'],{kind:'reserved-card'})}
  </section><aside class="decision-rail">
  ${futureBlock('conclusion','13 · Tese final','Conclusão da investigação','13',['I1301','I1302','I1308'],{extra:'<button type="button" class="outline-button" data-detail-target="evidence">Ver registros e fontes →</button>'})}
- ${futureBlock('attack','14 · Plano de ataque','Da compreensão à ação','14',['I1401','I1402','I1403','I1404','I1410'],{actionId:'N015',actionLabel:'Iniciar abordagem',reason:'Ação ainda não integrada; nenhuma mensagem será enviada'})}
+ ${futureBlock('attack','14 · Plano de ataque','Da compreensão à ação','14',['I1401','I1402','I1403','I1410'],{actionId:'N015',actionLabel:'Iniciar abordagem',reason:'Ação ainda não integrada; nenhuma mensagem será enviada'})}
  </aside></div>
  <section class="case-output"><div><small>SAÍDA DO CASO</small>${field('I1309',{compact:true,source:false})}</div>${fields(['I0101','I1302','I1306','I1307'],{compact:true,source:false})}${action('N014','Gerar plano de abordagem','Aguardando integração da Investigação')}</section>
  <details class="identity-details"><summary>Identidade e referência do caso</summary><div class="field-grid">${fields(['I0001','I0002','I0003','I0004'])}</div></details>`;
