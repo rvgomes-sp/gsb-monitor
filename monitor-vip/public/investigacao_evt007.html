@@ -1,0 +1,147 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>GSB Monitor | EVT-007 — Investigação</title>
+  <link rel="stylesheet" href="./assets/vip_monitor.css">
+  <link rel="stylesheet" href="./assets/investigacao_evt007.css">
+</head>
+<body>
+  <div class="app investigation-app">
+    <aside class="sidebar investigation-sidebar">
+      <div class="brand">
+        <div class="emblem"></div>
+        <h1>GSB Monitor</h1>
+        <span>LICITAÇÃO ASSIMÉTRICA</span>
+      </div>
+      <p class="investigation-motto">Os fatos não mudam.<br><em>Muda a compreensão.</em></p>
+      <nav class="nav">
+        <a href="./monitor_vip.html"><span class="nav-icon">⌂</span>Visão Executiva</a>
+        <a class="active" href="./investigacao_evt007.html"><span class="nav-icon">◇</span>Investigação EVT-007</a>
+        <a href="./carteira_ana.html"><span class="nav-icon">♡</span>Carteira da Ana</a>
+        <a href="./monitor_vip.html#opportunities-section"><span class="nav-icon">◉</span>Monitoramento</a>
+      </nav>
+      <div class="sidebar-footer">VF<br>INTELLIGENCE PLATFORM<br>VIP</div>
+    </aside>
+
+    <main class="main investigation-main">
+      <header class="investigation-topbar">
+        <div>
+          <div class="eyebrow">EVT-007 · HOMOLOGAÇÃO</div>
+          <h1 id="case-title">Caso em investigação</h1>
+          <p>Da homologação à tese: fato → hipótese → evidência → dor → intervenção.</p>
+        </div>
+        <div class="investigation-top-actions">
+          <label class="search"><span>⌕</span><input id="case-search" type="search" placeholder="Buscar empresa, órgão ou processo..."></label>
+          <div class="userbox">
+            <div class="userbox-copy"><strong id="operator-name">—</strong><br><small id="operator-role">—</small></div>
+            <div class="avatar" id="operator-initials">—</div>
+          </div>
+        </div>
+      </header>
+
+      <section class="case-state-bar">
+        <div><small>ESTADO DO CASO</small><strong id="case-state">EM INVESTIGAÇÃO</strong></div>
+        <div class="phase-track" aria-label="Fases da investigação">
+          <span class="done">1 · Fato</span><i></i><span class="active">2 · Hipótese</span><i></i><span>3 · Investigação</span><i></i><span>4 · Tese</span><i></i><span>5 · Intervenção</span>
+        </div>
+      </section>
+
+      <section class="investigation-hero">
+        <article class="case-card event-card">
+          <div class="section-kicker">1 · O QUE ACONTECEU</div>
+          <h2 id="event-company">—</h2>
+          <div class="fact-grid">
+            <div><span>Órgão</span><strong id="event-agency">—</strong></div>
+            <div><span>Edital / Processo</span><strong id="event-process">—</strong></div>
+            <div class="wide"><span>Objeto</span><strong id="event-object">—</strong></div>
+            <div><span>Homologação</span><strong id="event-date">—</strong></div>
+            <div><span>Valor homologado</span><strong id="event-value">—</strong></div>
+            <div><span>Garantia</span><strong id="event-guarantee">—</strong></div>
+            <div><span>Prazo</span><strong id="event-term">—</strong></div>
+          </div>
+        </article>
+
+        <article class="case-card thesis-card">
+          <div class="section-kicker">2 · TESE INICIAL</div>
+          <h2>Por que este caso entrou no radar?</h2>
+          <p id="thesis-copy">Aguardando evidências suficientes para formular a hipótese.</p>
+          <div class="thesis-meta">
+            <div><span>Convicção atual</span><strong id="thesis-confidence">EM ABERTURA</strong></div>
+            <div><span>Investigação</span><strong id="thesis-status">EM ANDAMENTO</strong></div>
+          </div>
+        </article>
+
+        <article class="case-card pain-card">
+          <div class="section-kicker">3 · ONDE PODE ESTAR A DOR?</div>
+          <div id="pain-list" class="pain-list"></div>
+          <button id="show-evidence" class="text-button" type="button">Ver evidências que sustentam →</button>
+        </article>
+      </section>
+
+      <nav class="investigation-tabs" aria-label="Áreas do dossiê">
+        <button class="active" data-tab="summary">Resumo do caso</button>
+        <button data-tab="evidence">Evidências</button>
+        <button data-tab="company">Tomador</button>
+        <button data-tab="portfolio">Carteira contratual</button>
+        <button data-tab="guarantee">Seguradora & garantia</button>
+        <button data-tab="decision">Decisores</button>
+      </nav>
+
+      <section class="tab-panel active" data-panel="summary">
+        <div class="investigation-grid">
+          <article class="case-card">
+            <div class="section-kicker">LEITURA ATUAL</div>
+            <h3>O que já sabemos</h3>
+            <div id="known-facts" class="evidence-stack"></div>
+          </article>
+          <article class="case-card">
+            <div class="section-kicker">QUESTÕES CRÍTICAS</div>
+            <h3>O que ainda precisamos descobrir</h3>
+            <ol id="open-questions" class="question-list"></ol>
+          </article>
+          <article class="case-card conclusion-card">
+            <div class="section-kicker">TESE EM FORMAÇÃO</div>
+            <h3 id="conclusion-title">Caso em investigação</h3>
+            <p id="conclusion-copy">Ainda não há evidência suficiente para declarar oportunidade confirmada.</p>
+            <div class="conclusion-actions">
+              <a id="ana-preview" class="primary-link" href="./carteira_ana.html">Pré-visualizar na Carteira da Ana</a>
+              <a class="secondary-link" href="./monitor_vip.html">Voltar ao monitor</a>
+            </div>
+          </article>
+        </div>
+      </section>
+
+      <section class="tab-panel" data-panel="evidence">
+        <article class="case-card full-card"><div class="section-kicker">EVIDÊNCIAS</div><h3>O que é confirmado, inferido ou desconhecido?</h3><div id="evidence-table" class="evidence-table"></div></article>
+      </section>
+
+      <section class="tab-panel" data-panel="company">
+        <article class="case-card full-card"><div class="section-kicker">TOMADOR</div><h3 id="company-name">—</h3><div id="company-profile" class="detail-grid"></div></article>
+      </section>
+
+      <section class="tab-panel" data-panel="portfolio">
+        <article class="case-card full-card"><div class="section-kicker">CARTEIRA CONTRATUAL</div><h3>Exposição pública observada</h3><div id="portfolio-summary" class="portfolio-summary"></div><div id="portfolio-contracts" class="contract-list"></div><p class="source-note">O motor de fluxo de caixa será conectado aqui; esta visão não inventa recebimentos, saldos ou cronogramas ausentes da fonte atual.</p></article>
+      </section>
+
+      <section class="tab-panel" data-panel="guarantee">
+        <div class="investigation-grid two">
+          <article class="case-card"><div class="section-kicker">GARANTIA & DOCUMENTOS</div><div id="guarantee-details" class="detail-grid"></div></article>
+          <article class="case-card"><div class="section-kicker">VISÃO SEGURADORA</div><div id="insurer-view" class="evidence-stack"></div></article>
+        </div>
+      </section>
+
+      <section class="tab-panel" data-panel="decision">
+        <article class="case-card full-card"><div class="section-kicker">DECISORES</div><h3>Quem pode resolver o problema?</h3><div id="decision-makers" class="decision-list"></div></article>
+      </section>
+
+      <footer class="investigation-footer">
+        <span id="data-status">Carregando dados...</span>
+        <strong>GSB · Licitação Assimétrica</strong>
+      </footer>
+    </main>
+  </div>
+  <script type="module" src="./assets/investigacao_evt007.js"></script>
+</body>
+</html>
