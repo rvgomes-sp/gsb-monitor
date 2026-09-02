@@ -10,7 +10,7 @@ export async function GET() {
     const sql = getSql();
     const [metaRows, rows, documentRows] = await Promise.all([
       sql`SELECT payload_json, updated_at FROM monitor.feed_metadata WHERE id = 1`,
-      sql`SELECT process_id, payload_json FROM monitor.opportunities ORDER BY position ASC`,
+      sql`SELECT id, process_id, supplier_cnpj, payload_json FROM monitor.opportunities ORDER BY position ASC`,
       sql`SELECT process_id, label, object_key FROM monitor.documents ORDER BY created_at ASC`,
     ]);
     if (!rows.length) {
@@ -32,6 +32,10 @@ export async function GET() {
         const item = JSON.parse(row.payload_json);
         return {
           ...item,
+          // Identidade persistida atual; não reconstruir a partir de processo/posição.
+          case_id: row.id,
+          processo: row.process_id,
+          fornecedor_cnpj: row.supplier_cnpj,
           documentos: documentsByProcess.get(row.process_id) ?? item.documentos ?? [],
         };
       }),

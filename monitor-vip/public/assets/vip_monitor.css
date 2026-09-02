@@ -2505,3 +2505,5 @@ html {
     box-shadow: none;
   }
 }
+/* Identidade e estados de leitura da fatia E1. */
+.row-actions a{display:inline-block;text-decoration:none;padding:7px 9px;border:1px solid rgba(218,173,116,.35);border-radius:8px;color:#eac393;background:rgba(87,46,26,.25);font-size:11px}.case-selected{outline:2px solid #d9ad74;outline-offset:-2px}#case-navigation-status:not(:empty){padding:14px;border:1px solid #d9ad74;border-radius:10px;color:#eac393}td details{margin:8px 0}td details p{white-space:pre-wrap}td summary{cursor:pointer}td small{overflow-wrap:anywhere}
