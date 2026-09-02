@@ -1,66 +1,50 @@
-import {esc,known,brl,loadCaseContext,resolveCase,guaranteeOf,operationFor,operationProblem,caseUrl} from './case_context.js';
-import {$,rows,memoryHtml,updateCaseLinks,renderPicker,showUser} from './case_view.js';
+import {esc,known,loadCaseContext,resolveCase,getJson,caseUrl} from './case_context.js';
+import {validateContract} from './case_contract.js';
+import {shell,makeView,bindCommon,contactHistory,bindCaseStatus} from './dossier_view.js';
 
-function evidence(item) {
-  const source='Registro existente do Monitor';
-  const list=[['Homologação informada',item.data_homologacao],['Valor homologado informado',item.valor_numero == null ? null : brl(item.valor_numero)]];
-  const facts=list.map(([title,value])=>({kind:value?'confirmed':'unknown',title,detail:known(value),source}));
-  const g=guaranteeOf(item);
-  if (item.percentual_garantia_execucao) facts.push({kind:'indicative',title:'Observação herdada sobre garantia',detail:g.original,source:g.source});
-  facts.push({kind:'unknown',title:'Obrigação de garantia',detail:'Não investigada no edital',source:'Leitura documental ainda não integrada'});
-  return facts;
+document.querySelector('#app').innerHTML=shell('investigation');
+function render(contract,context,item){
+ const v=makeView(contract,context,item),{field,fields,card,action,remaining}=v;
+ const futureBlock=(key,kicker,title,prefix,ids,extra={})=>card({key,kicker,title,ids,more:remaining('investigation',prefix,ids),...extra});
+ const event=['I0101','I0103','I0104','I0107','I0108','I0701','I0116','I0122'];
+ const pains=['I1201','I1202','I1203','I1205','I1206','I1207'];
+ const nav=[['company','Tomador'],['contracts','Carteira contratual'],['operational','Operacional'],['friction','Contratual'],['guarantee','Garantia & seguradora'],['signature','Assinatura'],['decision','Decisores'],['evidence','Evidências'],['attack','Plano de ação']];
+ document.querySelector('#dossier-content').innerHTML=`
+ <div class="case-heading"><div><span class="case-tag">CASO EM INVESTIGAÇÃO</span><h2>${esc(known(item?.fornecedor,'Selecione um caso'))}</h2></div><a class="outline-button" data-case-page="carteira_ana.html" href="./carteira_ana.html">Consultar na Carteira da Ana →</a></div>
+ <section class="investigation-hero">
+ ${card({key:'event',kicker:'01 · O que aconteceu',title:'Fato do evento',ids:event,more:remaining('investigation','01',event),kind:'event-card'})}
+ ${card({key:'thesis',kicker:'02 · Tese inicial',title:'Por que investigar este caso?',ids:['I0201','I0204','I0205'],more:remaining('investigation','02',['I0201','I0204','I0205']),extra:'<p class="reading-note">A homologação é o fato de entrada. Ainda não confirma uma dor ou oportunidade comercial.</p>',kind:'thesis-card'})}
+ ${card({key:'pain',kicker:'12 · Onde pode estar a dor?',title:'Mapa de possíveis dores',ids:pains,more:remaining('investigation','12',pains),actionId:'N013',actionLabel:'Ver todas as dores identificadas',reason:'Aguardando integração da Investigação',kind:'pain-card'})}
+ </section>
+ <section class="phase-strip"><span>FASES DA INVESTIGAÇÃO</span><ol>${['Fato','Hipótese','Investigação','Evidência','Dor','Tese','Intervenção'].map((s,i)=>`<li><b>${i+1}</b>${s}</li>`).join('')}</ol><small>Etapas previstas · progresso não registrado</small></section>
+ <nav class="dossier-tabs" aria-label="Blocos da investigação"><a class="active" href="#event">Resumo do caso</a>${nav.map(([id,name])=>`<button type="button" data-detail-target="${id}">${name}</button>`).join('')}</nav>
+ <div class="investigation-body"><section class="domain-grid">
+ ${futureBlock('company','03 · Perfil do tomador','Empresa & histórico','03',['I0301','I0302','I0303','I0304','I0305','I0306','I0316'],{actionId:'N008',actionLabel:'Ver organograma',reason:'Aguardando integração OSINT'})}
+ ${futureBlock('contracts','04 · Ciclo financeiro dos contratos','Carteira contratual','04',['I0402','I0403','I0404','I0405','I0406'],{extra:'<div class="capability-placeholder"><span>FLUXO DE CAIXA DOS CONTRATOS</span><strong>Aguardando integração</strong><small>Receita prevista · desembolso · exposição acumulada</small></div>'})}
+ ${futureBlock('guarantee','07 / 08 · Garantia & seguradora','Compreender a obrigação','07/08',['I0701','I0710','I0802','I0803','I0804','I0805'],{extra:'<p class="reading-note">O texto de garantia é um registro herdado. A obrigação final depende da regra documental.</p>',actionId:'N011',actionLabel:'Ver análise seguradora',reason:'Aguardando integração seguradora'})}
+ ${futureBlock('operational','05 · Pressão operacional','Estrutura para executar','05',['I0501','I0502','I0503','I0504','I0505','I0506'],{extra:'<div class="capability-placeholder map-placeholder"><span>MAPA OPERACIONAL</span><strong>Aguardando integração OSINT</strong><small>Sede · estrutura regional · execução</small></div>',actionId:'N009',actionLabel:'Ver mapa ampliado',reason:'Aguardando integração OSINT'})}
+ ${futureBlock('friction','06 · Fricção contratual','Obrigações & condições','06',['I0601','I0602','I0603','I0604','I0605','I0608'],{actionId:'N010',actionLabel:'Ver matriz de riscos',reason:'Aguardando integração do Motor de Edital'})}
+ ${futureBlock('decision','11 · Decisores & memória','Contato e notas reais','11',['I1101','I1102','I1103','I1104'],{extra:contactHistory(context,item),actionId:'N012',actionLabel:'Ver todos os decisores',reason:'Aguardando integração OSINT'})}
+ ${futureBlock('signature','09 · Pressão de assinatura','O que falta para formalizar?','09',['I0901','I0902','I0904','I0906','I0907'])}
+ ${futureBlock('evidence','Evidências · fontes e interpretação','O que sustenta a leitura','15',[],{extra:`<div class="field-grid">${fields(['I0107','I0108','I0701'])}</div><p class="reading-note">Fontes atuais: registros do Monitor. A camada canônica de evidências aguarda integração; não há contagem artificial.</p>`})}
+ ${futureBlock('fiscal','10 · Fiscal · reservado','Integração futura','10',['I1001','I1002'],{extra:'<p class="reading-note">Nenhuma fonte fiscal ou judicial é consultada nesta fase.</p>'})}
+ </section><aside class="decision-rail">
+ ${futureBlock('conclusion','13 · Tese final','Conclusão da investigação','13',['I1301','I1302','I1303','I1305','I1306','I1308'],{extra:'<button type="button" class="outline-button" data-detail-target="evidence">Ver registros e fontes →</button>'})}
+ ${futureBlock('attack','14 · Plano de ataque','Da compreensão à ação','14',['I1401','I1402','I1403','I1404','I1405','I1406','I1410'],{actionId:'N015',actionLabel:'Iniciar abordagem',reason:'Ação ainda não integrada; nenhuma mensagem será enviada'})}
+ </aside></div>
+ <section class="case-output"><div><small>SAÍDA DO CASO</small>${field('I1309',{compact:true,source:false})}</div>${fields(['I0101','I1302','I1306','I1307'],{compact:true,source:false})}${action('N014','Gerar plano de abordagem','Aguardando integração da Investigação')}</section>
+ <details class="identity-details"><summary>Identidade e referência do caso</summary><div class="field-grid">${fields(['I0001','I0002','I0003','I0004'])}</div></details>`;
+ bindCommon(context,item,'investigacao_evt007.html');bindCaseStatus(context,item);
 }
-function evidenceHtml(facts) {
-  return facts.map(f=>`<div class="evidence-item"><span class="evidence-marker ${f.kind}">${f.kind==='confirmed'?'✓':f.kind==='indicative'?'◐':'?'}</span><div><strong>${esc(f.title)}</strong><small>${esc(f.detail)}</small><small>Fonte: ${esc(f.source)}</small></div></div>`).join('');
+async function main(){
+ const content=document.querySelector('#dossier-content');
+ const [contractResult,contextResult]=await Promise.allSettled([getJson('./data/case_contract_v1_1.json').then(validateContract),loadCaseContext()]);
+ if(contractResult.status!=='fulfilled'){content.innerHTML='<p role="alert">Contrato estrutural indisponível. Atualize a página para tentar novamente.</p>';return;}
+ const context=contextResult.status==='fulfilled'?contextResult.value:null;
+ const selected=context?resolveCase(context,new URLSearchParams(location.search)):null;
+ render(contractResult.value,context,selected?.item);
+ if(selected?.status==='ambiguous')document.querySelector('#live-status').textContent='Este processo tem mais de um caso. Selecione o fornecedor e a identidade correta.';
+ if(selected?.status==='missing')document.querySelector('#live-status').textContent='Caso não encontrado. Selecione um registro existente.';
 }
-function selectTab(name) {
-  document.querySelectorAll('[data-tab]').forEach(el=>el.classList.toggle('active',el.dataset.tab===name));
-  document.querySelectorAll('[data-panel]').forEach(el=>el.classList.toggle('active',el.dataset.panel===name));
-}
-function render(context,item) {
-  $('#case-content').hidden=false;
-  const g=guaranteeOf(item), op=operationFor(context,item), facts=evidence(item);
-  $('#case-title').textContent=known(item.fornecedor);
-  for (const [id,value] of Object.entries({company:item.fornecedor,agency:item.orgao,process:item.processo,object:item.objeto,date:item.data_homologacao,value:brl(item.valor_numero),guarantee:g.status,term:'Não investigado',cnpj:item.fornecedor_cnpj})) $('#event-'+id).textContent=known(value);
-  $('#thesis-copy').textContent='A homologação é o fato de entrada. A dor e a tese comercial ainda não foram investigadas.';
-  $('#pain-list').innerHTML='<p>? Dor comercial: não investigada.</p><p class="source-note">Não há conclusão registrada para este caso.</p>';
-  $('#known-facts').innerHTML=evidenceHtml(facts);
-  $('#evidence-table').innerHTML=evidenceHtml(facts);
-  $('#open-questions').innerHTML=['Qual obrigação está efetivamente prevista nos documentos?','Há uma necessidade comercial comprovada?','Qual próximo passo faz sentido diante do contato e das notas existentes?'].map(q=>`<li>${q}</li>`).join('');
-  $('#company-name').textContent=known(item.fornecedor);
-  $('#company-profile').innerHTML=rows([['CNPJ',item.fornecedor_cnpj],['Órgão',item.orgao],['Processo',item.processo],['Rota registrada',item.rota],['Perfil ampliado','Não investigado']]);
-  $('#guarantee-details').innerHTML=rows([['Estado',g.status],['Texto original preservado',g.original],['Origem',g.source],['Valor final da obrigação','Não conhecido'],['Prazo / coberturas','Não investigado']]);
-  $('#insurer-view').innerHTML='<p>? Limite e condições da seguradora: não investigados.</p><p class="source-note">Capacidade futura. Nenhuma consulta seguradora foi executada.</p>';
-  $('#decision-makers').innerHTML=memoryHtml(context,item);
-  $('#operation-notice').textContent=operationProblem(op);
-  $('#operation-notice').hidden=!operationProblem(op);
-  $('#data-status').textContent=`Dados existentes do Monitor · ${known(context.feed.cloud?.updated_at)} · memória operacional ${context.operationsError?'indisponível':'consultada'}`;
-  updateCaseLinks(item);
-  document.querySelectorAll('[data-tab]').forEach(button=>button.addEventListener('click',()=>selectTab(button.dataset.tab)));
-  $('#show-evidence').addEventListener('click',()=>selectTab('evidence'));
-}
-async function main() {
-  try {
-    const context=await loadCaseContext();
-    showUser(context.user,'operator-');
-    const resolved=resolveCase(context,new URLSearchParams(location.search));
-    if(resolved.status==='selected') render(context,resolved.item);
-    else {
-      $('#data-status').textContent='Escolha um caso existente; nenhum registro foi criado.';
-      const filter=renderPicker(context,resolved,'investigacao_evt007.html');
-      $('#case-search').addEventListener('input',e=>filter(e.target.value));
-    }
-    if(resolved.status==='selected') {
-      $('#case-search').addEventListener('input',e=>{
-        if(!e.target.value.trim()) {$('#case-picker').hidden=true;return;}
-        const filter=renderPicker(context,{status:'none',items:context.feed.opportunities},'investigacao_evt007.html');
-        filter(e.target.value);
-      });
-    }
-  } catch {
-    $('#data-status').textContent='Casos indisponíveis. Recarregue para tentar novamente.';
-    $('#case-picker').hidden=false;
-    $('#case-picker').innerHTML='<p role="alert">Não foi possível ler os casos. Nenhum dado demonstrativo foi usado.</p><a href="./monitor_vip.html">Voltar ao Monitor</a>';
-  }
-}
+document.querySelector('#refresh').addEventListener('click',()=>location.reload());
 main();
