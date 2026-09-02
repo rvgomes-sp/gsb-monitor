@@ -1,0 +1,105 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>GSB Monitor | Carteira da Ana</title>
+  <link rel="stylesheet" href="./assets/vip_monitor.css">
+  <link rel="stylesheet" href="./assets/carteira_ana.css">
+</head>
+<body>
+  <div class="app ana-app">
+    <aside class="sidebar ana-sidebar">
+      <div class="brand">
+        <div class="emblem"></div>
+        <h1>GSB Monitor</h1>
+        <span>VIP</span>
+      </div>
+      <nav class="nav">
+        <a href="./monitor_vip.html"><span class="nav-icon">⌂</span>Visão Executiva</a>
+        <a href="./investigacao_evt007.html"><span class="nav-icon">◇</span>Investigação EVT-007</a>
+        <a class="active" href="./carteira_ana.html"><span class="nav-icon">♡</span>Carteira da Ana</a>
+        <a href="#cases"><span class="nav-icon">▣</span>Meus Casos</a>
+        <a href="#followups"><span class="nav-icon">◷</span>Follow-ups</a>
+        <a href="#contacts"><span class="nav-icon">◎</span>Contatos</a>
+      </nav>
+      <div class="ana-connection">
+        <small>Integrado ao</small>
+        <strong>GSB Intelligence</strong>
+        <span>Casos homologados e qualificados.</span>
+      </div>
+    </aside>
+
+    <main class="main ana-main">
+      <header class="ana-header">
+        <div>
+          <h1>Carteira da Ana</h1>
+          <p>Gestão de oportunidades, relacionamento e follow-up.</p>
+        </div>
+        <div class="ana-user">
+          <label class="search"><span>⌕</span><input id="ana-search" type="search" placeholder="Buscar caso, contato ou licitação..."></label>
+          <div class="avatar" id="ana-initials">AF</div>
+          <div><strong id="ana-name">Ana</strong><br><small id="ana-role">Gestão</small></div>
+        </div>
+      </header>
+
+      <section class="ana-quote">
+        <span>“...Mas é Deus quem dá a última palavra.”</span>
+        <small>Provérbios 16:1</small>
+      </section>
+
+      <section class="ana-kpis">
+        <article><span>Casos prioritários</span><strong id="ana-priority">—</strong><small>exigem atenção</small></article>
+        <article><span>Aguardando retorno</span><strong id="ana-waiting">—</strong><small>contatos em aberto</small></article>
+        <article><span>Propostas</span><strong id="ana-proposals">—</strong><small>em revisão/envio</small></article>
+        <article><span>Follow-ups hoje</span><strong id="ana-followups">—</strong><small>ações programadas</small></article>
+      </section>
+
+      <section class="ana-layout" id="cases">
+        <article class="ana-panel cases-panel">
+          <header><div><small>O QUE MERECE SUA ATENÇÃO AGORA</small><h2>Casos da carteira</h2></div><span id="ana-case-count">0 casos</span></header>
+          <div id="ana-case-list" class="ana-case-list"></div>
+        </article>
+
+        <aside class="ana-panel selected-panel">
+          <header><div><small>CASO SELECIONADO</small><h2 id="selected-company">Selecione um caso</h2></div><span class="ana-badge" id="selected-status">—</span></header>
+          <div id="selected-summary" class="selected-summary"></div>
+          <div class="ana-next-action">
+            <small>PRÓXIMA MELHOR AÇÃO</small>
+            <strong id="selected-next-action">—</strong>
+            <p id="selected-next-copy">Selecione um caso para ver a recomendação operacional.</p>
+          </div>
+          <div class="selected-actions">
+            <a id="selected-investigation-link" href="./investigacao_evt007.html" class="ana-primary">Ver inteligência completa</a>
+            <button id="selected-email" type="button">Preparar e-mail</button>
+          </div>
+        </aside>
+      </section>
+
+      <section class="ana-bottom-grid">
+        <article class="ana-panel" id="contacts">
+          <header><div><small>CONTATOS & RELACIONAMENTO</small><h2>Pessoas do caso</h2></div></header>
+          <div id="ana-contacts" class="ana-contact-list"></div>
+        </article>
+
+        <article class="ana-panel">
+          <header><div><small>E-MAILS & CONVERSAS</small><h2>Última comunicação</h2></div></header>
+          <div id="ana-email-summary" class="ana-email-summary"></div>
+          <div class="email-actions-row"><button id="ana-view-conversation" type="button">Ver conversa</button><button id="ana-new-email" type="button">Preparar novo e-mail</button></div>
+        </article>
+
+        <article class="ana-panel" id="followups">
+          <header><div><small>PRÓXIMOS FOLLOW-UPS</small><h2>Agenda operacional</h2></div></header>
+          <div id="ana-followup-list" class="ana-followup-list"></div>
+        </article>
+      </section>
+
+      <footer class="ana-footer">
+        <span>Ambiente operacional da Ana · mesma memória do GSB Intelligence.</span>
+        <small id="ana-data-status">Carregando...</small>
+      </footer>
+    </main>
+  </div>
+  <script type="module" src="./assets/carteira_ana.js"></script>
+</body>
+</html>
