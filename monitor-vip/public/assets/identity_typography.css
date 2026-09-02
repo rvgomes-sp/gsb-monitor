@@ -1,0 +1,93 @@
+/* Decisão Mentor + Investidor: identidade Cormorant; operação Segoe.
+ * Camada exclusivamente visual. Não altera grid, campos, estados ou ações.
+ */
+:root {
+  --font-brand: 'Cormorant Garamond', serif;
+  --font-display: 'Cormorant Garamond', serif;
+  --font-editorial: 'Cormorant Garamond', serif;
+  --font-number: 'Cormorant Garamond', serif;
+  --font-body: 'Segoe UI', sans-serif;
+  --font-operational-number: 'Segoe UI', sans-serif;
+}
+
+.brand strong { font-weight: 600; }
+.dossier-main h1 { font-weight: 500; }
+.dossier-card h2,
+.sidebar-end strong,
+.detail-dialog > header strong,
+.portfolio-empty h3,
+.consultation-case h3 { font-family: var(--font-editorial); font-weight: 500; }
+
+.investigation-theme h1 { font-family: var(--font-display); font-weight: 600; }
+.investigation-theme .case-heading h2 { font-family: var(--font-display); font-weight: 600; }
+.investigation-theme .section-kicker {
+  font-family: var(--font-editorial);
+  font-weight: 600;
+  font-size: 14px;
+  line-height: 1;
+}
+.investigation-theme .phase-strip > span,
+.investigation-theme .field-label,
+.investigation-theme .dossier-card header h2 {
+  font-family: var(--font-body);
+}
+.ana-theme h1 { font-family: var(--font-display); font-weight: 500; }
+.ana-theme #selected h2,
+.ana-theme .dossier-card h2 { font-family: var(--font-editorial); font-weight: 500; }
+.ana-theme .ana-bottom-grid .section-kicker,
+.ana-kpis .field-label { font-family: var(--font-editorial); font-weight: 500; }
+.ana-quote span { font-family: var(--font-editorial); font-style: italic; font-weight: 400; }
+.brand-motto { font-style: italic; font-weight: 400; }
+
+/* Identificadores, valores e datas pequenos conservam leitura tabular. */
+.contract-field > strong { font-variant-numeric: lining-nums tabular-nums; }
+.contract-field:is(
+  [data-contract-id='I0107'],[data-contract-id='I0108'],[data-contract-id='I0123'],
+  [data-contract-id='I0205'],[data-contract-id='I0206'],[data-contract-id='I0307'],
+  [data-contract-id='I0314'],[data-contract-id='I0315'],[data-contract-id='I0316'],
+  [data-contract-id='I0317'],[data-contract-id='I0320'],[data-contract-id='I0402'],
+  [data-contract-id='I0403'],[data-contract-id='I0404'],[data-contract-id='I0405'],
+  [data-contract-id='I0406'],[data-contract-id='I0412'],[data-contract-id='I0414'],
+  [data-contract-id='I0415'],[data-contract-id='I0708'],[data-contract-id='I0710'],
+  [data-contract-id='I0803'],[data-contract-id='I0804'],[data-contract-id='I1403'],
+  [data-contract-id='A0206'],[data-contract-id='A0207'],[data-contract-id='A0213'],
+  [data-contract-id='A0303'],[data-contract-id='A0304'],[data-contract-id='A0305'],
+  [data-contract-id='A0307'],[data-contract-id='A0503'],[data-contract-id='A0504'],
+  [data-contract-id='A0601'],[data-contract-id='A0703'],[data-contract-id='A0704'],
+  [data-contract-id='A0705'],[data-contract-id='A0706'],[data-contract-id='A0707'],
+  [data-contract-id='A0709']
+).state-REAL_FUNCIONAL > strong {
+  font-family: var(--font-operational-number);
+  font-weight: 600;
+}
+/* Somente números de destaque usam a família display. */
+.investigation-theme .event-card [data-contract-id='I0108'].state-REAL_FUNCIONAL > strong,
+.ana-theme .ana-kpis .state-REAL_FUNCIONAL > strong {
+  font-family: var(--font-number);
+  font-weight: 600;
+}
+
+/* Implementação canônica proposta do monograma GSB, ainda sujeita ao aceite.
+ * Mantém caixa, dois aros e sobreposição; não redesenha o símbolo.
+ */
+.brand-seal {
+  background: radial-gradient(circle at 35% 25%, #c9976e, #96562f 22%, #25100d 52%, #090606 72%);
+  box-shadow: inset 0 0 0 1px #e9b88980, inset 0 0 0 6px #0a0504b8, 0 0 18px 0 #d18d5d33;
+}
+.ana-theme .brand-seal {
+  box-shadow: inset 0 0 0 1px #e9b88980, inset 0 0 0 6px #0a0504b8, 0 0 20px 0 #df9aa333;
+}
+.brand-seal::after {
+  border-color: #e8bb9099;
+  box-shadow: inset 0 0 0 3px #eec1960d;
+}
+.brand-seal > span {
+  font-family: var(--font-brand);
+  font-weight: 600;
+  line-height: 1;
+  letter-spacing: -6px;
+  padding-right: 6px;
+  transform: translate(-1px, 1px);
+  color: #efc5a0;
+  text-shadow: 0 0 7px #e7b2834d;
+}
