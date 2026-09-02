@@ -267,6 +267,16 @@ function bindActions() {
 }
 
 async function boot() {
+  if (new URLSearchParams(location.search).get("demo") !== "1") {
+    document.querySelector(".app-shell").hidden = true;
+    document.querySelector("#demo-warning").textContent = "Protótipo demonstrativo desativado no modo operacional. Use a Investigação EVT-007.";
+    const link = document.createElement("a");
+    link.href = "./investigacao_evt007.html";
+    link.textContent = " Abrir Investigação";
+    document.querySelector("#demo-warning").append(link);
+    return;
+  }
+  document.querySelector(".app-shell").hidden = false;
   try {
     const feed = await loadFeed();
     state.feed = feed;

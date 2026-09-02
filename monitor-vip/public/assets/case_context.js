@@ -1,192 +1,93 @@
-const FALLBACK_FEED = "./data/monitor_feed_real.json";
-const DOSSIER_SOURCE = "./data/commercial_intelligence_cases.json";
-
-export function esc(value) {
-  return String(value ?? "")
-    .replaceAll("&", "&amp;")
-    .replaceAll("<", "&lt;")
-    .replaceAll(">", "&gt;")
-    .replaceAll('"', "&quot;")
-    .replaceAll("'", "&#039;");
+// E1: leitura operacional. Não carrega mocks nem motores futuros.
+// case_id é o id JÁ PERSISTIDO de monitor.opportunities, tratado como opaco.
+// A identidade canônica de ingestão será definida na Fase 2; não reconstruir ids.
+export function esc(v) {
+  return String(v ?? '').replaceAll('&','&amp;').replaceAll('<','&lt;').replaceAll('>','&gt;').replaceAll('"','&quot;').replaceAll("'",'&#039;');
 }
-
-export function brl(value) {
-  return new Intl.NumberFormat("pt-BR", {
-    style: "currency",
-    currency: "BRL",
-    maximumFractionDigits: 0,
-  }).format(Number(value) || 0);
+export function known(v, empty = 'Não conhecido') {
+  return v === null || v === undefined || String(v).trim() === '' ? empty : String(v);
 }
-
-export function compactBrl(value) {
-  const n = Number(value) || 0;
-  if (Math.abs(n) >= 1_000_000) {
-    return `R$ ${(n / 1_000_000).toLocaleString("pt-BR", { maximumFractionDigits: 1 })} MM`;
-  }
-  return brl(n);
+export function brl(v) {
+  if (v === null || v === undefined || v === '' || !Number.isFinite(Number(v))) return 'Não conhecido';
+  return new Intl.NumberFormat('pt-BR',{style:'currency',currency:'BRL'}).format(Number(v));
 }
-
-export function queryParam(name) {
-  return new URLSearchParams(window.location.search).get(name);
-}
-
 export function todayYmd() {
-  const now = new Date();
-  const offset = now.getTimezoneOffset() * 60_000;
-  return new Date(now.getTime() - offset).toISOString().slice(0, 10);
+  return new Intl.DateTimeFormat('en-CA',{timeZone:'America/Sao_Paulo',year:'numeric',month:'2-digit',day:'2-digit'}).format(new Date());
 }
-
-async function getJson(url) {
-  const response = await fetch(url, { cache: "no-store", credentials: "same-origin" });
-  if (!response.ok) throw new Error(`${url}: HTTP ${response.status}`);
+export async function getJson(url) {
+  const response = await fetch(url, {cache:'no-store',credentials:'same-origin',signal:AbortSignal.timeout(20000)});
+  if (!response.ok) throw new Error(`Leitura indisponível (HTTP ${response.status}).`);
   return response.json();
 }
-
-function demoFallbackAllowed() {
-  const params = new URLSearchParams(window.location.search);
-  return params.get("demo") === "1" || ["localhost", "127.0.0.1"].includes(window.location.hostname);
-}
-
-async function loadFeed() {
-  try {
-    const feed = await getJson("./api/feed");
-    return { value: feed, degraded: false, source: "API / Supabase" };
-  } catch (error) {
-    if (!demoFallbackAllowed()) throw error;
-    const feed = await getJson(FALLBACK_FEED);
-    return { value: feed, degraded: true, source: "fallback demonstrativo" };
-  }
-}
-
-async function loadOperations() {
-  try {
-    return { value: await getJson("./api/operations"), degraded: false };
-  } catch (error) {
-    if (!demoFallbackAllowed()) throw error;
-    return {
-      value: { storage: "DEMO", outreach: {}, proposals: [], document_jobs: {} },
-      degraded: true,
-    };
-  }
-}
-
-async function loadUser() {
-  try {
-    const session = await getJson("./api/auth/session");
-    return session.user || session;
-  } catch (error) {
-    if (!demoFallbackAllowed()) throw error;
-    return { name: "Usuário", role: "Demonstração", initials: "US" };
-  }
-}
-
-async function loadDossiers() {
-  try {
-    const data = await getJson(DOSSIER_SOURCE);
-    return data.cases || {};
-  } catch (_) {
-    return {};
-  }
-}
-
 export async function loadCaseContext() {
-  const [feedState, operationState, dossiers, user] = await Promise.all([
-    loadFeed(),
-    loadOperations(),
-    loadDossiers(),
-    loadUser(),
+  const [feed, ops, session] = await Promise.allSettled([
+    getJson('./api/feed'), getJson('./api/operations'), getJson('./api/auth/session')
   ]);
-
+  if (feed.status !== 'fulfilled') throw new Error('Casos indisponíveis. Tente recarregar a página.');
+  if (!Array.isArray(feed.value.opportunities) || feed.value.opportunities.some(i => !i.case_id)) {
+    throw new Error('Identidade dos casos indisponível. Nenhum caso foi selecionado.');
+  }
   return {
-    feed: feedState.value,
-    operations: operationState.value,
-    cases: dossiers,
-    user,
-    degraded: feedState.degraded || operationState.degraded,
-    source: feedState.source,
+    feed:feed.value,
+    operations:ops.status === 'fulfilled' ? ops.value : null,
+    operationsError:ops.status !== 'fulfilled',
+    user:session.status === 'fulfilled' ? session.value.user : null
   };
 }
-
-export function outreachFor(context, processId) {
-  return context.operations?.outreach?.[processId] || null;
+export function caseUrl(page, item) {
+  return `./${page}?case_id=${encodeURIComponent(item.case_id)}`;
 }
-
-export function proposalsFor(context, processId) {
-  return (context.operations?.proposals || []).filter((proposal) => proposal.process_id === processId);
-}
-
-export function dossierFor(context, processId) {
-  return context.cases?.[processId] || null;
-}
-
-export function findOpportunity(context, processId) {
-  return context.feed?.opportunities?.find((item) => item.processo === processId) || null;
-}
-
-export function guaranteeOf(item, dossier) {
-  const percent = dossier?.guarantee?.executionPercent
-    || Number(String(item?.percentual_garantia_execucao || "").replace("%", ""))
-    || null;
-  const contractValue = Number(item?.valor_numero || dossier?.guarantee?.contractValue || 0);
-  return {
-    percent,
-    value: percent ? contractValue * (percent / 100) : null,
-    contractValue,
-    termMonths: dossier?.guarantee?.executionTermMonths || null,
-  };
-}
-
-export function mainPain(item, dossier) {
-  if (dossier?.documentaryReading?.clauses?.some((clause) => clause.classification === "DIVERGENCIA_DOCUMENTAL")) {
-    return "Estruturação da garantia";
+export function resolveCase(context, params) {
+  const items = context.feed.opportunities;
+  const id = params.get('case_id');
+  if (id) {
+    const matches = items.filter(i => i.case_id === id);
+    return matches.length === 1 ? {status:'selected',item:matches[0]} : {status:'missing',items:[]};
   }
-  if (dossier?.positioning?.capacityReadiness?.level === "EXIGE_VALIDACAO_IMEDIATA") {
-    return "Capacidade / limite";
-  }
-  if (dossier?.flags?.includes("LOGISTICA_DESAFIADORA")) {
-    return "Mobilização / operação";
-  }
-  if (item?.garantia_execucao === "SIM") return "Garantia contratual";
-  return "Em investigação";
+  const process = params.get('process');
+  if (!process) return {status:'none',items};
+  const matches = items.filter(i => i.processo === process);
+  return matches.length === 1 ? {status:'selected',item:matches[0]} : {status:matches.length ? 'ambiguous':'missing',items:matches};
 }
-
-export function urgencyFor(record, dossier) {
-  if (record?.next_follow_up_at) {
-    if (record.next_follow_up_at < todayYmd()) return "Alta";
-    if (record.next_follow_up_at === todayYmd()) return "Hoje";
-  }
-  if (dossier?.stage === "HOMOLOGADA_AGUARDANDO_FORMALIZACAO") return "Alta";
-  return "Moderada";
+export function operationFor(context, item) {
+  if (context.operationsError || !context.operations) return {status:'unavailable',record:null,proposals:[]};
+  const record = context.operations.outreach?.[item.processo] || null;
+  const proposals = (context.operations.proposals || []).filter(p => p.process_id === item.processo);
+  const repeated = context.feed.opportunities.filter(i => i.processo === item.processo).length > 1;
+  // Nunca atribuir a dois fornecedores um registro comercial indexado só por processo.
+  if (repeated && (record || proposals.length)) return {status:'ambiguous',record:null,proposals:[]};
+  return {status:record || proposals.length ? 'available':'empty',record,proposals};
 }
-
+export function operationProblem(op) {
+  return op.status === 'unavailable' ? 'Memória operacional indisponível. Recarregue para consultar contato, notas e follow-up.'
+    : op.status === 'ambiguous' ? 'Vínculo operacional a validar: este processo possui mais de um caso.' : '';
+}
+export function guaranteeOf(item) {
+  // Texto herdado é uma observação do adaptador, NÃO uma cláusula verificada.
+  // Não extrair 5 de "5% + reforço...", nem calcular obrigação a partir dele.
+  return {original:known(item.percentual_garantia_execucao,'Não registrado'),
+    status:'Não verificada no edital', value:null,
+    source:'Registro operacional herdado; regra documental não verificada',
+    confirmed:false};
+}
 export function statusLabel(status) {
-  const labels = {
-    NAO_INICIADO: "Não iniciado",
-    EM_PREPARACAO: "Em preparação",
-    PRONTO_PARA_ENVIO: "Pronto para envio",
-    ENVIADO: "Enviado",
-    AGUARDANDO_RETORNO: "Aguardando retorno",
-    RESPONDEU: "Respondeu",
-    PROPOSTA_EM_PREPARACAO: "Proposta em preparação",
-    PROPOSTA_ENVIADA: "Proposta enviada",
-    NEGOCIACAO: "Negociação",
-    FECHADO: "Fechado",
-    SEM_INTERESSE: "Sem interesse",
-  };
-  return labels[status] || status || "Não iniciado";
+  const labels = {NAO_INICIADO:'Não iniciado',EM_PREPARACAO:'Em preparação',PRONTO_PARA_ENVIO:'Pronto para envio',ENVIADO:'Enviado',AGUARDANDO_RETORNO:'Aguardando retorno',RESPONDEU:'Respondeu',PROPOSTA_EM_PREPARACAO:'Proposta em preparação',PROPOSTA_ENVIADA:'Proposta enviada',NEGOCIACAO:'Negociação',FECHADO:'Fechado',SEM_INTERESSE:'Sem interesse'};
+  return labels[status] || known(status,'Não iniciado');
 }
-
-export function caseIdentity(item, dossier) {
-  return {
-    processId: item?.processo || dossier?.processId || "",
-    company: item?.fornecedor || dossier?.supplier || "Tomador",
-    cnpj: item?.fornecedor_cnpj || dossier?.supplierCnpj || "",
-    agency: item?.orgao || dossier?.agency || "—",
-    tender: item?.abordagem?.edital || dossier?.tender || item?.processo || "—",
-    object: item?.objeto || dossier?.item || "—",
-    homologationAt: item?.data_homologacao || dossier?.homologationAt || "—",
-    value: Number(item?.valor_numero || dossier?.guarantee?.contractValue || 0),
-    valueLabel: item?.valor || compactBrl(item?.valor_numero || dossier?.guarantee?.contractValue || 0),
-    route: item?.rota || dossier?.commercialRoute || "A confirmar",
-  };
+export function trackedItems(context) {
+  if (context.operationsError) return [];
+  return context.feed.opportunities.filter(item => {
+    const op = operationFor(context,item), r = op.record;
+    return op.status === 'available' && (op.proposals.length || (r && (
+      (r.status && r.status !== 'NAO_INICIADO') || r.decision_maker || r.phone || r.email || r.notes || r.next_follow_up_at || r.subject || r.body || r.history?.length
+    )));
+  });
+}
+export function nextAction(op) {
+  const problem = operationProblem(op);
+  if (problem) return ['Consultar memória operacional', problem];
+  const r = op.record;
+  if (r?.next_follow_up_at) return ['Revisar follow-up',`Data registrada: ${r.next_follow_up_at}.`];
+  if (r) return ['Revisar contato e notas','Definir o próximo passo a partir do registro existente.'];
+  return ['Investigar o caso','A homologação, sozinha, não confirma uma dor comercial.'];
 }

@@ -16,17 +16,17 @@
         <span>VIP</span>
       </div>
       <nav class="nav">
-        <a href="./monitor_vip.html"><span class="nav-icon">⌂</span>Visão Executiva</a>
-        <a href="./investigacao_evt007.html"><span class="nav-icon">◇</span>Investigação EVT-007</a>
-        <a class="active" href="./carteira_ana.html"><span class="nav-icon">♡</span>Carteira da Ana</a>
+        <a data-case-page="monitor_vip.html" href="./monitor_vip.html"><span class="nav-icon">⌂</span>Visão Executiva</a>
+        <a data-case-page="investigacao_evt007.html" href="./investigacao_evt007.html"><span class="nav-icon">◇</span>Investigação EVT-007</a>
+        <a class="active" data-case-page="carteira_ana.html" href="./carteira_ana.html"><span class="nav-icon">♡</span>Carteira da Ana</a>
         <a href="#cases"><span class="nav-icon">▣</span>Meus Casos</a>
         <a href="#followups"><span class="nav-icon">◷</span>Follow-ups</a>
         <a href="#contacts"><span class="nav-icon">◎</span>Contatos</a>
       </nav>
       <div class="ana-connection">
-        <small>Integrado ao</small>
-        <strong>GSB Intelligence</strong>
-        <span>Casos homologados e qualificados.</span>
+        <small>Memória operacional do</small>
+        <strong>GSB Monitor</strong>
+        <span>Casos com registros de trabalho existentes.</span>
       </div>
     </aside>
 
@@ -38,8 +38,8 @@
         </div>
         <div class="ana-user">
           <label class="search"><span>⌕</span><input id="ana-search" type="search" placeholder="Buscar caso, contato ou licitação..."></label>
-          <div class="avatar" id="ana-initials">AF</div>
-          <div><strong id="ana-name">Ana</strong><br><small id="ana-role">Gestão</small></div>
+          <div class="avatar" id="ana-initials">—</div>
+          <div><strong id="ana-name">—</strong><br><small id="ana-role">—</small></div>
         </div>
       </header>
 
@@ -48,54 +48,56 @@
         <small>Provérbios 16:1</small>
       </section>
 
+      <section id="case-picker" class="ana-panel" hidden></section><p id="operation-notice" class="case-warning" role="status" hidden></p>
       <section class="ana-kpis">
-        <article><span>Casos prioritários</span><strong id="ana-priority">—</strong><small>exigem atenção</small></article>
+        <article><span>Casos com registro operacional</span><strong id="ana-priority">—</strong><small>memória existente</small></article>
         <article><span>Aguardando retorno</span><strong id="ana-waiting">—</strong><small>contatos em aberto</small></article>
-        <article><span>Propostas</span><strong id="ana-proposals">—</strong><small>em revisão/envio</small></article>
+        <article><span>Propostas</span><strong id="ana-proposals">—</strong><small>registros existentes</small></article>
         <article><span>Follow-ups hoje</span><strong id="ana-followups">—</strong><small>ações programadas</small></article>
       </section>
 
       <section class="ana-layout" id="cases">
         <article class="ana-panel cases-panel">
-          <header><div><small>O QUE MERECE SUA ATENÇÃO AGORA</small><h2>Casos da carteira</h2></div><span id="ana-case-count">0 casos</span></header>
+          <header><div><small>O QUE MERECE SUA ATENÇÃO AGORA</small><h2>Casos da carteira</h2></div><span id="ana-case-count">Carregando...</span></header>
           <div id="ana-case-list" class="ana-case-list"></div>
         </article>
 
-        <aside class="ana-panel selected-panel">
+        <aside id="selected-case-content" class="ana-panel selected-panel" hidden>
           <header><div><small>CASO SELECIONADO</small><h2 id="selected-company">Selecione um caso</h2></div><span class="ana-badge" id="selected-status">—</span></header>
+          <p id="case-not-tracked" hidden>Consulta deste caso; não há registro de trabalho. Abrir esta visão não inclui o caso na carteira.</p>
           <div id="selected-summary" class="selected-summary"></div>
           <div class="ana-next-action">
-            <small>PRÓXIMA MELHOR AÇÃO</small>
+            <small>PRÓXIMO PASSO SUGERIDO</small>
             <strong id="selected-next-action">—</strong>
             <p id="selected-next-copy">Selecione um caso para ver a recomendação operacional.</p>
           </div>
           <div class="selected-actions">
-            <a id="selected-investigation-link" href="./investigacao_evt007.html" class="ana-primary">Ver inteligência completa</a>
-            <button id="selected-email" type="button">Preparar e-mail</button>
+            <a id="selected-investigation-link" data-case-page="investigacao_evt007.html" href="./investigacao_evt007.html" class="ana-primary">Voltar à Investigação</a>
+            <a data-case-page="monitor_vip.html" href="./monitor_vip.html">Voltar ao Monitor</a>
           </div>
         </aside>
       </section>
 
-      <section class="ana-bottom-grid">
+      <section id="case-memory-content" class="ana-bottom-grid" hidden>
         <article class="ana-panel" id="contacts">
-          <header><div><small>CONTATOS & RELACIONAMENTO</small><h2>Pessoas do caso</h2></div></header>
+          <header><div><small>CONTATOS & RELACIONAMENTO</small><h2>Contato, notas e histórico</h2></div></header>
           <div id="ana-contacts" class="ana-contact-list"></div>
         </article>
 
         <article class="ana-panel">
-          <header><div><small>E-MAILS & CONVERSAS</small><h2>Última comunicação</h2></div></header>
+          <header><div><small>E-MAILS & CONVERSAS</small><h2>Mensagem registrada</h2></div></header>
           <div id="ana-email-summary" class="ana-email-summary"></div>
-          <div class="email-actions-row"><button id="ana-view-conversation" type="button">Ver conversa</button><button id="ana-new-email" type="button">Preparar novo e-mail</button></div>
+          <p class="source-note">Envio de e-mail não integrado nesta visão.</p>
         </article>
 
         <article class="ana-panel" id="followups">
           <header><div><small>PRÓXIMOS FOLLOW-UPS</small><h2>Agenda operacional</h2></div></header>
-          <div id="ana-followup-list" class="ana-followup-list"></div>
+          <div id="ana-followup-list" class="ana-followup-list"></div><h3>Propostas registradas</h3><div id="ana-proposal-list"></div>
         </article>
       </section>
 
       <footer class="ana-footer">
-        <span>Ambiente operacional da Ana · mesma memória do GSB Intelligence.</span>
+        <span>Mesmos casos e registros operacionais do Monitor.</span>
         <small id="ana-data-status">Carregando...</small>
       </footer>
     </main>

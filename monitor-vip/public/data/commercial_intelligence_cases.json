@@ -294,5 +294,7 @@
         }
       ]
     }
-  }
+  },
+  "content_classification": "DEMONSTRATIVO_REFERENCIA_UX_NAO_OPERACIONAL",
+  "operational_use": false
 }

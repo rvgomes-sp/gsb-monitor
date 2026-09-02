@@ -14,5 +14,6 @@ test("production source identifies the GSB Monitor", async () => {
   assert.match(script, /api\/outreach/);
   assert.match(script, /api\/proposals/);
   assert.match(script, /opportunityPageSize/);
-  assert.match(script, /LOCAL_FALLBACK/);
+  assert.match(script, /UNAVAILABLE/);
+  assert.doesNotMatch(script, /LOCAL_FALLBACK/);
 });

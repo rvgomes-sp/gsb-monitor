@@ -1,3 +1,4 @@
+import { getJson, caseUrl, resolveCase, operationFor, operationProblem } from "./case_context.js";
 import {
   assertCommercialCase,
   calculateGuaranteeStack,
@@ -81,27 +82,18 @@ function addDaysYmd(days) {
   return new Date(date - offset).toISOString().slice(0, 10);
 }
 
-async function loadFeedLegacy() {
-  const response = await fetch("./data/monitor_feed_real.json", { cache: "no-store" });
-  if (!response.ok) throw new Error("Feed de oportunidades indisponível.");
-  return response.json();
-}
-
 async function loadFeed() {
-  const cloud = await fetch("./api/feed", { cache: "no-store" });
-  if (cloud.ok) return cloud.json();
-  return loadFeedLegacy();
+  return getJson("./api/feed");
 }
 
 async function loadOperations() {
-  const response = await fetch("./api/operations", { cache: "no-store" });
-  if (!response.ok) {
-    return { outreach: {}, proposals: [], counters: {}, document_jobs: {}, storage: "LOCAL_FALLBACK" };
-  }
-  return response.json();
+  try { return await getJson("./api/operations"); }
+  catch { return { storage: "UNAVAILABLE", outreach: {}, proposals: [], counters: {}, document_jobs: {} }; }
 }
 
 async function loadCommercialIntelligence() {
+  // Arquivo legado é referência visual. Nunca alimenta o modo operacional.
+  if (new URLSearchParams(location.search).get("demo") !== "1") return {};
   const response = await fetch("./data/commercial_intelligence_cases.json", { cache: "no-store" });
   if (!response.ok) throw new Error("Dossiês de inteligência comercial indisponíveis.");
   const payload = await response.json();
@@ -305,45 +297,32 @@ function followUpState(record) {
 }
 
 function operationCell(item) {
-  const record = outreachFor(item.processo);
+  const context = {feed:feedData,operations:operationsState,operationsError:operationsState.storage === "UNAVAILABLE"};
+  const op = operationFor(context,item), problem = operationProblem(op);
+  const record = op.record || {status:"NAO_INICIADO"};
   const followUp = followUpState(record);
+  const unique = feedData.opportunities.filter(i=>i.processo===item.processo).length === 1;
+  const readOnly = !unique || !!problem || new URLSearchParams(location.search).get("demo") === "1";
   return `
     <div class="workflow-state">
-      <span class="workflow-badge ${statusClass(record.status)}">${escapeHtml(STATUS_LABELS[record.status] || record.status)}</span>
-      <small class="follow-up ${followUp.state}">${escapeHtml(followUp.label)}</small>
+      <span class="workflow-badge">${escapeHtml(problem || STATUS_LABELS[record.status] || record.status)}</span>
+      <small>${escapeHtml(problem ? "Leitura pendente" : followUp.label)}</small>
     </div>
     <div class="row-actions">
-      ${commercialCases[item.processo] ? `<button class="dossier-button" type="button" data-commercial-intelligence="${escapeHtml(item.processo)}">Dossiê</button>` : ""}
-      ${item.rota.includes("Vazquez") ? `<button type="button" data-prepare-email="${escapeHtml(item.processo)}">E-mail</button>` : ""}
-      <button type="button" data-manage-outreach="${escapeHtml(item.processo)}">Controle</button>
-      <button type="button" data-company-insights="${escapeHtml(item.processo)}">Insights</button>
-      ${item.rota.includes("Vazquez") ? `<button type="button" data-create-proposal="${escapeHtml(item.processo)}">Proposta</button>` : ""}
+      <a href="${escapeHtml(caseUrl('investigacao_evt007.html',item))}">Investigação</a>
+      <a href="${escapeHtml(caseUrl('carteira_ana.html',item))}">Carteira da Ana</a>
+      ${!readOnly ? `<button type="button" data-manage-outreach="${escapeHtml(item.case_id)}">Controle</button>` : ''}
+      ${!readOnly && item.rota.includes("Vazquez") ? `<button type="button" data-prepare-email="${escapeHtml(item.case_id)}">E-mail</button><button type="button" data-create-proposal="${escapeHtml(item.case_id)}">Proposta</button>` : ''}
     </div>
+    ${!unique ? '<small>Operação por processo compartilhado: vínculo individual será validado na Fase 2.</small>' : ''}
   `;
 }
 
 function documentCell(item) {
-  const links = (item.documentos || []).map(document => `
-    <a class="document-link" href="${escapeHtml(document.url)}" target="_blank" rel="noopener">${escapeHtml(document.label)}</a>
-  `).join("");
-  const job = documentJobFor(item.processo);
-  const isRunning = ["FILA", "PROCESSANDO"].includes(job?.status);
-  const buttonLabel = isRunning
-    ? (job.status === "FILA" ? "Na fila..." : "Lendo edital...")
-    : (links ? "Reler elegível" : "Buscar e ler edital");
-  const jobMessage = job
-    ? `<small class="document-job ${String(job.status).toLowerCase()}">${escapeHtml(job.message || job.status)}</small>`
-    : "";
-  return `
-    <div class="document-links">${links || "<span class=\"muted-document\">Ainda não baixado</span>"}</div>
-    <button
-      class="document-read-button"
-      type="button"
-      data-read-document="${escapeHtml(item.processo)}"
-      ${isRunning ? "disabled" : ""}
-    >${escapeHtml(buttonLabel)}</button>
-    ${jobMessage}
-  `;
+  const links = (item.documentos || []).filter(doc=>{
+    try { return ['https:','http:'].includes(new URL(doc.url,location.href).protocol); } catch { return false; }
+  }).map(doc=>`<a class="document-link" href="${escapeHtml(doc.url)}" target="_blank" rel="noopener">${escapeHtml(doc.label)}</a>`).join('');
+  return `<div class="document-links">${links || '<span class="muted-document">Não investigado no edital</span>'}</div><small>Leitura documental automática ainda não integrada.</small>`;
 }
 
 function opportunityPageSize() {
@@ -397,11 +376,9 @@ function renderOpportunities(feed, query = "") {
   const visibleOpportunities = opportunities.slice(pageStart, pageStart + pageSize);
 
   document.querySelector("#opportunities").innerHTML = visibleOpportunities.map(item => {
-    const guarantee = item.percentual_garantia_execucao
-      ? `${item.status} · ${item.percentual_garantia_execucao}`
-      : item.status;
+    const guarantee = "Garantia não verificada no edital";
     return `
-      <tr>
+      <tr data-case-id="${escapeHtml(item.case_id)}">
         <td data-label="Tomador e item" class="opportunity-company">
           <strong>${escapeHtml(item.fornecedor || "Não informado")}</strong>
           <span>${escapeHtml(item.objeto)}</span>
@@ -418,7 +395,7 @@ function renderOpportunities(feed, query = "") {
           <small>Atualizado ${escapeHtml(item.atualizado)}</small>
         </td>
         <td data-label="Garantia e documentos" class="documents-cell">
-          <span class="status ${statusClass(item.status)}">${escapeHtml(guarantee)}</span>
+          <span class="status ${statusClass(item.status)}">${escapeHtml(guarantee)}</span><details><summary>Registro original</summary><p>${escapeHtml(item.percentual_garantia_execucao || "Não registrado")}</p><small>Observação herdada; não comprova obrigação documental.</small></details>
           ${documentCell(item)}
         </td>
         <td data-label="Valor e rota" class="opportunity-value">
@@ -436,6 +413,7 @@ function renderOpportunities(feed, query = "") {
 
 function operationsSignature(operations) {
   return JSON.stringify({
+    storage: operations.storage,
     outreach: operations.outreach || {},
     proposals: operations.proposals || [],
     counters: operations.counters || {},
@@ -443,8 +421,11 @@ function operationsSignature(operations) {
   });
 }
 
-function findOpportunity(processId) {
-  return feedData?.opportunities.find(item => item.processo === processId);
+function findOpportunity(identifier) {
+  const byId = feedData?.opportunities.find(item => item.case_id === identifier);
+  if (byId) return byId;
+  const candidates = feedData?.opportunities.filter(item => item.processo === identifier) || [];
+  return candidates.length === 1 ? candidates[0] : undefined;
 }
 
 function bindOpportunityActions(feed) {
@@ -525,12 +506,12 @@ async function refreshOperationalState() {
   }
 }
 
-function scheduleOperationalRefresh(delay = 5000) {
+function scheduleOperationalRefresh(delay = 30000) {
   clearTimeout(operationalRefreshTimer);
   operationalRefreshTimer = window.setTimeout(async () => {
     await refreshOperationalState();
     scheduleOperationalRefresh(
-      operationsState.storage === "LOCAL_FALLBACK" ? 30000 : 5000
+      operationsState.storage === "UNAVAILABLE" ? 60000 : 30000
     );
   }, delay);
 }
@@ -562,6 +543,14 @@ function operationalMetrics() {
 }
 
 function renderOperationalPulse() {
+  const notice = document.querySelector("#case-navigation-status");
+  if (operationsState.storage === "UNAVAILABLE") {
+    notice.textContent = "Memória operacional indisponível. Contato, notas e follow-up não puderam ser consultados.";
+    for (const id of ["signal-on-track","signal-due","signal-overdue","ops-to-prepare","ops-waiting","ops-proposals","ops-negotiations"]) document.querySelector(`#${id}`).textContent = "—";
+    document.querySelector("#ticker-track").textContent = "Memória operacional indisponível; indicadores não calculados.";
+    return;
+  }
+  if (notice.textContent.startsWith("Memória operacional indisponível")) notice.textContent = "";
   const metrics = operationalMetrics();
   document.querySelector("#signal-on-track").textContent = metrics.onTrack;
   document.querySelector("#signal-due").textContent = metrics.due;
@@ -597,15 +586,8 @@ function startClock() {
   setInterval(update, 1000);
 }
 
-function guaranteeParagraph(item) {
-  if (item.garantia_execucao === "SIM") {
-    const percentage = item.percentual_garantia_execucao || "conforme o instrumento convocatório";
-    const insurance = item.seguro_garantia_execucao === "SIM"
-      ? "O instrumento admite sua prestação na modalidade seguro-garantia."
-      : "Nossa equipe pode confirmar as modalidades admitidas durante a estruturação.";
-    return `O instrumento prevê garantia de execução de ${percentage} do valor contratual. ${insurance}`;
-  }
-  return "Na leitura documental realizada até o momento, a exigência de garantia de execução não foi identificada de forma conclusiva. Nossa equipe permanece acompanhando a formalização e as alterações do contrato para validar eventual necessidade de garantia.";
+function guaranteeParagraph() {
+  return "A obrigação de garantia ainda precisa ser verificada nos documentos da contratação. Podemos avaliar a necessidade e as condições aplicáveis antes de qualquer estruturação.";
 }
 
 function buildEmail(item, decisionMaker) {
@@ -676,6 +658,8 @@ function closeEmailComposer() {
 }
 
 async function saveOutreach(processId, data) {
+  if (operationsState.storage === "UNAVAILABLE") throw new Error("Memória indisponível; recarregue antes de editar.");
+  if (feedData.opportunities.filter(i=>i.processo===processId).length !== 1) throw new Error("Vínculo operacional ambíguo; nenhuma edição realizada.");
   const response = await postJson("./api/outreach", {
     process_id: processId,
     data: {
@@ -726,7 +710,7 @@ async function copyText(text, successMessage, target = "#copy-feedback") {
 }
 
 function openOutreach(item) {
-  if (!item) return;
+  if (!item || operationsState.storage === "UNAVAILABLE") return;
   currentOutreachOpportunity = item;
   const record = outreachFor(item.processo);
   document.querySelector("#outreach-context").innerHTML = `
@@ -1035,9 +1019,9 @@ function closeCommercialIntelligence() {
   currentCommercialCase = null;
 }
 
-function parsedGuarantee(item) {
-  const match = String(item.percentual_garantia_execucao || "").match(/\d+(?:[,.]\d+)?/);
-  return match ? Number(match[0].replace(",", ".")) : 0;
+function parsedGuarantee() {
+  // Percentual herdado não confirma regra documental, simples ou composta.
+  return null;
 }
 
 function proposalEstimate() {
@@ -1066,8 +1050,8 @@ function openProposal(item) {
   `;
   document.querySelector("#proposal-contract-value").value = item.valor_numero || "";
   document.querySelector("#proposal-guarantee").value = parsedGuarantee(item) || "";
-  document.querySelector("#proposal-rate").value = "0.75";
-  document.querySelector("#proposal-term").value = "12";
+  document.querySelector("#proposal-rate").value = "";
+  document.querySelector("#proposal-term").value = "";
   document.querySelector("#proposal-decision-maker").value = record.decision_maker || "";
   document.querySelector("#proposal-notes").value = "";
   document.querySelector("#proposal-feedback").textContent = parsedGuarantee(item)
@@ -1286,13 +1270,25 @@ Promise.all([
     renderSummary(feed);
     renderRouteNavigation(feed);
     renderOperationalPulse();
-    if (shouldRestoreOpportunities) {
+    const selected = resolveCase({feed}, new URLSearchParams(location.search));
+    if (selected.status === "selected") {
+      activeRouteFilter = "TODAS";
+      currentOpportunityPage = Math.floor(feed.opportunities.indexOf(selected.item) / opportunityPageSize()) + 1;
+      renderOpportunities(feed);
+      requestAnimationFrame(() => {
+        const row = document.querySelector(`[data-case-id="${CSS.escape(selected.item.case_id)}"]`);
+        row?.classList.add("case-selected");
+        row?.scrollIntoView({block:"center"});
+      });
+    } else if (selected.status === "ambiguous" || selected.status === "missing") {
+      document.querySelector("#case-navigation-status").textContent = selected.status === "ambiguous" ? "Este processo possui mais de um caso. Selecione a empresa na lista." : "Caso não encontrado. Os registros existentes permanecem disponíveis.";
+    } else if (shouldRestoreOpportunities) {
       requestAnimationFrame(() => scrollToOpportunities("auto"));
     } else {
       window.scrollTo({ top: window.scrollY, left: 0, behavior: "auto" });
     }
     scheduleOperationalRefresh(
-      operations.storage === "LOCAL_FALLBACK" ? 30000 : 5000
+      operations.storage === "UNAVAILABLE" ? 60000 : 30000
     );
   })
   .catch(error => {
