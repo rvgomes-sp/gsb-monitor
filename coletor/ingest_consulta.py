@@ -53,6 +53,7 @@ def puxar(data: str, mods: list[int]) -> list[dict]:
 
 
 def main() -> int:
+    raise RuntimeError("LEGACY_EVT007_DISABLED_GATE_B: use python -m evt007; operational promotion is blocked")
     ap = argparse.ArgumentParser()
     ap.add_argument("data", help="AAAAMMDD")
     ap.add_argument("--modalities", default="")

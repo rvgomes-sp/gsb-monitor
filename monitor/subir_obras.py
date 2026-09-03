@@ -138,6 +138,7 @@ def montar_feed(ops: list[dict]) -> dict:
 
 
 def main() -> int:
+    raise RuntimeError("LEGACY_EVT007_DISABLED_GATE_B: use python -m evt007; operational promotion is blocked")
     ap = argparse.ArgumentParser()
     ap.add_argument("--in", dest="inp", nargs="+", required=True, help="JSON(s) de saída do coletor")
     ap.add_argument("--url", default="https://gsb-monitor.vercel.app")

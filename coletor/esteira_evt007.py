@@ -111,6 +111,7 @@ def drill(cli, r, m, safra):
 
 
 def main() -> int:
+    raise RuntimeError("LEGACY_EVT007_DISABLED_GATE_B: use python -m evt007; operational promotion is blocked")
     arq, safra = sys.argv[1], sys.argv[2]
     d = json.loads(Path(arq).read_text(encoding="utf-8"))
     alvo = [r for r in d["linhas"] if _dec(r.get("valorTotalHomologado")) >= PISO]

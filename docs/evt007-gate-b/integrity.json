@@ -1,0 +1,46 @@
+{
+  "counters_unchanged": true,
+  "counts_after": {
+    "history": 1,
+    "opportunities": 42,
+    "outreach": 1,
+    "proposals": 0
+  },
+  "counts_before": {
+    "history": 1,
+    "opportunities": 42,
+    "outreach": 1,
+    "proposals": 0
+  },
+  "documents_count_unchanged": true,
+  "ended_at": "2026-09-03T03:05:23.605826+00:00",
+  "feed_metadata_unchanged": true,
+  "hashes": {
+    "history_sha256": {
+      "after": "7173c165fb011159f930fd7ffa40bc07f16d911f3a1c57df27ca63f1812ac52e",
+      "before": "7173c165fb011159f930fd7ffa40bc07f16d911f3a1c57df27ca63f1812ac52e",
+      "equal": true
+    },
+    "opportunities_sha256": {
+      "after": "060f67530299483fbf512502ddedcce4b1926a3bba970fc3fa7b79360ff83b5b",
+      "before": "060f67530299483fbf512502ddedcce4b1926a3bba970fc3fa7b79360ff83b5b",
+      "equal": true
+    },
+    "outreach_sha256": {
+      "after": "d19dcb0358f80b5344363ac1af137e75a37511d36170595cb2f353536b1f87f2",
+      "before": "d19dcb0358f80b5344363ac1af137e75a37511d36170595cb2f353536b1f87f2",
+      "equal": true
+    },
+    "proposals_sha256": {
+      "after": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+      "before": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+      "equal": true
+    }
+  },
+  "jobs_count_unchanged": true,
+  "operational_writes_by_executor": 0,
+  "project": "pjghkqqrbcjmcvujwunf",
+  "row_hashes_equal": true,
+  "started_at": "2026-09-03T02:30:23.089341+00:00",
+  "comparison": "Database SHA-256 per protected table; canonical-key JSON comparison for ancillary metadata"
+}

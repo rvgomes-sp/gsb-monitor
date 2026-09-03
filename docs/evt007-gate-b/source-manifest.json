@@ -1,0 +1,88 @@
+{
+  "source": "COMPRASGOV_DADOS_ABERTOS",
+  "window": "2026-07-17",
+  "page_size": 500,
+  "pages": [
+    {
+      "page": 1,
+      "sha256": "e70b7a3a3554c472e1519df4414c4e7f5448249243a0f022e73a9715fb48c68e",
+      "file": "pagina_00001.json"
+    },
+    {
+      "page": 2,
+      "sha256": "02fccf484dbc136bf8a912edf6c9b5ddfd746309a67adc1d710d0a6c7dc33e1c",
+      "file": "pagina_00002.json"
+    },
+    {
+      "page": 3,
+      "sha256": "42656a9f43bf57b251078257e98900721aebb675f82a2fb9fe63ee9914ad08b9",
+      "file": "pagina_00003.json"
+    },
+    {
+      "page": 4,
+      "sha256": "6edcfb8d7b2580d0805ae42418c4b4a4beb244e6336b27c5e6b7e46a52bc521d",
+      "file": "pagina_00004.json"
+    },
+    {
+      "page": 5,
+      "sha256": "8af300337d3a87d4ec93faefec2e26b53740bb921a263a2c926e50f9e5490c74",
+      "file": "pagina_00005.json"
+    },
+    {
+      "page": 6,
+      "sha256": "24320afd13e3bbb7ec0c22bb372fe784e4bf86f6e14ac0fc449abad6f329340d",
+      "file": "pagina_00006.json"
+    },
+    {
+      "page": 7,
+      "sha256": "eabc7739b5bae8e392563112d1ebda8424e7af64f518ae5796791695cdf95279",
+      "file": "pagina_00007.json"
+    },
+    {
+      "page": 8,
+      "sha256": "d616bed632dcea61d894acc9f2ef168bdeeab55d2d2349acb58700edbe371313",
+      "file": "pagina_00008.json"
+    },
+    {
+      "page": 9,
+      "sha256": "f98b43754367934e2a5d7a401f517195786f96f14f6000e2582a5abe5fff60d2",
+      "file": "pagina_00009.json"
+    },
+    {
+      "page": 10,
+      "sha256": "1cce466cabd26fc3d6f1615929a0da187d32ab728a1fe9f746b71d21f3a9aeb9",
+      "file": "pagina_00010.json"
+    },
+    {
+      "page": 11,
+      "sha256": "ff7f4282a65e12bbca7f90e14b216435ea885502c1625b9819b4a3b1d6084a1b",
+      "file": "pagina_00011.json"
+    },
+    {
+      "page": 12,
+      "sha256": "7bed3a0c3610687b75cbb1508f993de0d249b9eb8379e5dbcfa13a6d5900768b",
+      "file": "pagina_00012.json"
+    },
+    {
+      "page": 13,
+      "sha256": "a09418485bbb4a153632384ab293068e73f8f934870d78167cc81465b5d79a46",
+      "file": "pagina_00013.json"
+    },
+    {
+      "page": 14,
+      "sha256": "39afedd09ece06dd3d48613b8d1eb1e88c3aa559bc588b27a4bf48385e918465",
+      "file": "pagina_00014.json"
+    },
+    {
+      "page": 15,
+      "sha256": "fdbdaba9ed24ae068ac19cd8fc338b75d5c7ac5580de1288ebbb7b3133c13a01",
+      "file": "pagina_00015.json"
+    },
+    {
+      "page": 16,
+      "sha256": "a4e67812a3231c1ee0d15802e091dba66befa0548e3326cee85c0a158d7b51e1",
+      "file": "pagina_00016.json"
+    }
+  ],
+  "custody": "Acervo V2.5 preservado pelo usuário; diretório data/descoberta/evt007_20260717/raw. Arquivos brutos não publicados neste commit."
+}

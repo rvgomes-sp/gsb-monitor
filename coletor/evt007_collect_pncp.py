@@ -430,6 +430,7 @@ def run(target, page_size, dry_run, max_pages, modalities, min_value=0, top_n=0,
 
 
 def main():
+    raise RuntimeError("LEGACY_EVT007_DISABLED_GATE_B: use python -m evt007; operational promotion is blocked")
     p=argparse.ArgumentParser(description="Coletor EVT-007 PNCP puro")
     p.add_argument("--date",help="AAAA-MM-DD; padrao D-1 BRT")
     p.add_argument("--page-size",type=int,default=50)

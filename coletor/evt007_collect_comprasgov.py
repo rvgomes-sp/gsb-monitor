@@ -80,6 +80,7 @@ def map_row(r):
     }
 
 def run(target, max_pages, dry_run):
+    raise RuntimeError("LEGACY_EVT007_DISABLED_GATE_B: use python -m evt007; operational promotion is blocked")
     d=target.isoformat()
     collected=[]; page=1; total=None
     while True:
@@ -118,6 +119,7 @@ def run(target, max_pages, dry_run):
     return report
 
 def main():
+    raise RuntimeError("LEGACY_EVT007_DISABLED_GATE_B: use python -m evt007; operational promotion is blocked")
     p=argparse.ArgumentParser()
     p.add_argument("--date", required=True)
     p.add_argument("--max-pages", type=int, default=3)

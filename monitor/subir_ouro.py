@@ -142,6 +142,7 @@ def montar_feed(rows):
 
 
 def main():
+    raise RuntimeError("LEGACY_EVT007_DISABLED_GATE_B: use python -m evt007; operational promotion is blocked")
     ap = argparse.ArgumentParser()
     ap.add_argument("--url", default="https://gsb-monitor.vercel.app")
     ap.add_argument("--dry", action="store_true")

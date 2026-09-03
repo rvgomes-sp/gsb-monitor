@@ -26,6 +26,7 @@ BRT = timezone(timedelta(hours=-3))
 
 
 def main() -> int:
+    raise RuntimeError("LEGACY_EVT007_DISABLED_GATE_B: use python -m evt007; operational promotion is blocked")
     p = argparse.ArgumentParser(description="Coleta EVT-007 — obra fresca >= R$ 10 MM")
     p.add_argument("--date", help="AAAA-MM-DD; padrão D-1 (BRT)")
     p.add_argument("--modalities", default="", help="ex: 4,5,6,7 (padrão)")

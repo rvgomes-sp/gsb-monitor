@@ -218,6 +218,7 @@ def _dk(c,ni): return sha256(f"{c}|{ni}|{RULE_VERSION}".encode()).hexdigest()
 def _ok(c,ni,rd): return sha256(f"{c}|{ni}|{rd}".encode()).hexdigest()
 
 def run(target, process_all, dry_run, cfg_path, fam_path):
+    raise RuntimeError("LEGACY_EVT007_DISABLED_GATE_B: use python -m evt007; operational promotion is blocked")
     cfg=Config(cfg_path, fam_path)
     import psycopg
     url=os.environ.get("DATABASE_URL","")
@@ -280,6 +281,7 @@ def run(target, process_all, dry_run, cfg_path, fam_path):
                 for o in opps], key=lambda x:x.get("score",0),reverse=True)[:5]}
 
 def main():
+    raise RuntimeError("LEGACY_EVT007_DISABLED_GATE_B: use python -m evt007; operational promotion is blocked")
     p=argparse.ArgumentParser()
     p.add_argument("--date"); p.add_argument("--all",action="store_true")
     p.add_argument("--dry-run",action="store_true")

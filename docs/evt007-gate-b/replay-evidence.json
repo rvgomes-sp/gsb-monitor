@@ -1,0 +1,117 @@
+{
+  "executions": [
+    {
+      "exit_code": 0,
+      "result": {
+        "status": "INITIALIZED_LOCAL_ONLY"
+      }
+    },
+    {
+      "exit_code": 2,
+      "result": {
+        "candidate_count": 0,
+        "decisions": {
+          "NAO_CLASSIFICADO": 6976
+        },
+        "duplicate_rows": 768,
+        "factual_reasons": {
+          "FORNECEDOR_NAO_IDENTIFICADO": 4,
+          "MODALIDADE_AUSENTE_OU_CONTRADITORIA": 6976,
+          "RESULTADO_CANCELADO": 4,
+          "VALOR_NAO_SUPERIOR_A_10MM": 6966
+        },
+        "factual_states": {
+          "INELEGIVEL": 6966,
+          "QUARENTENA": 10
+        },
+        "ledger_counts": {
+          "candidate_cases": 0,
+          "decisions": 6976,
+          "evaluations": 6976,
+          "events": 6976,
+          "observations": 6976,
+          "pages": 16,
+          "quarantine": 0,
+          "revisions": 6976,
+          "runs": 1
+        },
+        "mode": "replay",
+        "official_pages": 16,
+        "official_total": 7744,
+        "operational_writes": 0,
+        "pages_received": 16,
+        "production_connected": false,
+        "reasons": [
+          "DUPLICATED_ROW_COVERAGE_UNCERTAIN"
+        ],
+        "rows_received": 7744,
+        "run_id": "54fdffc7-b8f9-4768-8e93-526193cfe15c",
+        "source": "COMPRASGOV_DADOS_ABERTOS",
+        "status": "PARTIAL",
+        "window": "2026-07-17"
+      }
+    },
+    {
+      "exit_code": 2,
+      "result": {
+        "candidate_count": 0,
+        "decisions": {
+          "NAO_CLASSIFICADO": 6976
+        },
+        "duplicate_rows": 768,
+        "factual_reasons": {
+          "FORNECEDOR_NAO_IDENTIFICADO": 4,
+          "MODALIDADE_AUSENTE_OU_CONTRADITORIA": 6976,
+          "RESULTADO_CANCELADO": 4,
+          "VALOR_NAO_SUPERIOR_A_10MM": 6966
+        },
+        "factual_states": {
+          "INELEGIVEL": 6966,
+          "QUARENTENA": 10
+        },
+        "ledger_counts": {
+          "candidate_cases": 0,
+          "decisions": 6976,
+          "evaluations": 13952,
+          "events": 6976,
+          "observations": 13952,
+          "pages": 32,
+          "quarantine": 0,
+          "revisions": 6976,
+          "runs": 2
+        },
+        "mode": "replay",
+        "official_pages": 16,
+        "official_total": 7744,
+        "operational_writes": 0,
+        "pages_received": 16,
+        "production_connected": false,
+        "reasons": [
+          "DUPLICATED_ROW_COVERAGE_UNCERTAIN"
+        ],
+        "rows_received": 7744,
+        "run_id": "01383482-deec-4f0d-a97e-33140a448f57",
+        "source": "COMPRASGOV_DADOS_ABERTOS",
+        "status": "PARTIAL",
+        "window": "2026-07-17"
+      }
+    }
+  ],
+  "idempotent_business_tables": {
+    "events": true,
+    "revisions": true,
+    "candidate_cases": true,
+    "decisions": true
+  },
+  "sqlite_integrity_check": [
+    "ok"
+  ],
+  "new_live_requests": 0,
+  "operational_writes": 0,
+  "runtime": {
+    "python": "3.12.13",
+    "sqlite": "3.53.1",
+    "proof_directory_class": "isolated temporary directory outside managed workspace"
+  },
+  "proof_sqlite_sha256": "93c08d4d016114e8ccd62316b62818de1e2e86731a06ac75c5b9d8838db0ece1"
+}
