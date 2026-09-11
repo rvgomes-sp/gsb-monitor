@@ -1,13 +1,11 @@
 #!/usr/bin/env python3
-"""Coletor de AMOSTRA — Compras.gov Dados Abertos (fonte de teste enquanto PNCP está fora).
+"""Coletor factual Compras.gov Dados Abertos.
 
-Puxa resultados de itens homologados por dataResultado e grava em gsb.evt007_results,
-no MESMO formato do coletor PNCP (mesma tabela, mesmo motor v3 roda em cima).
-Fonte marcada como COMPRASGOV_DADOS_ABERTOS para não confundir com a coleta PNCP.
+003-S/02-R: max-pages=0 percorre a janela integral; paginação incompleta não
+produz escrita. Preserva o mapeamento factual e o filtro CNPJ já existentes.
+ON CONFLICT DO NOTHING preserva source_payload e demais fatos anteriores.
 
-Uso (amostra controlada):
-  python evt007_collect_comprasgov.py --date 2026-07-23 --max-pages 3
-  python evt007_collect_comprasgov.py --date 2026-07-23 --max-pages 3 --dry-run
+Uso: python coletor/evt007_collect_comprasgov.py --date 2026-09-09 --dry-run
 """
 from __future__ import annotations
 import argparse, json, os, re, time, urllib.request
@@ -79,48 +77,76 @@ def map_row(r):
         "source_payload": json.dumps(r, ensure_ascii=False, sort_keys=True),
     }
 
-def run(target, max_pages, dry_run):
-    d=target.isoformat()
-    collected=[]; page=1; total=None
+def collect(target, max_pages=0, getter=None):
+    """Complete factual batch, keeping the existing supplier mapping and result key."""
+    getter = getter or _get
+    d = target.isoformat()
+    collected, page, seen, raw_count, excluded = [], 1, {}, 0, 0
+    expected_total = expected_pages = None
     while True:
-        url=f"{BASE}?dataResultadoPncpInicial={d}&dataResultadoPncpFinal={d}&pagina={page}&tamanhoPagina=500"
-        payload=_get(url)
-        rows=payload.get("resultado") or []
-        total=payload.get("totalRegistros")
+        url = f"{BASE}?dataResultadoPncpInicial={d}&dataResultadoPncpFinal={d}&pagina={page}&tamanhoPagina=500"
+        payload = getter(url)
+        if not isinstance(payload, dict) or not isinstance(payload.get("resultado"), list):
+            raise ValueError("unexpected factual response schema")
+        total, pages = payload.get("totalRegistros"), payload.get("totalPaginas")
+        if type(total) is not int or type(pages) is not int or total < 0 or pages < 0:
+            raise ValueError("missing or invalid factual pagination metadata")
+        if page == 1:
+            expected_total, expected_pages = total, pages
+        if (total, pages) != (expected_total, expected_pages):
+            raise ValueError("pagination population changed during acquisition")
+        rows = payload["resultado"]
+        raw_count += len(rows)
         for r in rows:
-            m=map_row(r)
-            if m: collected.append(m)
-        if page>=int(payload.get("totalPaginas") or 1) or (max_pages and page>=max_pages):
+            if not isinstance(r, dict) or (r.get("dataResultadoPncp") or "")[:10] != d:
+                raise ValueError("record outside frozen result date")
+            m = map_row(r)
+            if m is None:
+                excluded += 1
+                continue
+            if not m["case_id"] or m["item_number"] is None or m["result_sequence"] is None:
+                raise ValueError("incomplete factual administrative key")
+            key = m["result_key"]
+            if key in seen:
+                if seen[key]["source_payload"] != m["source_payload"]:
+                    raise ValueError("conflicting result payload for the same result_key")
+            else:
+                seen[key] = m
+                collected.append(m)
+        if page >= max(1, pages) or (max_pages and page >= max_pages):
             break
-        page+=1
-    report={"status":"COMPLETE","source":SOURCE,"date":d,
-            "total_disponivel":total,"paginas_lidas":page,
-            "linhas_coletadas":len(collected),"dry_run":dry_run,
-            "amostra":collected[:2]}
+        page += 1
+    complete = page >= max(1, expected_pages) and raw_count == expected_total
+    return collected, {"status": "COMPLETE" if complete else "INCOMPLETE",
+        "source": SOURCE, "date": d, "total_disponivel": expected_total,
+        "paginas_lidas": page, "paginas_esperadas": expected_pages,
+        "registros_brutos": raw_count, "excluidos_mapeamento_vigente": excluded,
+        "linhas_coletadas": len(collected),
+        "repeticoes_identicas": raw_count-excluded-len(collected)}
+
+
+def run(target, max_pages, dry_run):
+    collected, report = collect(target, max_pages)
+    report["dry_run"] = dry_run
+    if report["status"] != "COMPLETE":
+        raise RuntimeError("incomplete collection: no database write")
     if not dry_run:
         import psycopg
-        url=os.environ.get("DATABASE_URL","")
-        if not url: raise SystemExit("DATABASE_URL nao definida")
-        cols=["result_key","case_id","item_number","result_sequence","supplier_identifier",
-              "supplier_name","supplier_size_id","supplier_size_name","legal_nature_id",
-              "legal_nature_name","result_date","inclusion_at","update_at","cancellation_at",
-              "homologated_quantity","homologated_unit_value","homologated_total_value",
-              "platform","platform_delta_status","source_name","source_payload"]
-        ph=",".join(f"%({c})s" for c in cols)
+        url = os.environ.get("DATABASE_URL", "")
+        if not url:
+            raise SystemExit("DATABASE_URL nao definida")
+        cols = list(collected[0]) if collected else []
+        ph = ",".join(f"%({c})s" for c in cols)
         with psycopg.connect(url) as conn, conn.transaction():
             for m in collected:
-                conn.execute(f"""INSERT INTO gsb.evt007_results({','.join(cols)})
-                    VALUES({ph}) ON CONFLICT(result_key) DO UPDATE SET
-                    update_at=excluded.update_at, source_payload=excluded.source_payload,
-                    platform=excluded.platform, platform_delta_status=excluded.platform_delta_status
-                """, {**m, "source_payload": m["source_payload"]})
-        report["gravado_no_banco"]=len(collected)
+                conn.execute(f"INSERT INTO gsb.evt007_results ({','.join(cols)}) VALUES ({ph}) ON CONFLICT(result_key) DO NOTHING", m)
+        report["registros_submetidos"] = len(collected)
     return report
 
 def main():
     p=argparse.ArgumentParser()
     p.add_argument("--date", required=True)
-    p.add_argument("--max-pages", type=int, default=3)
+    p.add_argument("--max-pages", type=int, default=0)
     p.add_argument("--dry-run", action="store_true")
     a=p.parse_args()
     rep=run(date.fromisoformat(a.date), a.max_pages, a.dry_run)
