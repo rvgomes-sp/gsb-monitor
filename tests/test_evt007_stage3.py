@@ -20,8 +20,8 @@ class Fake:
             payload={"data":[{"numeroControlePNCP":"FIXTURE","orgaoEntidade":{"cnpj":"00000000000000"},"anoCompra":2026,"sequencialCompra":1,"valorTotalHomologado":10000000,"objetoCompra":"aquisição de papel"}],"totalPaginas":1}
         elif endpoint=="10.13": payload=[self.item,{"numeroItem":2,"temResultado":False}]
         elif endpoint=="10.17":
-            payload=[{"sequencialResultado":1,"niFornecedor":"12345678901","nomeRazaoSocialFornecedor":"FIXTURE","dataResultado":"2026-09-10","dataInclusao":"2026-09-10T01:00:00","valorTotalHomologado":5},
-                     {"sequencialResultado":2,"niFornecedor":"12345678901","dataResultado":"2026-08-01","dataInclusao":"2026-09-10T02:00:00","valorTotalHomologado":7}]
+            payload=[{"sequencialResultado":1,"niFornecedor":"12345678000199","nomeRazaoSocialFornecedor":"FIXTURE","dataResultado":"2026-09-10","dataInclusao":"2026-09-10T01:00:00","valorTotalHomologado":5},
+                     {"sequencialResultado":2,"niFornecedor":"12345678000199","dataResultado":"2026-08-01","dataInclusao":"2026-09-10T02:00:00","valorTotalHomologado":7}]
         else: raise AssertionError(endpoint)
         self.evidencias.append(Evidencia(endpoint,url,200,"a"*64,0,payload));return payload
 
@@ -30,6 +30,10 @@ class Sink:
     def execute(self,q,p): self.inserts.append((q,p))
 
 class TestStage3(unittest.TestCase):
+    def test_client_has_no_hardcoded_proxy(self):
+        source=Path(__file__).parents[1].joinpath("coletor/pncp/cliente.py").read_text()
+        self.assertNotIn('proxy="http://127.0.0.1:45401"',source)
+        self.assertNotIn("trust_env=False",source)
     def test_nao_obra_traverses_drill_freshness_identity_and_factual_insert(self):
         cli=Fake()
         self.assertEqual(clf.classificar_contratacao([cli.item],"aquisição de papel").classe,clf.NAO_OBRA)

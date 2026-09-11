@@ -14,6 +14,10 @@ def _dec(v):
     except Exception: return Decimal(0)
 def _log(msg): print(msg,file=sys.stderr,flush=True)
 
+def _cpf(ni):
+    digits="".join(c for c in (ni or "") if c.isdigit())
+    return len(digits)==11 and len((ni or "").strip())==11
+
 @dataclass
 class Funil:
     data_alvo:str
@@ -124,6 +128,8 @@ class Motor:
             for rr in res:
                 if not isinstance(rr,dict):
                     self.falha(fun,"resultado",[case,n],"invalid result");continue
+                if _cpf(rr.get("niFornecedor")):
+                    continue
                 f=fr.avaliar(rr.get("dataResultado"),rr.get("dataInclusao"))
                 if not f.data_inclusao or not f.data_resultado:
                     self.falha(fun,"frescor",[case,n],"missing or invalid factual dates");continue

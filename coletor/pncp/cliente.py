@@ -84,8 +84,6 @@ class ClientePNCP:
             },
             follow_redirects=False,  # 10.5 na Integração dá 301 sem Location: é sinal, não seguir
             limits=httpx.Limits(max_keepalive_connections=0, max_connections=2),
-            proxy="http://127.0.0.1:45401",
-            trust_env=False,
         )
 
     def fechar(self):
