@@ -11,6 +11,9 @@ evidência (sha256 dos bytes crus).
 from __future__ import annotations
 
 import hashlib
+import json
+from datetime import datetime, timezone
+from pathlib import Path
 import random
 import sys
 import time
@@ -64,6 +67,8 @@ class ClientePNCP:
     _cli: httpx.Client = field(default=None, repr=False)
     evidencias: list[Evidencia] = field(default_factory=list, repr=False)
     guardar_evidencia: bool = False
+    evidence_directory: str | None = None
+    _acquisitions: int = 0
     _falhas_seguidas: int = field(default=0, repr=False)
 
     def __post_init__(self):
@@ -79,6 +84,8 @@ class ClientePNCP:
             },
             follow_redirects=False,  # 10.5 na Integração dá 301 sem Location: é sinal, não seguir
             limits=httpx.Limits(max_keepalive_connections=0, max_connections=2),
+            proxy="http://127.0.0.1:45401",
+            trust_env=False,
         )
 
     def fechar(self):
@@ -107,11 +114,13 @@ class ClientePNCP:
             try:
                 r = self._cli.get(url)
             except (httpx.TransportError, httpx.TimeoutException) as e:
+                self._preservar(endpoint, url, None, b'', {'error': type(e).__name__})
                 self._registrar_falha()
                 self._log(f"    [{endpoint}] tentativa {attempt[0]} FALHOU {type(e).__name__} "
                           f"{int((time.monotonic()-t0)*1000)}ms")
                 raise TransitorioPNCP(f"transporte: {e}") from e
             lat = int((time.monotonic() - t0) * 1000)
+            self._preservar(endpoint, url, r.status_code, r.content, dict(r.headers))
             if r.status_code in TRANSITORIOS:
                 ra = r.headers.get("Retry-After")
                 espera = min(30, int(ra)) if (ra and ra.isdigit()) else min(15, 2 ** attempt[0])
@@ -141,6 +150,20 @@ class ClientePNCP:
             return payload
 
         return _bater()
+
+    def _preservar(self, endpoint, url, status, raw, headers):
+        if not self.evidence_directory:
+            return
+        self._acquisitions += 1
+        root = Path(self.evidence_directory)
+        root.mkdir(parents=True, exist_ok=True)
+        stem = root / f'request_{self._acquisitions:06d}'
+        stem.with_suffix('.body').write_bytes(raw)
+        stem.with_suffix('.json').write_text(json.dumps({
+            'endpoint': endpoint, 'url': url, 'http_status': status,
+            'sha256': hashlib.sha256(raw).hexdigest(), 'bytes': len(raw),
+            'received_at': datetime.now(timezone.utc).isoformat(), 'headers': headers,
+        }, ensure_ascii=False, indent=2))
 
     def _registrar_falha(self):
         self._falhas_seguidas += 1
