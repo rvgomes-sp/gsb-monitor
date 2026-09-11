@@ -167,6 +167,7 @@ def acquire_identity(rows, http, catser):
     first = rows[0]
     identity = dict(item_key=item_key(first["case_id"], first["item_number"]),
                     case_id=first["case_id"], item_number=first["item_number"],
+                    id_contratacao_pncp=None, id_compra=None, id_compra_item=None,
                     bridge_version=VERSION, catalog_match_status="AQUISICAO_IDENTIDADE_FALHOU",
                     identity_source=collector.SOURCE, identity_endpoint=None,
                     identity_payload_hash=None, identity_acquired_at=None,

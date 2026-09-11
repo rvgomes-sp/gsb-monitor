@@ -196,6 +196,19 @@ class BridgeTests(unittest.TestCase):
         with self.assertRaisesRegex(RuntimeError, "gsb.evt007_results"):
             b.preflight(Connection())
 
+    def test_conflicting_source_ids_remain_persistable_failure(self):
+        rows = [result(), result(supplier="98765432000190")]
+        raw = json.loads(rows[1]["source_payload"])
+        raw["idCompra"] = "different-purchase"
+        rows[1]["source_payload"] = json.dumps(raw)
+        http = HTTP([item()])
+        _, ids, _ = b.bridge(rows, http, NeverCatser())
+        self.assertEqual(http.calls, 0)
+        self.assertEqual(ids[0]["catalog_match_status"], "AQUISICAO_IDENTIDADE_FALHOU")
+        sink = SQLiteSink()
+        b.persist(sink, rows, ids, "failed-fixture")
+        self.assertEqual(sink.db.execute("select count(*) from gsb.evt007_item_identity").fetchone()[0], 1)
+
 
 if __name__ == "__main__":
     unittest.main()
