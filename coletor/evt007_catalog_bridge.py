@@ -64,6 +64,7 @@ class EvidenceHTTP:
         self.directory.mkdir(parents=True, exist_ok=True)
         self.timeout = timeout
         self.calls = 0
+        self.received = []
 
     def __call__(self, url):
         self.calls += 1
@@ -80,6 +81,7 @@ class EvidenceHTTP:
                     raise ValueError("unexpected HTTP status")
             payload = json.loads(body.decode("utf-8-sig"))
             meta["status"] = "RECEIVED"
+            self.received.append((payload, meta, body))
             return payload, meta
         except Exception as exc:
             meta.update(status="FAILED", error_type=type(exc).__name__, error=str(exc))
@@ -317,10 +319,36 @@ def persist(conn, results, identities, run_id):
 
 
 def preflight(conn):
-    required = ("gsb.evt007_results", "gsb.evt007_item_identity", "gsb.evt007_item_identity_observations")
+    required = ("gsb.evt007_results", "gsb.evt007_collection_runs", "gsb.evt007_raw_pages",
+                "gsb.evt007_item_identity", "gsb.evt007_item_identity_observations",
+                "gsb.v_evt007_classified_results")
     for name in required:
         if conn.execute("SELECT to_regclass(%s)", (name,)).fetchone()[0] is None:
             raise RuntimeError("missing canonical relation: " + name)
+
+
+def start_run(conn, run_id):
+    conn.execute("INSERT INTO gsb.evt007_collection_runs (run_id,result_date,source_name,source_endpoint,status,page_size) VALUES (%s,%s,%s,%s,'RUNNING',500)",
+                 (run_id, TARGET, collector.SOURCE, collector.BASE))
+
+
+def preserve_factual(conn, run_id, results, collection, received):
+    for page, (payload, meta, body) in enumerate(received, 1):
+        if sha256(body).hexdigest() != meta["sha256"]:
+            raise ValueError("raw page bytes changed before persistence")
+        conn.execute("INSERT INTO gsb.evt007_raw_pages (run_id,page_number,request_url,http_status,payload_sha256,payload_raw,payload,received_at) VALUES (%s,%s,%s,%s,%s,%s,%s::jsonb,%s)",
+                     (run_id, page, meta["url"], meta["http_status"], meta["sha256"], body,
+                      json.dumps(payload, ensure_ascii=False), meta["finished_at"]))
+    persist(conn, results, [], run_id)
+    conn.execute("UPDATE gsb.evt007_collection_runs SET status='FACTUAL_PRESERVED',expected_pages=%s,expected_records=%s,collected_pages=%s,collected_records=%s,mapped_records=%s WHERE run_id=%s",
+                 (collection["paginas_esperadas"], collection["total_disponivel"], collection["paginas_lidas"],
+                  collection["registros_brutos"], len(results), run_id))
+
+
+def finish_run(conn, run_id, report, failed=False):
+    status = "FAILED" if failed else ("COMPLETE_EMPTY" if report["collection"]["registros_brutos"] == 0 else "COMPLETE")
+    conn.execute("UPDATE gsb.evt007_collection_runs SET status=%s,metrics=%s::jsonb,finished_at=now(),error_message=%s WHERE run_id=%s",
+                 (status, json.dumps(report.get("metrics"), ensure_ascii=False), report.get("error"), run_id))
 
 
 def main(argv=None):
@@ -336,17 +364,26 @@ def main(argv=None):
               "monitor_write":False, "status":"STARTED", "started_at":utcnow(), "metrics":None,
               "persisted":False}
     conn = None
+    run_started = False
+    run_id = args.output.name
     try:
         if args.persist:
             import psycopg
             conn = psycopg.connect(os.environ["DATABASE_URL"], connect_timeout=20)
             preflight(conn)
+            start_run(conn, run_id)
+            conn.commit()
+            run_started = True
         factual_http = EvidenceHTTP(args.output / "factual_http")
         results, collection = collector.collect(date.fromisoformat(args.date), 0, lambda url: factual_http(url)[0])
         report["collection"] = collection
         write_json(args.output / "factual_results.json", results)
         if collection["status"] != "COMPLETE":
             raise RuntimeError("incomplete factual batch")
+        if conn:
+            with conn.transaction():
+                preserve_factual(conn, run_id, results, collection, factual_http.received)
+            conn.commit()
         identity_http = EvidenceHTTP(args.output / "identity_http")
         catser = Catser(args.catser)
         selected, identities, audit = bridge(results, identity_http, catser)
@@ -362,13 +399,22 @@ def main(argv=None):
             w = csv.DictWriter(f, fieldnames=fields, extrasaction="ignore"); w.writeheader(); w.writerows(audit)
         if conn:
             with conn.transaction():
-                persist(conn, results, identities, args.output.name)
+                persist(conn, [], identities, run_id)
+                finish_run(conn, run_id, report, failed=bool(catser.error))
             conn.commit()
             report["persisted"] = True
         report["status"] = "PROCESSED" if not catser.error else "ERRO_TECNICO_CATALOGO"
         return 0 if not catser.error else 2
     except Exception as exc:
         report.update(status="EXECUCAO_BLOQUEADA", error_type=type(exc).__name__, error=str(exc))
+        if conn and run_started:
+            conn.rollback()
+            try:
+                finish_run(conn, run_id, report, failed=True)
+                conn.commit()
+            except Exception as log_exc:
+                conn.rollback()
+                report["failure_log_error"] = type(log_exc).__name__
         return 2
     finally:
         if conn:

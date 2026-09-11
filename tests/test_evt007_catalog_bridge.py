@@ -48,7 +48,10 @@ class SQLiteSink:
     """Actual SQL uniqueness check; only placeholder/cast dialect adapted for SQLite."""
     def __init__(self):
         self.db = sqlite3.connect(":memory:")
+        self.db.create_function("now", 0, lambda: "2026-09-11T00:00:00Z")
         self.db.execute("ATTACH DATABASE ':memory:' AS gsb")
+        self.db.execute("CREATE TABLE gsb.evt007_collection_runs (run_id TEXT PRIMARY KEY,result_date TEXT,source_name TEXT,source_endpoint TEXT,status TEXT,page_size INTEGER,expected_pages INTEGER,expected_records INTEGER,collected_pages INTEGER,collected_records INTEGER,mapped_records INTEGER,metrics TEXT,finished_at TEXT,error_message TEXT)")
+        self.db.execute("CREATE TABLE gsb.evt007_raw_pages (run_id TEXT,page_number INTEGER,request_url TEXT,http_status INTEGER,payload_sha256 TEXT,payload_raw BLOB,payload TEXT,received_at TEXT,PRIMARY KEY(run_id,page_number))")
         for table, cols, key in (("evt007_results", b.RESULT_COLUMNS, "result_key"),
                                  ("evt007_item_identity", b.IDENTITY_COLUMNS, "item_key")):
             self.db.execute(f"CREATE TABLE gsb.{table} (" + ",".join(c+" TEXT" for c in cols) + f", PRIMARY KEY ({key}))")
@@ -208,6 +211,28 @@ class BridgeTests(unittest.TestCase):
         sink = SQLiteSink()
         b.persist(sink, rows, ids, "failed-fixture")
         self.assertEqual(sink.db.execute("select count(*) from gsb.evt007_item_identity").fetchone()[0], 1)
+
+    def test_stage2_two_runs_preserve_raw_bytes_without_result_duplication(self):
+        rows = [result()]
+        payload = {"resultado":[json.loads(rows[0]["source_payload"])]}
+        body = json.dumps(payload, ensure_ascii=False).encode()
+        meta = {"url":b.collector.BASE,"http_status":200,"sha256":hashlib.sha256(body).hexdigest(),"finished_at":"2026-09-11T00:00:00Z"}
+        collection = {"paginas_esperadas":1,"total_disponivel":1,"paginas_lidas":1,"registros_brutos":1}
+        sink = SQLiteSink()
+        for run_id in ("first", "rerun"):
+            b.start_run(sink, run_id)
+            b.preserve_factual(sink, run_id, rows, collection, [(payload,meta,body)])
+            b.finish_run(sink, run_id, {"collection":collection,"metrics":{}})
+        self.assertEqual(sink.db.execute("select count(*) from gsb.evt007_results").fetchone()[0], 1)
+        self.assertEqual(sink.db.execute("select count(*) from gsb.evt007_raw_pages").fetchone()[0], 2)
+        self.assertEqual(sink.db.execute("select count(*) from gsb.evt007_collection_runs where status='COMPLETE'").fetchone()[0], 2)
+        self.assertEqual(sink.db.execute("select payload_raw from gsb.evt007_raw_pages limit 1").fetchone()[0], body)
+
+    def test_stage2_changed_bytes_are_rejected_before_storage(self):
+        sink = SQLiteSink(); b.start_run(sink, "bad")
+        with self.assertRaisesRegex(ValueError, "bytes changed"):
+            b.preserve_factual(sink, "bad", [], {}, [({}, {"sha256":"incorrect"}, b"{}")])
+        self.assertEqual(sink.db.execute("select count(*) from gsb.evt007_raw_pages").fetchone()[0], 0)
 
 
 if __name__ == "__main__":
