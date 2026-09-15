@@ -1,3 +1,9 @@
+test_catmat_selection_rejects_catser_snapshot (test_mic_adversarial.AdversarialTests.test_catmat_selection_rejects_catser_snapshot) ... ok
+test_catser_selection_rejects_catmat_snapshot (test_mic_adversarial.AdversarialTests.test_catser_selection_rejects_catmat_snapshot) ... ok
+test_http_200_control_allows_lookup (test_mic_adversarial.AdversarialTests.test_http_200_control_allows_lookup) ... ok
+test_http_404_fails_closed_with_zero_lookup (test_mic_adversarial.AdversarialTests.test_http_404_fails_closed_with_zero_lookup) ... ok
+test_http_500_fails_closed_with_zero_lookup (test_mic_adversarial.AdversarialTests.test_http_500_fails_closed_with_zero_lookup) ... ok
+test_only_exact_namespace_configuration_is_accepted (test_mic_adversarial.AdversarialTests.test_only_exact_namespace_configuration_is_accepted) ... ok
 test_t17_no_frozen_imports (test_mic_architecture.ArchitectureTests.test_t17_no_frozen_imports) ... ok
 test_t19_migration_allowlist (test_mic_architecture.ArchitectureTests.test_t19_migration_allowlist) ... ok
 test_t20_no_real_network (test_mic_architecture.ArchitectureTests.test_t20_no_real_network) ... ok
@@ -26,6 +32,6 @@ test_read_contract_only_evt007_results (test_mic_repository.RepositoryTests.test
 test_t18_no_legacy_writes (test_mic_repository.RepositoryTests.test_t18_no_legacy_writes) ... ok
 
 ----------------------------------------------------------------------
-Ran 26 tests in 0.008s
+Ran 32 tests in 0.009s
 
 OK

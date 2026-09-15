@@ -18,8 +18,11 @@ def canonical_code(value):
 
 class MicEngine:
     def __init__(self,transport,catalogs,namespace_rule,namespace_rule_version):
+        configured=dict(namespace_rule)
+        if configured!={"M":"CATMAT","S":"CATSER"}:
+            raise ValueError("invalid namespace rule: expected exact literal M/S mapping")
         self.transport=transport;self.catalogs=catalogs
-        self.namespace_rule=dict(namespace_rule);self.namespace_rule_version=namespace_rule_version
+        self.namespace_rule=configured;self.namespace_rule_version=namespace_rule_version
 
     def run(self,records:list[FactualResult]):
         grouped=defaultdict(list)
@@ -43,6 +46,9 @@ class MicEngine:
         o.identity_endpoint=ev.url;o.identity_http_status=ev.http_status
         o.identity_payload_raw=ev.payload_raw;o.identity_payload_sha256=ev.payload_sha256
         o.identity_payload=ev.payload;o.identity_started_at=ev.started_at;o.identity_acquired_at=ev.finished_at
+        if ev.http_status!=200:
+            o.mic_status=MicStatus.ERRO_TECNICO;o.mic_reason_code=ReasonCode.ERRO_TRANSPORTE
+            o.failure_reason=f"identity HTTP status {ev.http_status}; expected 200";return o
         parsed,reason=verify_and_parse(ev)
         if reason:
             o.mic_status=MicStatus.ERRO_TECNICO;o.mic_reason_code=reason;o.failure_reason=ev.error;return o
@@ -87,6 +93,8 @@ class MicEngine:
         snapshot=self.catalogs.get(namespace)
         if snapshot is None:
             o.mic_status=MicStatus.ERRO_TECNICO;o.mic_reason_code=ReasonCode.SNAPSHOT_INDISPONIVEL;return o
+        if snapshot.namespace!=namespace:
+            o.mic_status=MicStatus.ERRO_TECNICO;o.mic_reason_code=ReasonCode.SNAPSHOT_NAMESPACE_DIVERGENTE;return o
         try: match=snapshot.lookup(o.catalog_code)
         except CatalogError as exc:
             o.mic_status=MicStatus.ERRO_TECNICO;o.mic_reason_code=exc.reason;return o
