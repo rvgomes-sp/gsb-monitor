@@ -1,0 +1,31 @@
+test_t17_no_frozen_imports (test_mic_architecture.ArchitectureTests.test_t17_no_frozen_imports) ... ok
+test_t19_migration_allowlist (test_mic_architecture.ArchitectureTests.test_t19_migration_allowlist) ... ok
+test_t20_no_real_network (test_mic_architecture.ArchitectureTests.test_t20_no_real_network) ... ok
+test_t21_no_real_database (test_mic_architecture.ArchitectureTests.test_t21_no_real_database) ... ok
+test_source_field_name_preserved (test_mic_engine.EngineTests.test_source_field_name_preserved) ... ok
+test_t01_exact_catser (test_mic_engine.EngineTests.test_t01_exact_catser) ... ok
+test_t02_exact_catmat (test_mic_engine.EngineTests.test_t02_exact_catmat) ... ok
+test_t03_namespace_collision (test_mic_engine.EngineTests.test_t03_namespace_collision) ... ok
+test_t04_null_code (test_mic_engine.EngineTests.test_t04_null_code) ... ok
+test_t05_null_namespace (test_mic_engine.EngineTests.test_t05_null_namespace) ... ok
+test_t06_aliases_rejected (test_mic_engine.EngineTests.test_t06_aliases_rejected) ... ok
+test_t07_not_found_snapshot_only (test_mic_engine.EngineTests.test_t07_not_found_snapshot_only) ... ok
+test_t08_description_never_fills_null (test_mic_engine.EngineTests.test_t08_description_never_fills_null) ... ok
+test_t09_snapshot_hash_divergent_zero_lookup (test_mic_engine.EngineTests.test_t09_snapshot_hash_divergent_zero_lookup) ... ok
+test_t10_duplicate_catalog_key (test_mic_engine.EngineTests.test_t10_duplicate_catalog_key) ... ok
+test_t11_identifier_conflict (test_mic_engine.EngineTests.test_t11_identifier_conflict) ... ok
+test_t12_item_multiplicity (test_mic_engine.EngineTests.test_t12_item_multiplicity) ... ok
+test_t13_one_acquisition_per_item (test_mic_engine.EngineTests.test_t13_one_acquisition_per_item) ... ok
+test_t16_logical_rerun_deterministic (test_mic_engine.EngineTests.test_t16_logical_rerun_deterministic) ... ok
+test_two_code_fields_fail_closed (test_mic_engine.EngineTests.test_two_code_fields_fail_closed) ... ok
+test_hash_before_parse (test_mic_evidence.EvidenceTests.test_hash_before_parse) ... ok
+test_t14_identical_bytes_identical_sha (test_mic_evidence.EvidenceTests.test_t14_identical_bytes_identical_sha) ... ok
+test_t15_one_byte_changes_sha (test_mic_evidence.EvidenceTests.test_t15_one_byte_changes_sha) ... ok
+test_distinct_read_write_sides (test_mic_repository.RepositoryTests.test_distinct_read_write_sides) ... ok
+test_read_contract_only_evt007_results (test_mic_repository.RepositoryTests.test_read_contract_only_evt007_results) ... ok
+test_t18_no_legacy_writes (test_mic_repository.RepositoryTests.test_t18_no_legacy_writes) ... ok
+
+----------------------------------------------------------------------
+Ran 26 tests in 0.008s
+
+OK

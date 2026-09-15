@@ -1,0 +1,10 @@
+"""SQL contracts only. This module opens no connection."""
+READ_FACTUAL_SQL="""SELECT result_key,case_id,item_number,source_name,source_payload FROM gsb.evt007_results"""
+INSERT_RUN_SQL="""INSERT INTO gsb.mic_runs (mic_run_id,mic_version,status,input_source,input_scope,namespace_rule_version,catalog_refs,started_at) VALUES (%(mic_run_id)s,%(mic_version)s,%(status)s,%(input_source)s,%(input_scope)s,%(namespace_rule_version)s,%(catalog_refs)s,%(started_at)s)"""
+INSERT_OBSERVATION_SQL="""INSERT INTO gsb.mic_identity_observations (mic_run_id,item_key,case_id,item_number,source_result_keys,source_name,source_field_name,material_ou_servico_raw,catalogo_id_raw,catalogo_nome_raw,catalogo_codigo_item_raw,catalog_namespace,catalog_code,mic_status,mic_reason_code,resolution_method,namespace_rule_version,identity_source,identity_endpoint,identity_http_status,identity_payload_raw,identity_payload_sha256,identity_payload,identity_started_at,identity_acquired_at,catalog_snapshot_sha256,catalog_snapshot_scope,catalog_name,catalog_group_code,catalog_group_name,failure_reason) VALUES (%(mic_run_id)s,%(item_key)s,%(case_id)s,%(item_number)s,%(source_result_keys)s,%(source_name)s,%(source_field_name)s,%(material_ou_servico_raw)s,%(catalogo_id_raw)s,%(catalogo_nome_raw)s,%(catalogo_codigo_item_raw)s,%(catalog_namespace)s,%(catalog_code)s,%(mic_status)s,%(mic_reason_code)s,%(resolution_method)s,%(namespace_rule_version)s,%(identity_source)s,%(identity_endpoint)s,%(identity_http_status)s,%(identity_payload_raw)s,%(identity_payload_sha256)s,%(identity_payload)s,%(identity_started_at)s,%(identity_acquired_at)s,%(catalog_snapshot_sha256)s,%(catalog_snapshot_scope)s,%(catalog_name)s,%(catalog_group_code)s,%(catalog_group_name)s,%(failure_reason)s)"""
+
+class MicRepository:
+    def __init__(self,reader,writer): self.reader=reader;self.writer=writer
+    def read_factual(self): return self.reader.query(READ_FACTUAL_SQL)
+    def insert_run(self,row): return self.writer.execute(INSERT_RUN_SQL,row)
+    def insert_observation(self,row): return self.writer.execute(INSERT_OBSERVATION_SQL,row)
